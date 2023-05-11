@@ -1,0 +1,148 @@
+.Page{
+    background-image: url("../media/background.png");
+    background-color: white;
+    background-size: 102% ;
+    background-repeat: no-repeat;
+    padding-bottom: 50px;
+}
+.Home{
+    display: flex;
+    padding: 80px 9% 30px 8%;
+    align-items: center;
+}
+.Home .LeftHome {
+    text-align: center;
+    width: 50%;
+}
+.Home .RightHome {
+    width: 50%;
+}
+.Home .LeftHome img{
+    width: 80%;
+}
+.Home .RightHome .RightHomeImage{
+    width: 70%;
+}
+.Home .RightHome .RightHomeImage img{
+    width: 100%;
+    height: 100%;
+}
+
+.Home .LeftHome .Hash{
+    position: relative;
+}
+.Home .LeftHome .Hash h3{
+    position: absolute;
+    color: #1c7cb8;
+    font-size: 28px;
+    font-weight: bold;
+    left: 50%;
+    bottom: 0%;
+    transform: translate(-37%,50%);
+}
+.Home .LeftHome .buttons{
+margin-top: 60px;
+display: flex;
+justify-content: center;
+margin-right: -70px;
+}
+.Home .LeftHome .buttons a{
+font-size: 22px;
+padding: 6px 25px;
+border: 2px solid #0282ed;
+border-radius: 40px;
+font-weight: bold;
+margin: 0px 12px;
+box-shadow: 0px 0px 8px 2px #0283ed65;
+width: 160px;
+}
+.Home .LeftHome .buttons a:hover{
+    background: rgb(28,124,184);
+    background: linear-gradient(100deg, rgba(28,124,184,1) 0%, rgba(2,130,237,1) 65%); 
+    color: white;
+    transition-duration: 0.5s;
+}
+.Page .ArrowToBottom{
+position: relative;
+margin-bottom: 100px;
+}
+.Page .ArrowToBottom i{
+position: absolute;
+left: 50%;
+font-size: 38px;
+transform: translateX(-50%);
+color: #0282ed;
+animation: ArrowToBottom 1s linear infinite alternate ;
+}
+@keyframes ArrowToBottom {
+    0%{
+        transform: translateY(50%);
+    }
+    20%{
+        transform: translateY(0%);
+    }
+    40%{
+        transform: translateY(50%);
+    }
+    60%{
+        transform: translateY(0%);
+    }
+    100%{
+        transform: translateY(0%);
+    }
+}
+.Slider{
+    background-color: #1c7cb8;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    width: 520px;
+    margin:250px auto 50px;
+    padding: 15px 50px;
+    text-align: center;
+    border-radius: 10px;
+    position: relative;
+    height: 50px;
+    margin-bottom: 15px;
+}
+.Slider ul{
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 10px;
+}
+.Slider ul li{
+    cursor:grab;
+}
+.Slider .Arrow{
+    position: absolute;
+    top: 50%;
+    padding: 5px 15px;
+    background-color: #009cfe;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+}
+.Slider .Arrow:first-of-type{
+    right: 0%;
+    transform: translate(50%,-50%);
+}
+.Slider .Arrow:last-of-type{
+    left: 0%;
+    transform: translate(-50%,-50%);
+}
+.Slider li{
+    position: absolute;
+    top: 50%;
+    left: -55%;
+    transform: translate(-50%,-50%);
+    width: 100%;
+    font-weight: bold;
+    color: white;
+    transition-duration: 0.8s;
+    width: 90%;
+}

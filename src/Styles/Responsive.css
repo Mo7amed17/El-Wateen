@@ -1,0 +1,247 @@
+@media (max-width:1157px) {
+    /*Blood*/
+    .Blood .topblood h2{
+        width: 46%;
+        font-size: 28px;
+    }
+    .Blood .topbloodImage{
+        margin-left: -30px;
+    }
+    .Blood .downblood a h4{
+        font-size: 12px;
+    }
+    .Blood .downblood a{
+        padding-bottom: 5px;
+    }
+}
+
+@media (max-width:1075px) {
+        /*Navbar*/
+    .list ul li a{
+        font-size: 17px;
+        padding: 1px 14px;
+    }
+    /*Home*/
+    .Home{
+        padding: 50px 9% 30px 8%;
+    }
+    .Home .LeftHome .buttons a{
+        font-size: 20px;
+        padding: 5px 22px;
+        width: 150px;
+        }
+        /*Blood*/
+        .Blood .topblood{
+            padding-top: 45px;
+        }
+        .Blood .topblood h2{
+            width: 46%;
+            font-size: 26px;
+            margin-top: -30px;
+        }
+        .Blood .downblood a h4{
+            font-size: 12px;
+        }
+        .Blood .downblood a{
+            height: 180px;
+            padding-bottom: 5px;
+        }
+        .Blood .downblood a .icon{
+            width: 80px;
+            height: 80px;
+            padding: 15px;
+        }
+        .Blood .downblood a:hover .icon{
+            width: 80px;
+        }
+    }
+
+@media (max-width:987px) {
+        /*Navbar*/
+    .list ul li a{
+        font-size: 16px;
+        padding: 1px 12px;
+    }
+    .list ul li a i{
+        font-size: 14px !important;
+    }
+    .logo{
+        width: 120px;
+        height: 70px;
+    }
+
+    /*Home*/
+    .Home{
+        padding: 40px 9% 30px 8%;
+    }
+
+    /*Blood*/
+    .Blood .topblood h2{
+        font-size: 24px;
+    }
+    .Blood .downblood a h4{
+        font-size: 12px;
+    }
+    .Blood .downblood a{
+        height: 170px;
+    }
+    .Blood .downblood a .icon{
+        width: 70px;
+        height: 70px;
+    }
+    .Blood .downblood a:hover .icon{
+        width: 70px;
+    }
+    }
+                                                /*Stop Here*/
+@media (max-width:926px) {
+        /*Navbar*/
+    .list ul li a{
+        font-size: 14px;
+    }
+    .list ul li a i{
+        font-size: 12px !important;
+    }
+    .list ul{
+        padding: 0px 6px;
+    }
+    .logo{
+        width: 110px;
+        height: 70px;
+    }
+    /*Home*/
+    .Home{
+        padding: 40px 9% 30px 8%;
+    }
+    .Home .LeftHome .buttons a{
+        font-size: 16px;
+        padding: 4px 18px;
+        width: 130px;
+        }
+    }
+
+
+@media (max-width:840px) {
+        /*Navbar*/
+        nav{
+            justify-content: space-between;
+            padding: 10px 30px;
+        }
+        .list{
+            width: 80%;
+        }
+        .list {
+            padding: 10px 20px ;
+        }
+    .list ul li a{
+        font-size: 15px;
+    padding: 1px 12px;
+    }
+    .list ul li a i{
+        font-size: 10px !important;
+    }
+    .list ul{
+        padding: 0px 4px;
+    }
+    .logo{
+        width: 80px;
+        height: 65px;
+    }
+    /*Home*/
+    .Home{
+        padding: 30px 9% 30px 8%;
+    }
+    .Home .LeftHome .buttons a{
+        font-size: 14px;
+        padding: 4px 16px;
+        width: 130px;
+        }
+        .Page .ArrowToBottom i{
+            margin-top: 100px;
+            }
+        /*Slider*/
+        .Slider{
+            font-size: 16px;
+            width: 400px;
+        }
+        .Slider .Arrow{
+            top: 50%;
+            padding: 3px 12px;
+            border-radius: 50%;
+            z-index: 10;
+            font-size: 16px;
+        }
+    }
+
+@media (max-width:713px) {
+        /*Navbar*/
+        nav{
+            justify-content: space-between;
+            padding: 10px 20px;
+        }
+        .list{
+            width: 80%;
+        }
+        .list {
+            padding: 8px 20px ;
+        }
+    .list ul li a{
+        font-size: 12px;
+    padding: 1px 10px;
+    }
+    .list ul li a span{
+        margin-left: 3px !important;
+    }
+    .list ul li a i{
+        font-size: 9px !important;
+    }
+    .list ul{
+        padding: 0px 4px;
+    }
+    .logo{
+        width: 60px;
+        height: 50px;
+    }
+    /*Home*/
+    .Home{
+        padding: 15px 9% 30px 8%;
+    }
+    .Home .LeftHome .Hash h3{
+        font-size: 22px;
+        bottom: -10%;
+    }
+    .Page .ArrowToBottom i{
+        font-size: 32px;
+        }
+    }
+
+@media (max-width:650px) {
+    /*Navbar*/
+    .list{
+        width: 78%;
+    }
+    .list {
+        padding: 6px 16px ;
+    }
+    /*Home*/
+    .Home .LeftHome .buttons a{
+        font-size: 12px;
+        padding: 3px 15px;
+        width: 120px;
+        }
+        
+        /*Slider*/
+        .Slider{
+            margin-top: 300px;
+            font-size: 14px;
+            width: 300px;
+            padding: 15px 30px;
+            height: 30px;        
+        }
+        .Slider .Arrow{
+            padding: 2px 8px;
+            font-size: 14px;
+        }
+    }
+
+/*Width 585px*/

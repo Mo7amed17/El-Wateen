@@ -1,0 +1,90 @@
+.Blood{
+    background-image: url("../TestMedia/2.png");
+    background-size: cover;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    padding-bottom: 500px;
+}
+.Blood .topblood{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-items: center;
+    padding: 55px 10px 50px 0px;
+}
+.Blood .topblood h2{
+    width: 45%;
+    color: #0282ed;
+    font-size: 30px;
+    cursor: default;
+}
+.Blood .topblood{
+    display: flex;
+    justify-content: space-evenly;
+}
+.Blood .topbloodImage{
+    width: 22%;
+    margin-left: -20px;
+}
+.Blood .topblood img{
+    width: 100%;
+    height: 100%;
+}
+.Blood .downblood{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 80px 40px 0px;
+}
+.Blood .downblood a{
+    width: calc(20% - 65px);
+    height: 210px;
+    background-color: #167cc1;
+    color: white;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 20px 15px;
+    margin: 0px 10px;
+    cursor: pointer;
+    border: 2px solid #167cc1;
+    transition-duration: 1s;
+}
+.Blood .downblood a .icon{
+    width: 100px;
+    height: 100px;
+    padding: 20px;
+    border-radius: 50%;
+    background-color: white;
+    transition-duration: 1s;
+}
+.Blood .downblood a img{
+    width: 100%;
+    height: 100%;
+    transition-duration: 0.5s;
+
+}
+.Blood .downblood a h4{
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    margin: 10px 0px 0px;
+}
+
+    .Blood .downblood a:hover{
+        background-color: white;
+        color: #167cc1;
+        animation: light 0.8s linear 0.8s infinite alternate ;
+        transform: scaleX(1.2) scaleY(1.2);
+        transition-duration: 1s;
+    }
+    .Blood .downblood a:hover .icon{
+        background-color: #167dc142;
+        width: 110px;
+    }
+    @keyframes light {
+        to{
+            box-shadow: 0px 0px 15px 7px #0283edab;
+        }
+    }
