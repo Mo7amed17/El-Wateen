@@ -60,7 +60,7 @@ width: 160px;
     background: rgb(28,124,184);
     background: linear-gradient(100deg, rgba(28,124,184,1) 0%, rgba(2,130,237,1) 65%); 
     color: white;
-    transition-duration: 0.5s;
+    transition-duration: 0.8s;
 }
 .Page .ArrowToBottom{
 position: relative;
@@ -116,7 +116,7 @@ animation: ArrowToBottom 1s linear infinite alternate ;
     border-radius: 10px;
 }
 .Slider ul li{
-    cursor:grab;
+    cursor:default;
 }
 .Slider .Arrow{
     position: absolute;

@@ -25,7 +25,7 @@ const MainPage = () => {
     }, []);
 
     return (
-    <div className="Page">
+    <div className="Page HomePage">
     <div className="Home">
     <div className="RightHome">
         <div className="RightHomeImage">
