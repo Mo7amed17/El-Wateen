@@ -42,3 +42,219 @@ nav{
     background-color:white  !important;
 }
 
+
+@media (max-width:1075px) {
+    .list ul li a{
+        font-size: 17px;
+        padding: 1px 14px;
+    }
+    }
+
+@media (max-width:987px) {
+    .list ul li a{
+        font-size: 16px;
+        padding: 1px 12px;
+    }
+    .list ul li a i{
+        font-size: 14px !important;
+    }
+    .logo{
+        width: 120px;
+        height: 70px;
+    }
+    }
+@media (max-width:926px) {
+    .list ul li a{
+        font-size: 14px;
+    }
+    .list ul li a i{
+        font-size: 12px !important;
+    }
+    .list ul{
+        padding: 0px 6px;
+    }
+    .logo{
+        width: 110px;
+        height: 70px;
+    }
+    }
+
+
+@media (max-width:840px) {
+        nav{
+            justify-content: space-between;
+            padding: 10px 30px;
+        }
+        .list{
+            width: 80%;
+        }
+        .list {
+            padding: 10px 20px ;
+        }
+    .list ul li a{
+        font-size: 15px;
+    padding: 1px 12px;
+    }
+    .list ul li a i{
+        font-size: 10px !important;
+    }
+    .list ul{
+        padding: 0px 4px;
+    }
+    .logo{
+        width: 80px;
+        height: 65px;
+    }
+    }
+
+@media (max-width:713px) {
+        nav{
+            justify-content: space-between;
+            padding: 10px 20px;
+        }
+        .list{
+            width: 80%;
+        }
+        .list {
+            padding: 8px 20px ;
+        }
+    .list ul li a{
+        font-size: 12px;
+    padding: 1px 10px;
+    }
+    .list ul li a span{
+        margin-left: 3px !important;
+    }
+    .list ul li a i{
+        font-size: 9px !important;
+    }
+    .list ul{
+        padding: 0px 4px;
+    }
+    .logo{
+        width: 60px;
+        height: 50px;
+    }
+    }
+
+@media (max-width:655px) {
+    .list{
+        width: 78%;
+    }
+    .list {
+        padding: 6px 16px ;
+    }
+    }
+
+
+@media (max-width:584px) {
+    .list ul li a{
+        font-size: 10px;
+        padding: 0px 8px;
+    }
+    .list ul li a i {
+        font-size: 7px !important;
+    }
+    }
+
+@media (max-width:493px) {
+    .list ul{
+        padding: 0px 5px;
+    }
+    .list ul li a{
+        font-size: 9px;
+        padding: 0px 7px;
+    }
+    .list ul li a i {
+        font-size: 6px !important;
+        padding: 4px !important;
+    }
+    nav{
+        justify-content: space-evenly;
+        padding: 4px 12px;
+    }
+    .logo{
+        width: 50px;
+        height: 40px;
+        margin-left: 20px;
+    }
+    .list {
+        width: 80%;
+        padding: 0px 5px 2px;
+    }
+    }
+
+@media (max-width:420px) {
+    .list ul{
+        padding: 0px 5px;
+        margin-top: -5px;
+    }
+    .list ul li a{
+        font-size: 8px;
+        padding: 0px 6px;
+    }
+    .list ul li a i {
+        font-size: 6px !important;
+        padding: 4px !important;
+    }
+    nav{
+        padding: 4px 12px;
+    }
+    .logo{
+        width: 40px;
+        height: 30px;
+        margin-left: 10px;
+    }
+    .list {
+        padding: 0px 4px 2px;
+    }
+    }
+
+@media (max-width:376px) {
+    .list ul{
+        padding: 0px 4px;
+        margin-top: -7px;
+    }
+    .list ul li a{
+        font-size: 6px;
+        padding: 1px 4px;
+    }
+    .list ul li a i {
+        font-size: 5px !important;
+        padding: 3px !important;
+    }
+    nav{
+        padding: 4px 12px;
+    }
+    .logo{
+        width: 30px;
+        height: 20px;
+        margin-left: 10px;
+    }
+    .list {
+        padding: 0px 3px ;
+    }
+    }
+
+@media (max-width:286px) {
+    .list ul{
+        padding: 0px 3px;
+    }
+    .list ul li a{
+        font-size: 5px;
+        padding: 1px 3px;
+    }
+    nav{
+        padding: 4px 12px;
+    }
+    }
+
+@media (max-width:243px) {
+    .list ul{
+        padding: 0px 3px;
+    }
+    .list ul li a{
+        font-size: 4px;
+        padding: 1px 2px;
+    }
+    }

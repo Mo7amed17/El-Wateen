@@ -89,3 +89,251 @@
             box-shadow: 0px 0px 15px 7px #0283edab;
         }
     }
+
+    @media (max-width:1157px) {
+        .Blood .topblood h2{
+            width: 46%;
+            font-size: 28px;
+        }
+        .Blood .topbloodImage{
+            margin-left: -30px;
+        }
+        .Blood .downblood a h4{
+            font-size: 12px;
+        }
+        .Blood .downblood a{
+            padding-bottom: 5px;
+        }
+    }
+    
+    @media (max-width:1075px) {
+            .Blood .topblood{
+                padding-top: 45px;
+            }
+            .Blood .topblood h2{
+                width: 46%;
+                font-size: 26px;
+                margin-top: -30px;
+            }
+            .Blood .downblood a h4{
+                font-size: 12px;
+            }
+            .Blood .downblood a{
+                height: 180px;
+                padding-bottom: 5px;
+            }
+            .Blood .downblood a .icon{
+                width: 80px;
+                height: 80px;
+                padding: 15px;
+            }
+            .Blood .downblood a:hover .icon{
+                width: 80px;
+            }
+        }
+    
+    @media (max-width:987px) {
+        .Blood .topblood h2{
+            font-size: 24px;
+        }
+        .Blood .downblood a h4{
+            font-size: 12px;
+        }
+        .Blood .downblood a{
+            height: 170px;
+        }
+        .Blood .downblood a .icon{
+            width: 70px;
+            height: 70px;
+        }
+        .Blood .downblood a:hover .icon{
+            width: 70px;
+        }
+        }
+    @media (max-width:926px) {
+            .Blood .topblood{
+                padding-top: 35px;
+            }
+            .Blood .topblood h2{
+                font-size: 22px;
+            }
+            .Blood .downblood a{
+                height: 165px;
+                width: calc(20% - 50px)
+            }
+            .Blood .downblood a h4{
+                font-size: 11px;
+                margin-top: 5px;
+            }
+            .Blood .downblood a .icon{
+                width: 70px;
+                height: 70px;
+            }
+            .Blood .downblood a:hover .icon{
+                width: 70px;
+            }
+        }
+    
+    
+    @media (max-width:840px) {
+            .Blood .topblood h2{
+                font-size: 20px;
+            }
+            .Blood .downblood a{
+                height: 155px;
+                width: calc(20% - 45px)
+            }
+            .Blood .downblood a h4{
+                font-size: 10px;
+                margin-top: 3px;
+            }
+            .Blood .downblood a .icon{
+                width: 60px;
+                height: 60px;
+            }
+            .Blood .downblood a:hover .icon{
+                width: 60px;
+            }
+        }
+    @media (max-width:767px) {
+        .Blood .topblood h2{
+            font-size: 18px;
+        }
+        .Blood .downblood a{
+            height: 155px;
+            width: 20%
+        }
+        .Blood .downblood a .icon{
+            width: 50px;
+            height: 50px;
+        }
+        .Blood .downblood a:hover .icon{
+            width: 50px;
+        }
+    }
+    @media (max-width:713px) {
+        .Blood .topblood h2{
+            font-size: 18px;
+            width: 48%;
+        }
+        .Blood .downblood{
+            flex-wrap: wrap;
+        }
+        .Blood .downblood a{
+            width: 20%;
+            margin-top: 30px;
+        }
+        .Blood .downblood a .icon{
+            width: 60px;
+            height: 60px;
+        }
+        .Blood .downblood a:hover .icon{
+            width: 60px;
+        }
+        .Blood .downblood a h4{
+            font-size: 11px;
+        }
+        }
+    
+    @media (max-width:655px) {
+        .Blood .topblood h2{
+            font-size: 16px;
+            width: 48%;
+        }
+        }
+    
+    
+    @media (max-width:584px) {
+            .Blood .topblood {
+                padding-top: 20px;
+            }
+            .Blood .topblood h2{
+                font-size: 14px;
+            }
+            .Blood .downblood a{
+                margin-top: 25px;
+                height: 140px;
+            }
+            .Blood .downblood a .icon{
+                width: 50px;
+                height: 50px;
+            }
+            .Blood .downblood a:hover .icon{
+                width: 50px;
+            }
+            .Blood .downblood a h4{
+                font-size: 10px;
+            }
+            
+        }
+    
+    @media (max-width:512px) {
+                .Blood .topblood h2{
+                    font-size: 13px;
+                    width: 48%;
+                }
+        }
+    
+    @media (max-width:493px) {
+            .Blood {
+                background-image: url(../media/BloodBackGroundSmallScreen.png);
+            }
+            .Blood .topblood {
+                padding-top: 60px;
+            }
+            .Blood .topblood h2{
+                font-size: 12px;
+                margin-right: 15px;
+            }
+            .Blood .downblood a{
+                margin-top: 25px;
+                height: 110px;
+                width: 17%;
+            }
+            .Blood .downblood a .icon{
+                width: 35px;
+                height: 35px;
+                padding: 10px;
+            }
+            .Blood .downblood a:hover .icon{
+                width: 35px;
+            }
+            .Blood .downblood a h4{
+                font-size: 8px;
+            }
+            
+        }
+    
+        @media (max-width:439px) {
+            .Blood .topblood h2{
+                font-size: 11px;
+            }
+        }
+    
+    @media (max-width:420px) {
+            .Blood .topbloodImage {
+                    margin-top: -5px;
+                }
+            .Blood .topblood h2{
+                font-size: 10px;
+                margin-right: 15px;
+            }
+            .Blood .downblood a{
+                margin-top: 15px;
+                height: 110px;
+                width: 17%;
+            }
+            .Blood .downblood a .icon{
+                width: 35px;
+                height: 35px;
+                padding: 10px;
+            }
+            .Blood .downblood a:hover .icon{
+                width: 35px;
+            }
+            .Blood .downblood a h4{
+                font-size: 8px;
+            }
+            
+        }
+    

@@ -63,14 +63,11 @@ width: 160px;
     transition-duration: 0.8s;
 }
 .Page .ArrowToBottom{
-position: relative;
 margin-bottom: 100px;
+text-align: center;
 }
 .Page .ArrowToBottom i{
-position: absolute;
-left: 50%;
 font-size: 38px;
-transform: translateX(-50%);
 color: #0282ed;
 animation: ArrowToBottom 1s linear infinite alternate ;
 }
@@ -146,3 +143,254 @@ animation: ArrowToBottom 1s linear infinite alternate ;
     transition-duration: 0.8s;
     width: 90%;
 }
+
+
+@media (max-width:1075px) {
+    .Home{
+        padding: 50px 9% 30px 8%;
+    }
+    .Home .LeftHome .buttons a{
+        font-size: 20px;
+        padding: 5px 22px;
+        width: 150px;
+        }
+    }
+
+@media (max-width:987px) {
+    .Home{
+        padding: 40px 9% 30px 8%;
+    }
+    }
+@media (max-width:926px) {
+    .Home{
+        padding: 40px 9% 30px 8%;
+    }
+    .Home .LeftHome .buttons a{
+        font-size: 16px;
+        padding: 4px 18px;
+        width: 130px;
+        }
+    }
+
+
+@media (max-width:840px) {
+    .Home{
+        padding: 30px 9% 30px 8%;
+    }
+    .Home .LeftHome .buttons a{
+        font-size: 14px;
+        padding: 4px 16px;
+        width: 130px;
+        }
+        .Page .ArrowToBottom i{
+            margin-top: 100px;
+            }
+        .Slider{
+            font-size: 16px;
+            width: 400px;
+        }
+        .Slider .Arrow{
+            top: 50%;
+            padding: 3px 12px;
+            border-radius: 50%;
+            z-index: 10;
+            font-size: 16px;
+        }
+    }
+
+@media (max-width:713px) {
+    .Home{
+        padding: 15px 9% 30px 8%;
+    }
+    .Home .LeftHome .Hash h3{
+        font-size: 22px;
+        bottom: -10%;
+    }
+    .Page .ArrowToBottom i{
+        font-size: 32px;
+        }
+    }
+
+@media (max-width:655px) {
+    .Home .LeftHome .buttons a{
+        font-size: 12px;
+        padding: 3px 15px;
+        width: 120px;
+        }
+        .Slider{
+            margin-top: 300px;
+            font-size: 14px;
+            width: 300px;
+            padding: 15px 30px;
+            height: 30px;        
+        }
+        .Slider .Arrow{
+            padding: 2px 8px;
+            font-size: 14px;
+        }
+    }
+
+
+@media (max-width:584px) {
+    .Home .LeftHome .buttons a{
+        font-size: 12px;
+        padding: 3px 15px;
+        width: 120px;
+        }
+        .Home .LeftHome .Hash h3 {
+            font-size: 19px;
+            bottom: -10%;
+        }
+        .Home .LeftHome .buttons a {
+            font-size: 11px;
+            padding: 2px 12px;
+            width: 110px;
+        }
+        .Slider{
+            font-size: 12px;
+            width: 300px;
+            padding: 15px 30px;
+            height: 30px;        
+        }
+        .Slider .Arrow{
+            padding: 2px 8px;
+            font-size: 14px;
+        }
+    }
+
+@media (max-width:493px) {
+    .Home .LeftHome .buttons {
+        margin-top: 50px;
+        justify-content: space-between;
+        margin-right: -30px;
+    }
+    .Home .LeftHome .buttons a{
+        font-size: 9px ;
+        padding: 2px 8px;
+        width: 80px;
+        margin: 0px;
+        border-width: 1px;
+        box-shadow: 0px 0px 8px 1px #0283ed65;
+        }
+        .Home .LeftHome .Hash h3 {
+            font-size: 16px;
+        }
+        .Home .RightHome .RightHomeImage{
+            margin-top: -20px;
+        }
+        .Slider{
+            width: 260px;
+            margin-top: 450px;
+        }
+        .Slider .Arrow{
+            padding: 1px 6px;
+            font-size: 12px;
+        }
+    }
+
+@media (max-width:420px) {
+    .Home{
+        margin-top: 50px;
+    }
+    .Home .LeftHome .buttons {
+        margin-top: 50px;
+        justify-content: space-around;
+        margin-right: -20px;
+    }
+    .Home .LeftHome .buttons a{
+        font-size: 7px ;
+        padding: 2px 6px;
+        width: 60px;
+        }
+        .Home .LeftHome .Hash h3 {
+            font-size: 14px;
+        }
+        .Home .RightHome .RightHomeImage{
+            margin-top: -25px;
+        }
+        .Slider{
+            width: 220px;
+            margin-top: 450px;
+            font-size: 10px;
+            height: 25px;
+        }
+        .Slider .Arrow{
+            padding: 0px 6px;
+            font-size: 10px;
+        }
+    }
+
+
+@media (max-width:350px) {
+    .Home .LeftHome .buttons {
+        margin-top: 40px;
+        justify-content: space-between;
+        margin-right: -20px;
+    }
+    .Home .LeftHome .buttons a{
+        font-size: 6px ;
+        padding: 1px 4px;
+        width: 60px;
+        }
+        .Home .LeftHome .Hash h3 {
+            font-size: 12px;
+        }
+        .Home .RightHome .RightHomeImage{
+            margin-top: -15px;
+        }
+        .Page .ArrowToBottom i {
+            font-size: 26px;
+        }
+        .Slider{
+            width: 180px;
+            font-size: 9px;
+            height: 15px;
+        }
+    }
+
+@media (max-width:300px) {
+    .Home .LeftHome .buttons {
+        margin-top: 40px;
+        justify-content: space-around;
+        margin-right: -20px;
+    }
+    .Home .LeftHome .buttons a{
+        font-size: 5px ;
+        padding: 1px 4px;
+        width: 45px;
+        }
+        .Home .LeftHome .Hash h3 {
+            font-size: 10px;
+        }
+        .Home .RightHome .RightHomeImage{
+            margin-top: -25px;
+        }
+        .Page .ArrowToBottom i {
+            font-size: 26px;
+        }
+        .Slider{
+            width: 150px;
+            font-size: 8px;
+        }
+    }
+
+@media (max-width:250px) {
+    .Home .LeftHome .buttons {
+        margin-top: 30px;
+        justify-content: space-between;
+    }
+        .Home .LeftHome .Hash h3 {
+            font-size: 9px;
+        }
+        .Home .RightHome .RightHomeImage{
+            margin-top: -30px;
+        }
+        .Page .ArrowToBottom i {
+            font-size: 22px;
+        }
+        .Slider{
+            width: 100px;
+            font-size: 7px;
+            height: 10px;
+        }
+    }
