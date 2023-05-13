@@ -128,3 +128,6 @@ export const CheckActivePage=()=>{
         }
     }, [Active]);
 }
+
+
+export const Api="https://mo7amed17.github.io/El-Wateen-Images"

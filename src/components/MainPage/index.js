@@ -1,30 +1,49 @@
 import { Link } from "react-router-dom";
-import RightHomeImage from "../../media/1.png"
-import LeftHomeImage from "../../media/11.png"
 import { CheckActivePage, SliderToLeft } from "../../Helpers/Functions";
-import { useEffect } from "react";
+import { useEffect , useState} from "react";
 import { SliderToRight } from "../../Helpers/Functions";
 import "../../Styles/Home.css"
-
+import LoadingPage from "../../Helpers/LoadingPage"
+import { Switch , Case , Default} from "react-if";
+import { Api } from "../../Helpers/Functions";
 const MainPage = () => {
+    const [IsLoading, setIsLoading] = useState(true);
+    const [RightHomeImage, setRightHomeImage] = useState("");
+    const [LeftHomeImage, setLeftHomeImage] = useState("");
     window.localStorage.setItem("ActivePage",0)
     CheckActivePage()
     useEffect(() => {
-        let SliderElements=document.querySelectorAll(".Slider ul li")
-        let RightArrow=document.getElementById("RightArrow")
-        let LeftArrow=document.getElementById("LeftArrow")
-        RightArrow.onclick=()=>{
-            SliderToRight(SliderElements[0],SliderElements[1],SliderElements[2])
-        }
-        LeftArrow.onclick=()=>{
-            SliderToLeft(SliderElements[0],SliderElements[1],SliderElements[2])
-        }
-        setInterval(() => {
-            SliderToRight(SliderElements[0],SliderElements[1],SliderElements[2])
-        }, 7000);
+        fetch(`${Api}/1.png`)
+        .then((res)=>{
+            setRightHomeImage(res.url)
+            fetch(`${Api}/11.png`)
+        .then((res)=>{
+            setLeftHomeImage(res.url)
+            setIsLoading(false)
+            setTimeout(() => {
+                let SliderElements=document.querySelectorAll(".Slider ul li")
+            let RightArrow=document.getElementById("RightArrow")
+            let LeftArrow=document.getElementById("LeftArrow")
+            RightArrow.onclick=()=>{
+                SliderToRight(SliderElements[0],SliderElements[1],SliderElements[2])
+            }
+            LeftArrow.onclick=()=>{
+                SliderToLeft(SliderElements[0],SliderElements[1],SliderElements[2])
+            }
+            setInterval(() => {
+                SliderToRight(SliderElements[0],SliderElements[1],SliderElements[2])
+            }, 7000);
+            }, 100);
+        })
+        })
     }, []);
 
     return (
+        <Switch>
+            <Case condition={IsLoading===true}>
+                <LoadingPage/>
+            </Case>
+            <Default>
     <div className="Page HomePage">
     <div className="Home">
     <div className="RightHome">
@@ -57,7 +76,9 @@ const MainPage = () => {
     </ul>
 </div>
 </div>
-
+                            
+        </Default>
+            </Switch>
     );
 }
 
