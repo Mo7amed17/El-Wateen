@@ -171,7 +171,7 @@ nav{
     }
     nav{
         justify-content: space-evenly;
-        padding: 4px 12px;
+        padding: 6px 12px ;
     }
     .logo{
         width: 50px;
@@ -198,7 +198,7 @@ nav{
         padding: 4px !important;
     }
     nav{
-        padding: 4px 12px;
+        padding: 8px 12px ;
     }
     .logo{
         width: 40px;
@@ -223,9 +223,6 @@ nav{
         font-size: 5px !important;
         padding: 3px !important;
     }
-    nav{
-        padding: 4px 12px;
-    }
     .logo{
         width: 30px;
         height: 20px;
@@ -245,7 +242,7 @@ nav{
         padding: 1px 3px;
     }
     nav{
-        padding: 4px 12px;
+        padding: 5px 12px;
     }
     }
 

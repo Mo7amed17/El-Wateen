@@ -1,13 +1,13 @@
 .Page{
     background-image: url("../media/background.png");
     background-color: white;
-    background-size: 102% ;
+    background-size: 100% ;
     background-repeat: no-repeat;
     padding-bottom: 50px;
 }
 .Home{
     display: flex;
-    padding: 80px 9% 30px 8%;
+    padding: 40px 11% 30px 8%;
     align-items: center;
 }
 .Home .LeftHome {
@@ -94,7 +94,7 @@ animation: ArrowToBottom 1s linear infinite alternate ;
     font-weight: bold;
     font-size: 20px;
     width: 520px;
-    margin:250px auto 50px;
+    margin:20px auto 50px; /*Edit*/
     padding: 15px 50px;
     text-align: center;
     border-radius: 10px;
@@ -218,7 +218,7 @@ animation: ArrowToBottom 1s linear infinite alternate ;
         width: 120px;
         }
         .Slider{
-            margin-top: 300px;
+            /* margin-top: 300px; */
             font-size: 14px;
             width: 300px;
             padding: 15px 30px;
@@ -280,7 +280,7 @@ animation: ArrowToBottom 1s linear infinite alternate ;
         }
         .Slider{
             width: 260px;
-            margin-top: 450px;
+            /* margin-top: 450px; */
         }
         .Slider .Arrow{
             padding: 1px 6px;
@@ -310,7 +310,7 @@ animation: ArrowToBottom 1s linear infinite alternate ;
         }
         .Slider{
             width: 220px;
-            margin-top: 450px;
+            /* margin-top: 450px; */
             font-size: 10px;
             height: 25px;
         }
