@@ -94,7 +94,7 @@ animation: ArrowToBottom 1s linear infinite alternate ;
     font-weight: bold;
     font-size: 20px;
     width: 520px;
-    margin:20px auto 50px; /*Edit*/
+    margin:1% auto 50px; /*Edit*/
     padding: 15px 50px;
     text-align: center;
     border-radius: 10px;
@@ -147,7 +147,7 @@ animation: ArrowToBottom 1s linear infinite alternate ;
 
 @media (max-width:1075px) {
     .Home{
-        padding: 50px 9% 30px 8%;
+        padding: 50px 11% 30px 8%;
     }
     .Home .LeftHome .buttons a{
         font-size: 20px;
@@ -158,24 +158,30 @@ animation: ArrowToBottom 1s linear infinite alternate ;
 
 @media (max-width:987px) {
     .Home{
-        padding: 40px 9% 30px 8%;
+        padding: 40px 11% 30px 8%;
     }
-    }
-@media (max-width:926px) {
-    .Home{
-        padding: 40px 9% 30px 8%;
-    }
+    .Home .LeftHome .buttons{
+        justify-content: space-evenly;
+        }
     .Home .LeftHome .buttons a{
         font-size: 16px;
         padding: 4px 18px;
         width: 130px;
         }
     }
+@media (max-width:926px) {
+    .Home{
+        padding: 40px 11% 30px 8%;
+    }
+        .Slider{
+            margin-top: 8%;
+        }
+    }
 
 
 @media (max-width:840px) {
     .Home{
-        padding: 30px 9% 30px 8%;
+        padding: 30px 11% 30px 8%;
     }
     .Home .LeftHome .buttons a{
         font-size: 14px;
@@ -200,7 +206,7 @@ animation: ArrowToBottom 1s linear infinite alternate ;
 
 @media (max-width:713px) {
     .Home{
-        padding: 15px 9% 30px 8%;
+        padding: 15px 11% 30px 8%;
     }
     .Home .LeftHome .Hash h3{
         font-size: 22px;
@@ -218,7 +224,7 @@ animation: ArrowToBottom 1s linear infinite alternate ;
         width: 120px;
         }
         .Slider{
-            /* margin-top: 300px; */
+            margin-top: 15%;
             font-size: 14px;
             width: 300px;
             padding: 15px 30px;
@@ -280,7 +286,7 @@ animation: ArrowToBottom 1s linear infinite alternate ;
         }
         .Slider{
             width: 260px;
-            /* margin-top: 450px; */
+            margin-top: 20%;
         }
         .Slider .Arrow{
             padding: 1px 6px;
@@ -310,7 +316,7 @@ animation: ArrowToBottom 1s linear infinite alternate ;
         }
         .Slider{
             width: 220px;
-            /* margin-top: 450px; */
+            margin-top: 25%;
             font-size: 10px;
             height: 25px;
         }
@@ -321,6 +327,11 @@ animation: ArrowToBottom 1s linear infinite alternate ;
     }
 
 
+@media (max-width:360px) {
+        .Home .LeftHome .Hash h3 {
+            font-size: 12px;
+        }
+    }
 @media (max-width:350px) {
     .Home .LeftHome .buttons {
         margin-top: 40px;
@@ -331,9 +342,6 @@ animation: ArrowToBottom 1s linear infinite alternate ;
         font-size: 6px ;
         padding: 1px 4px;
         width: 60px;
-        }
-        .Home .LeftHome .Hash h3 {
-            font-size: 12px;
         }
         .Home .RightHome .RightHomeImage{
             margin-top: -15px;
@@ -348,6 +356,12 @@ animation: ArrowToBottom 1s linear infinite alternate ;
         }
     }
 
+@media (max-width:308px) {
+        .Home .LeftHome .Hash h3 {
+            font-size: 10px;
+        }
+    }
+
 @media (max-width:300px) {
     .Home .LeftHome .buttons {
         margin-top: 40px;
@@ -358,9 +372,6 @@ animation: ArrowToBottom 1s linear infinite alternate ;
         font-size: 5px ;
         padding: 1px 4px;
         width: 45px;
-        }
-        .Home .LeftHome .Hash h3 {
-            font-size: 10px;
         }
         .Home .RightHome .RightHomeImage{
             margin-top: -25px;
@@ -374,14 +385,17 @@ animation: ArrowToBottom 1s linear infinite alternate ;
         }
     }
 
+@media (max-width:256px) {
+
+        .Home .LeftHome .Hash h3 {
+            font-size: 9px;
+        }
+    }
 @media (max-width:250px) {
     .Home .LeftHome .buttons {
         margin-top: 30px;
         justify-content: space-between;
     }
-        .Home .LeftHome .Hash h3 {
-            font-size: 9px;
-        }
         .Home .RightHome .RightHomeImage{
             margin-top: -30px;
         }
