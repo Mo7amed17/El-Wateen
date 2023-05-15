@@ -44,6 +44,19 @@
     transform: translate(-50%,-50%);
     animation: LoadingPage 0.5s linear  infinite alternate ;
 }
+.ErrorPage{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10%;
+    font-size: 22px;
+}
+.ErrorPage i{
+    cursor: pointer;
+    transition-duration: 1.5s;
+    margin-right: 10px;
+    margin-top: 15px;
+}
 @keyframes LoadingPage {
     to{
     background-color: white;
@@ -77,6 +90,9 @@
         border: 2px solid #0282ed;
         padding: 3px 18px;
     }
+    .ErrorPage{
+        font-size: 18px;
+    }
 }
 
 @media (max-width:560px) {
@@ -96,6 +112,9 @@
         width: 40px;
         height: 40px;
         top: 30%;
+    }
+    .ErrorPage{
+        font-size: 15px;
     }
 }
 
@@ -117,6 +136,12 @@
         height: 30px;
         top: 20%;
     }
+    .ErrorPage{
+        font-size: 12px;
+    }
+    .ErrorPage i{
+        margin-top: 8px;
+    }
 }
 
 @media (max-width:330px) {
@@ -131,5 +156,11 @@
         font-size: 11px;
         border: 1px solid #0282ed;
         padding: 2px 12px;
+    }
+    .ErrorPage{
+        font-size: 10px;
+    }
+    .ErrorPage i{
+        margin-top: 5px;
     }
 }

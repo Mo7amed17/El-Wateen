@@ -3,7 +3,7 @@
     background-size: cover;
     background-size: 100%;
     background-repeat: no-repeat;
-    padding-bottom: 500px;
+    padding-bottom: 200px;
 }
 .Blood .topblood{
     display: flex;
@@ -333,6 +333,84 @@
                 width: 30px;
             }
             .Blood .downblood a h4{
+                font-size: 6px;
+            }
+            
+        }
+    
+    
+    @media (max-width:368px) {
+            .Blood .topbloodImage {
+                    margin-top: -12px;
+                }
+            .Blood .topblood h2{
+                font-size: 9px;
+                margin-right: 25px;
+            }
+            .Blood .downblood {
+                justify-content: space-around;
+            }
+            .Blood .downblood a{
+                margin-top: 15px;
+                height: 80px;
+                width: 22%;
+            }
+        }
+    
+    @media (max-width:333px) {
+            .Blood .topbloodImage {
+                    margin-top: -18px;
+                }
+            .Blood .topblood h2{
+                font-size: 8px;
+                margin-right: 30px;
+            }
+        }
+    
+    
+    @media (max-width:297px) {
+            .Blood .topbloodImage {
+                    margin-top: -25px;
+                }
+            .Blood .topblood h2{
+                font-size: 7px;
+                margin-right: 30px;
+            }
+            .Blood .downblood a{
+                margin-top: 15px;
+                height: 80px;
+                width: 22%;
+            }
+        }
+    
+    @media (max-width:272px) {
+            .Blood .topbloodImage {
+                    margin-top: -25px;
+                }
+            .Blood .topblood h2{
+                font-size: 7px;
+                margin-right: 30px;
+            }
+            .Blood .downblood a{
+                margin-top: 15px;
+                height: 90px;
+                width: 40%;
+            }
+            .Blood .downblood a .icon{
+                width: 35px;
+                height: 35px;
+            }
+            .Blood .downblood a:hover .icon{
+                width: 35px;
+            }
+            .Blood .downblood a h4{
+                font-size: 8px;
+            }
+        }
+    
+    @media (max-width:260px) {
+            .Blood .topblood h2{
+                margin-top: -40px;
                 font-size: 6px;
             }
             

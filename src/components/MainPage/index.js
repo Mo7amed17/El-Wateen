@@ -6,42 +6,64 @@ import "../../Styles/Home.css"
 import LoadingPage from "../../Helpers/LoadingPage"
 import { Switch , Case , Default} from "react-if";
 import { Api } from "../../Helpers/Functions";
+import ErrorPage from "../../Helpers/ErrorPage";
 const MainPage = () => {
-    const [IsLoading, setIsLoading] = useState(true);
+    const [Status, setStatus] = useState("loading");
+    const [Reload, setReload] = useState(false);
     const [RightHomeImage, setRightHomeImage] = useState("");
     const [LeftHomeImage, setLeftHomeImage] = useState("");
     window.localStorage.setItem("ActivePage",0)
     CheckActivePage()
     useEffect(() => {
         fetch(`${Api}/1.png`)
-        .then((res)=>{
-            setRightHomeImage(res.url)
+        .then((res1)=>{
+            if(res1.status!==200){
+                setStatus("error")
+            }
+            else{
+                setRightHomeImage(res1.url)
             fetch(`${Api}/11.png`)
-        .then((res)=>{
-            setLeftHomeImage(res.url)
-            setIsLoading(false)
-            setTimeout(() => {
-                let SliderElements=document.querySelectorAll(".Slider ul li")
-            let RightArrow=document.getElementById("RightArrow")
-            let LeftArrow=document.getElementById("LeftArrow")
-            RightArrow.onclick=()=>{
-                SliderToRight(SliderElements[0],SliderElements[1],SliderElements[2])
+        .then((res2)=>{
+            if(res2.status!==200 || res1.status!==200){
+                setStatus("error")
+                setTimeout(() => {
+                    let reload=document.querySelector(".ErrorPage i")
+                reload.addEventListener("click",(e)=>{
+                    reload.style.rotate="360deg"
+                    setReload(true)
+                })
+                }, 100);
+            }else {
+                setStatus("done")
+                setLeftHomeImage(res2.url)
+                setTimeout(() => {
+                    let SliderElements=document.querySelectorAll(".Slider ul li")
+                let RightArrow=document.getElementById("RightArrow")
+                let LeftArrow=document.getElementById("LeftArrow")
+                RightArrow.onclick=()=>{
+                    SliderToRight(SliderElements[0],SliderElements[1],SliderElements[2])
+                }
+                LeftArrow.onclick=()=>{
+                    SliderToLeft(SliderElements[0],SliderElements[1],SliderElements[2])
+                }
+                setInterval(() => {
+                    SliderToRight(SliderElements[0],SliderElements[1],SliderElements[2])
+                }, 7000);
+                }, 100);
             }
-            LeftArrow.onclick=()=>{
-                SliderToLeft(SliderElements[0],SliderElements[1],SliderElements[2])
+        })
             }
-            setInterval(() => {
-                SliderToRight(SliderElements[0],SliderElements[1],SliderElements[2])
-            }, 7000);
-            }, 100);
+            
         })
-        })
-    }, []);
+    }, [Reload]);
 
     return (
         <Switch>
-            <Case condition={IsLoading===true}>
+            <Case condition={Status==="loading"}>
                 <LoadingPage/>
+            </Case>
+            <Case condition={Status==="error"}>
+                <ErrorPage/>
             </Case>
             <Default>
     <div className="Page HomePage">
