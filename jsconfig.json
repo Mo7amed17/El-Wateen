@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+    "allowSyntheticDefaultImports": false,
+    "baseUrl": "./",
+    "jsx": "react",
+    "paths": {
+        "@Helpers/*": ["src/Helpers/*"]
+    }
+    }
+}

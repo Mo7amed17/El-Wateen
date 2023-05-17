@@ -1,0 +1,45 @@
+.Page2icon1{
+    background-image: url("../media/Page2icon1Background.png");
+    background-size: cover;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    padding-bottom: 200px;
+    display: flex;
+    width: 100%;
+}
+.Page2icon1 .Left{
+    width: 50%;
+    padding-top: 40px;
+    padding-right: 3%;
+}
+.Page2icon1 .Left .Top{
+    margin-right: 2%;
+    display: flex;
+    width: max-content;
+    color: #1a7cbb;
+    border: 2px solid #1a7cbb;
+    border-radius: 30px;
+    padding:0px;
+    justify-content: space-evenly;
+}
+.Page2icon1 .Left .Top h4{
+    padding: 2px 55px;
+    cursor: pointer;
+}
+.Activeh4AtBlood{
+    background-color: #1a7cbb;
+    color: white;
+    border-radius: 16px;
+}
+.Page2icon1 .Left .Down{
+    width: 400px;
+    height: 350px;
+}
+.Page2icon1 .Left img{
+    width: 100%;
+    height: 100%;
+}
+.Page2icon1 .Right{
+    width: 50%;
+
+}
