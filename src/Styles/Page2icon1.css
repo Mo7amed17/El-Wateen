@@ -41,5 +41,143 @@
 }
 .Page2icon1 .Right{
     width: 50%;
+    padding-top: 20px;
+    position: relative;
+}
+Form{
+    position: absolute;
+    left: 5%;
+width: 50%;
+background-color: #dadde2;
+border-radius: 15px;
+margin: 0px auto;
+padding: 25px 10px;
+}
 
+Form .inputselect{
+    width: 100%;
+    border-radius: 20px;
+    height: 22px;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    flex-wrap: wrap;
+}
+Form .inputselect input{
+    border-radius: 20px;
+    padding-right: 10px;
+    font-size: 13px;
+    color: #1a7dbb6b;
+    cursor: default;
+    height: 97%;
+    width: 100%;
+    border: 1px solid white;
+    outline: none;
+    font-weight: bold;
+    background-color: white;
+}
+Form .inputselect i{
+    margin-left: 30px;
+    font-size: 24px;
+    color: #1a7cbb;
+    cursor: pointer;
+    position: absolute;
+    left: 3%;
+}
+Form .input label{
+    padding-right: 5px;
+    color: #1a7cbb;
+    font-size: 14px;
+}
+Form .input input{
+    border: 1px solid white;
+    outline: none;
+    border-radius: 30px;
+    width: calc(100% - 20px);
+    height: 22px;
+    color: #1a7cbb;
+    padding: 0px 10px;
+    font-size: 16px;
+}
+
+.Error{
+    border-color: #D8000C !important;
+}
+.Background{
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.459);
+    width: 100%;
+    height: 100%;
+    top: 0%;
+    left: 0%;
+    border-radius: 15px;
+    z-index: 100;
+}
+.BloodTypes{
+    position: absolute;
+    z-index: 99;
+    background-color: white;
+    display: flex;
+    flex-wrap:wrap ;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 20px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    color: #1a7cbb;
+    transition-duration: 1s;
+}
+.BloodTypes span{
+    font-size: 16px;
+    padding: 1px 8px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    right: 0%;
+    top: 0%;
+    transform: translate(50%,-50%);
+    cursor: pointer;
+    color: black;
+}
+.BloodTypes::after{
+    content: "";
+    background-color: #1a7cbb;
+    height: 100%;
+    width: 1px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.BloodTypes div{
+    width: 50%;
+    text-align: center;
+    border-bottom: 1px solid #1a7cbb;
+    font-size: 20px;
+    cursor: pointer;
+}
+.BloodTypes div:nth-of-type(1)
+{
+    border-radius: 0px 18px 0px 0px;
+}
+.BloodTypes div:nth-of-type(2)
+{
+    border-radius: 18px 0px 0px;
+}
+.BloodTypes div:nth-of-type(7)
+{
+    border: none;
+    border-radius:0px 0px 18px 0px;
+}
+.BloodTypes div:nth-of-type(8)
+{
+    border: none;
+    border-radius: 0px 0px 0px 18px;
+}
+
+.BloodTypeChoosed{
+    background-color: #1a7cbb;
+    color: white;
 }

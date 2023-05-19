@@ -5,10 +5,15 @@ import { useState ,useEffect} from "react";
 import LoadingPage from "../../../Helpers/LoadingPage";
 import ErrorPage from "../../../Helpers/ErrorPage";
 import "../../../Styles/Page2icon1.css"
-
+import { Formik, Form , useFormik} from 'formik';
+import React from 'react'
+import ValidationErrorMsg from "../../../Helpers/components/ValidationErrorMsg";
+import {validationSchema ,intinalValues} from "./Validation"
+import BloodTypes from "./BloodTypes";
 const Page2icon1 = () => {
     window.localStorage.setItem("ActivePage",1)
     const [ActiveForm, setActiveForm] = useState("");
+    const [ShowBloodTypes, setShowBloodTypes] = useState(false);
     const [Status, setStatus] = useState("loading");
     const [Reload, setReload] = useState(false);
     const [Image, setImage] = useState("");
@@ -44,6 +49,7 @@ const Page2icon1 = () => {
                 })
             }, [Reload]);
             CheckActivePage()
+
     return (
         <Switch>
             <Case condition={Status==="loading"}>
@@ -55,7 +61,47 @@ const Page2icon1 = () => {
             <Default>
         <div className="Page2icon1">
             <div className="Right">
-                
+                <Formik
+                initialValues = {intinalValues}
+                validationSchema={validationSchema}
+                validateOnChange={false}
+                validateOnBlur={false}
+                enableReinitialize>
+                    {({ values, errors, handleChange, handleBlur, handleSubmit }) => (
+                        <Form onSubmit={handleSubmit}>
+                    {ShowBloodTypes===true ? (<BloodTypes/>) : (<></>)}
+
+                    <div className="inputselect blood_type" name="blood_type">
+                    <i className="fa-solid fa-caret-left" id="BloodTypeArrow" onClick={(e)=>{
+                        setShowBloodTypes(true)
+                        }}></i>
+                    <input disabled placeholder="حدد فصيلة الدم" type="text" id="name" value={values.blood_type} onChange={handleChange} onBlur={handleBlur} className={errors?.blood_type ? "Error" : ""}></input>
+                    <ValidationErrorMsg msg={errors.blood_type}/>
+                    </div>
+
+                    <div className="inputselect test_valid" name="test_valid" style={{marginBottom:"10px"}}>
+                    <i className="fa-solid fa-question" style={{backgroundColor:"#1a7cbb",color:"white",fontSize:"12px",padding:"3px 5px",borderRadius:"50%"}}></i>
+                    <input disabled placeholder="اختبار صلاحية الدم" type="text" id="name" value={values.test_valid} onChange={handleChange} onBlur={handleBlur} className={errors?.test_valid ? "Error" : ""}></input>
+                    <ValidationErrorMsg msg={errors.test_valid}/>
+                    </div>
+
+                <div className="input" name="name">
+                    <label htmlFor="name">اسم المتبرع</label>
+                    <input type="text" id="name" value={values.name} onChange={handleChange} onBlur={handleBlur} className={errors?.name ? "Error" : ""}></input>
+                    <ValidationErrorMsg msg={errors.name}/>
+                </div>
+                <div className="input">
+                    <label htmlFor="phone_number"> رقم الهاتف</label>
+                    <input type="tel" id="phone_number" name="phone_number" value={values.phone_number} onChange={handleChange} onBlur={handleBlur} className={errors?.phone_number ? "Error" : ""}></input>
+                    <ValidationErrorMsg msg={errors.phone_number}/>
+                </div>
+                    <button type="submit" onClick={(e)=>{
+                        console.log(values)
+                        console.log(errors)
+                    }}>تسجيل الحساب</button>
+                </Form>
+                    )}
+                </Formik>
             </div>
             <div className="Left">
                 <div className="Top">
