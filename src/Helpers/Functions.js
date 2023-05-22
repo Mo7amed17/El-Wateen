@@ -130,4 +130,6 @@ export const CheckActivePage=()=>{
 }
 
 
-export const Api="https://mo7amed17.github.io/El-Wateen-Images"
+export const PhotoApi="https://mo7amed17.github.io/El-Wateen-Images"
+
+export const LocationApi="https://spott.p.rapidapi.com/places/ip/me?language=ar"

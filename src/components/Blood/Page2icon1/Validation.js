@@ -4,7 +4,9 @@ export const validationSchema = Yup.object().shape({
     blood_type: Yup.string().required("يرجى اختيار فصيلة الدم"),
     test_valid: Yup.string().required("اختبار صلاحية الدم مطلوب"),
     name: Yup.string().required("يرجى ادخال اسم المتبرع"),
-    phone_number: Yup.number().positive().required("يرجى ادخال رقم الهاتف"),
+    phone_number: Yup.string()
+    .matches(/^01[0-9]{9}$/, 'يجب أن يتكون رقم الهاتف من 11 رقماً تبدأ بـ 01')
+    .required('يرجى ادخال رقم الهاتف'),
 });
 
 export const intinalValues={
@@ -13,5 +15,6 @@ export const intinalValues={
         name:"",
         phone_number:"",
         location:"",
+        alerts:"",
         time:"",
     }

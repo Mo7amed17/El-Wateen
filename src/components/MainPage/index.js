@@ -5,7 +5,7 @@ import { SliderToRight } from "../../Helpers/Functions";
 import "../../Styles/Home.css"
 import LoadingPage from "../../Helpers/LoadingPage"
 import { Switch , Case , Default} from "react-if";
-import { Api } from "../../Helpers/Functions";
+import { PhotoApi } from "../../Helpers/Functions";
 import ErrorPage from "../../Helpers/ErrorPage";
 const MainPage = () => {
     const [Status, setStatus] = useState("loading");
@@ -15,14 +15,14 @@ const MainPage = () => {
     window.localStorage.setItem("ActivePage",0)
     CheckActivePage()
     useEffect(() => {
-        fetch(`${Api}/1.png`)
+        fetch(`${PhotoApi}/1.png`)
         .then((res1)=>{
             if(res1.status!==200){
                 setStatus("error")
             }
             else{
                 setRightHomeImage(res1.url)
-            fetch(`${Api}/11.png`)
+            fetch(`${PhotoApi}/11.png`)
         .then((res2)=>{
             if(res2.status!==200 || res1.status!==200){
                 setStatus("error")

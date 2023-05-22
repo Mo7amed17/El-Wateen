@@ -47,12 +47,14 @@
 Form{
     position: absolute;
     left: 5%;
-width: 50%;
-background-color: #dadde2;
-border-radius: 15px;
-margin: 0px auto;
-padding: 25px 10px;
-}
+    width: 300px;
+    background: rgb(215,218,228);
+    background: linear-gradient(180deg, rgba(212,219,227,1) 0%, rgba(238,238,240,1) 50%, rgba(212,219,227,1) 73%);
+    border-radius: 15px;
+    margin: 0px auto;
+    padding: 15px 10px;
+    color: #1a7cbb;
+    }
 
 Form .inputselect{
     width: 100%;
@@ -105,7 +107,7 @@ Form .input input{
 .Error{
     border-color: #D8000C !important;
 }
-.Background{
+.Background,.Background1,.Background2{
     position: absolute;
     background-color: rgba(0, 0, 0, 0.459);
     width: 100%;
@@ -180,4 +182,117 @@ Form .input input{
 .BloodTypeChoosed{
     background-color: #1a7cbb;
     color: white;
+}
+.Location{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    align-items: center;
+}
+.Location .thelocation{
+    width: 25%;
+}
+.Location  .City{
+    display: flex;
+    align-items: center;
+    width: 50%;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: 20px;
+    margin: 0px auto;
+    display: none;
+}
+.Location  .City h3{
+    font-size: 18px;
+}
+.Location  .City i{
+    color: #D8000C;
+    font-size: 12px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+.Location .Search{
+    width: 75%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Location .Search button{
+    background-color: #0282ed;
+    color: white;
+    font-weight: bold;
+    padding: 3px 22px;
+    border-radius: 20px;
+    border: 1px solid #0282ed;
+    cursor: pointer;
+    font-size: 11px;
+    height: min-content;
+}
+.Submit{
+    margin-top: 15px;
+    text-align: center;
+
+}
+.Submit button{
+    font-size: 16px;
+    background-color: #0282ed;
+    color: white;
+    font-weight: bold;
+    padding: 6px 20px;
+    border-radius: 20px;
+    border: 1px solid #0282ed;
+    cursor: pointer;
+}
+
+.Alerts{
+    margin: 20px 0px 10px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+}
+.CallTime{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.CallTime h3{
+    font-size: 16px;
+}
+.CallTime i{
+    font-size: 18px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.DatePicker{
+    position: absolute;
+    z-index: 99;
+    background-color: white;
+    border-radius: 20px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    color: #1a7cbb;
+    transition-duration: 1s;
+    font-size: 12px;
+}
+.DatePicker span i{
+    font-size: 18px;
+    padding: 4px 6px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    right: 0%;
+    top: 0%;
+    transform: translate(50%,-50%);
+    cursor: pointer;
+    color: black;
+}
+
+.Background2 button{
+    position: absolute;
+    bottom: 0%;
+    left: 50%;
+    transform: translate(-50%,-50%);
 }

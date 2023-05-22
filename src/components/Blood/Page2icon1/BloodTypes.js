@@ -1,5 +1,5 @@
 import { useFormikContext } from "formik";
-import { useEffect } from "react";
+import { useEffect ,useState} from "react";
 
 const BloodTypes = () => {
 
@@ -14,12 +14,12 @@ const BloodTypes = () => {
         let Types=document.querySelectorAll(".Types")
         Types.forEach(Type => {
             Type.addEventListener("click",(ele)=>{
-                blood_type.value=Type.textContent
+                blood_type.value=Type.id
                 Types.forEach(e => {
                     e.classList.remove("BloodTypeChoosed")
                 });
                 Type.classList.add("BloodTypeChoosed")
-                values.blood_type=Type.textContent
+                values.blood_type=Type.id
             })
         });
     }, []);
@@ -42,7 +42,7 @@ const BloodTypes = () => {
             {
                 options.map((option)=>{
                     return(
-                        <div className="Types" key={option.label}>{option.label}</div>
+                        <div className="Types" id={option.label} key={option.label}>{option.label}</div>
                         )
                     })
                 }

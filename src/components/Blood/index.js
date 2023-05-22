@@ -1,7 +1,7 @@
 import { CheckActivePage } from "../../Helpers/Functions";
 import { Link } from "react-router-dom";
 import { Switch , Case , Default} from "react-if";
-import { Api } from "../../Helpers/Functions";
+import { PhotoApi } from "../../Helpers/Functions";
 import { useState ,useEffect} from "react";
 import "../../Styles/Blood.css"
 import LoadingPage from "../../Helpers/LoadingPage"
@@ -19,41 +19,41 @@ const Blood = () => {
     const [page2ball, setpage2ball] = useState("");
 
     useEffect(() => {
-        fetch(`${Api}/page2ball.png`)
+        fetch(`${PhotoApi}/page2ball.png`)
         .then((res1)=>{
             if(res1.status!==200){
                 setStatus("error")
             }else{
                 setpage2ball(res1.url)
-            fetch(`${Api}/page2icon1.png`)
+            fetch(`${PhotoApi}/page2icon1.png`)
         .then((res2)=>{
             if(res2.status!==200){
                 setStatus("error")
             }
             else{
                 setPage2icon1(res2.url)
-            fetch(`${Api}/page2icon2.png`)
+            fetch(`${PhotoApi}/page2icon2.png`)
         .then((res3)=>{
             if(res3.status!==200){
                 setStatus("error")
             }
             else{
                 setPage2icon2(res3.url)
-            fetch(`${Api}/page2icon3.png`)
+            fetch(`${PhotoApi}/page2icon3.png`)
         .then((res4)=>{
             if(res4.status!==200){
                 setStatus("error")
             }
             else{
                 setPage2icon3(res4.url)
-            fetch(`${Api}/page2icon4.png`)
+            fetch(`${PhotoApi}/page2icon4.png`)
         .then((res5)=>{
             if(res5.status!==200){
                 setStatus("error")
             }
             else{
                 setPage2icon4(res5.url)
-            fetch(`${Api}/page2icon5.png`)
+            fetch(`${PhotoApi}/page2icon5.png`)
         .then((res6)=>{
             if(res6.status!==200){
                 setStatus("error")
