@@ -9,6 +9,7 @@ import { Formik } from 'formik';
 import React from 'react'
 import {validationSchema ,intinalValues} from "./Validation"
 import NewAccount from "./NewAccount";
+import OldAccount from "./OldAccount";
 const Page2icon1 = () => {
     window.localStorage.setItem("ActivePage",1)
     const [ActiveForm, setActiveForm] = useState("");
@@ -71,7 +72,7 @@ const Page2icon1 = () => {
                                 <NewAccount/>
                             </Case>
                             <Case condition={ActiveForm==="old_account"}>
-                                <></>
+                                <OldAccount/>
                             </Case>
                             <Default>
                                 <NewAccount/>

@@ -276,6 +276,10 @@ Form .input input{
     color: #1a7cbb;
     transition-duration: 1s;
     font-size: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-bottom: 25px;
 }
 .DatePicker span i{
     font-size: 18px;
@@ -283,8 +287,8 @@ Form .input input{
     border-radius: 50%;
     background-color: rgba(0, 0, 0, 0.5);
     position: absolute;
-    right: 0%;
-    top: 0%;
+    right: 3%;
+    top: 3%;
     transform: translate(50%,-50%);
     cursor: pointer;
     color: black;
@@ -295,4 +299,309 @@ Form .input input{
     bottom: 0%;
     left: 50%;
     transform: translate(-50%,-50%);
+}
+
+.OldAccount{
+    position: relative;
+}
+
+.OldAccount .MobileLogin{
+    width: 250px;
+    padding: 20px ;
+    position: absolute;
+    background-color: white;
+    border-radius: 20px;
+    left: 0%;
+    top: 0%;
+    transform: translate(16%,18%);
+    text-align: center;
+}
+.MobileLoginImg{
+    width: 200px;
+    height: 110px;
+    margin: 0px auto 10px;
+}
+.MobileLoginImg img{
+    width: 100%;
+    height: 100%;
+}
+.MobileLoginInput {
+    text-align: center;
+}
+.MobileLoginInput label{
+    display: block;
+    font-size: 12px;
+    color: #0282ed;
+    font-weight: lighter;
+}
+.MobileLoginInput input{
+    margin-top: 5px;
+    border: 1px solid #0282ed;
+    outline: none;
+    border-radius: 30px;
+    width: calc(100% - 20px);
+    height: 22px;
+    color: #1a7cbb;
+    padding: 3px 10px;
+    font-size: 14px;
+    width: 80%;
+}
+.MobileLogin button{
+    font-size: 16px;
+    margin-top: 15px;
+    background-color: #0282ed;
+    color: white;
+    font-weight: bold;
+    padding: 5px 15px;
+    border-radius: 20px;
+    border: 1px solid #0282ed;
+    cursor: pointer;
+}
+.MobileLoginHash{
+    color: #1a7cbb;
+    font-size: 12px;
+    margin-top: 10px ;
+}
+
+@media (max-width:996px) {
+    .Page2icon1{
+        padding-top: 50px;
+    }
+}
+@media (max-width:900px) {
+    .Page2icon1{
+        flex-wrap: wrap;
+        justify-content: center;
+        flex-direction: column-reverse;
+        align-items: center;
+        padding-bottom: 480px;
+        padding-top: 0px;
+    }
+    .Page2icon1 .Left{
+        padding-right: 0px;
+    }
+    Form{
+        left: 50%;
+        transform: translateX(-46%);
+        margin-bottom: 100p !important;
+    }
+    .OldAccount .MobileLogin{
+        padding: 20px ;
+        left: 50%;
+        top: 0%;
+        transform: translate(-45%,22%);
+    }
+}
+@media (max-width:790px) {
+    .Page2icon1 .Left{
+        margin-right: -20px;
+    }
+}
+@media (max-width:714px) {
+    .Page2icon1 .Left{
+        margin-right: -50px;
+    }
+}
+@media (max-width:667px) {
+    .Page2icon1 .Left{
+        margin-right: -80px;
+    }
+}
+@media (max-width:600px) {
+    .Page2icon1 .Left{
+        margin-right: -110px;
+    }
+}
+@media (max-width:540px) {
+    .Page2icon1 .Left{
+        margin-right: -100px;
+    }
+    .Page2icon1 .Left .Top {
+        margin-right: 40px;
+    }
+    .Page2icon1 .Left .Top h4 {
+        padding: 2px 32px;
+        font-size: 13px;
+        border-radius: 12px;
+    }
+    .Page2icon1 .Left .Down {
+        width: 350px;
+        height: 300px;
+        
+    }
+    Form{
+    width: 250px;
+    margin: 0px auto;
+    padding: 15px 10px;
+    }
+    Form .inputselect input {
+        font-size: 11px;
+        height: 90%;
+    }
+    Form .inputselect i {
+        font-size: 22px;
+    }
+    Form .fa-question{
+        padding: 2px 4px !important;
+    }
+    Form .input label {
+        font-size: 12px;
+    }
+    Form .input input {
+        width: calc(100% - 20px);
+        height: 20px;
+        padding: 0px 10px;
+        font-size: 14px;
+    }
+    .Location .thelocation {
+        font-size: 12px;
+        width: 15%;
+    }
+    .Location .Search {
+        width: 80%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .Location .Search button {
+        padding: 3px 17px;
+        font-size: 11px;
+    }
+    .Alerts {
+        font-size: 13px;
+    }
+    .CallTime h3 {
+        font-size: 14px;
+    }
+    .CallTime i {
+        font-size: 16px;
+    }
+    Form{
+        left: 48%;
+    }
+    .OldAccount .MobileLogin {
+        width: 200px;
+        left: 48%;
+    }
+
+}
+
+@media (max-width:450px) {
+    .Page2icon1 .Left{
+        margin-right: -130px;
+    }
+    .Page2icon1 .Left .Top {
+        margin-right: 35px;
+    }
+}
+@media (max-width:450px) {
+    .Page2icon1 .Left .Down {
+        width: 300px;
+        height: 250px;
+    }
+    .Page2icon1 .Left{
+        margin-right: -110px;
+    }
+    .Page2icon1 .Left .Top {
+        margin-right: 10px;
+    }
+    .Submit button {
+        font-size: 14px;
+    }
+}
+
+@media (max-width:390px) {
+    .Page2icon1 .Left .Down {
+        width: 250px;
+        height: 200px;
+    }
+    .Page2icon1 .Left{
+        margin-right: -80px;
+    }
+    .Page2icon1 .Left .Top h4 {
+        padding: 2px 20px;
+        font-size: 10px;
+        border-radius: 10px;
+    }
+    .Page2icon1 .Left .Top {
+        margin-right: 30px;
+    }
+    Form .inputselect {
+        margin-bottom: 20px;
+    }
+    Form .inputselect input {
+        font-size: 10px;
+    }
+    Form .input label {
+        font-size: 10px;
+    }
+    Form .input input {
+        padding: 0px 10px;
+        font-size: 12px;
+    }
+    .Submit button {
+        font-size: 13px;
+    }
+    Form {
+        width: 220px;
+    }
+    .Location .Search button {
+        padding: 3px 15px;
+        font-size: 10px;
+    }
+    .Location .City h3 {
+        font-size: 16px;
+    }
+    .Location .City i {
+        font-size: 10px;
+    }
+    .OldAccount .MobileLogin {
+        width: 180px;
+        left: 48%;
+    }
+    .MobileLoginImg {
+        width: 170px;
+        height: 100px;
+    }
+    .MobileLogin button {
+        font-size: 14px;
+        padding: 4px 12px;
+    }
+}
+
+@media (max-width:350px) {
+    .Page2icon1 .Left{
+        margin-right: -95px;
+    }
+    .Page2icon1 .Left .Top {
+        margin-right: 30px;
+    }
+    Form{
+        left: 46%;
+    }
+    .OldAccount .MobileLogin {
+        left: 46%;
+    }
+}
+
+@media (max-width:290px) {
+    .Page2icon1 .Left{
+        margin-right: -70px;
+    }
+    .Page2icon1 .Left .Top {
+        margin-right: 10px;
+    }
+    Form{
+        left: 44%;
+    }
+    .OldAccount .MobileLogin {
+        left: 44%;
+    }
+    .Page2icon1 .Left .Down {
+        width: 220px;
+        height: 170px;
+    }
+    Form .inputselect input {
+        font-size: 8px;
+    }
 }

@@ -6,6 +6,7 @@ import Care from "./components/Care/index"
 import Login from "./components/Login/index"
 import NotFoundPage from "./Helpers/NotFoundPage";
 import Page2 from "./components/Blood/Page2icon1/index";
+import Footer from "./Helpers/Footer";
 function App() {
   return (
     <div className="App">
@@ -22,6 +23,7 @@ function App() {
         <Route path="/العنايـة المركزة" element={<Care/>}/>
         <Route path="/تسجيل الدخول" element={<Login/>}/>
       </Routes>
+      <Footer/>
     </div>
   );
 }

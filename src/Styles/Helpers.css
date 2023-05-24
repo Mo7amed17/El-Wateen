@@ -76,6 +76,40 @@
     background-color: white;
     color: #0282ed;
 }
+.Footer{
+    margin-top: 50px;
+    text-align: center;
+    background-color: #1c7cb8;
+    color: white;
+    padding-bottom: 30px;
+}
+.Footer i{
+    font-size: 36px;
+    cursor: pointer;
+    margin: 15px;
+    margin-bottom: 30px;
+    }
+    .Footer a:nth-of-type(1){
+        color: black;
+    }
+    .Footer a:nth-of-type(2){
+        color: #0400ff;
+    }
+    .Footer a:nth-of-type(3){
+        color: #002142;
+    }
+    .Footer a:nth-of-type(4){
+        color: #003e00;
+    }
+    .Footer .OurProjects{
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 20px;
+        color: black;
+        padding: 0px 20px ;
+        border-radius: 30px;
+        background-color: white;
+    }
 
 @keyframes LoadingPage {
     to{
@@ -162,6 +196,13 @@
     .ErrorPage i{
         margin-top: 8px;
     }
+    .Footer i{
+        font-size: 26px;
+        }
+        .Footer .OurProjects{
+            font-size: 16px;
+        }
+    
 }
 
 @media (max-width:330px) {

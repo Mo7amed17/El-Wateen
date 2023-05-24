@@ -16,5 +16,6 @@ export const intinalValues={
         phone_number:"",
         location:"",
         alerts:"",
+        date:"",
         time:"",
     }
