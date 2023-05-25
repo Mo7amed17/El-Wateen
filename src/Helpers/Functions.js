@@ -1,5 +1,5 @@
 
-import { useEffect } from "react";
+import { useEffect ,useState} from "react";
 
 
 let counter=1
@@ -133,3 +133,36 @@ export const CheckActivePage=()=>{
 export const PhotoApi="https://mo7amed17.github.io/El-Wateen-Images"
 
 export const LocationApi="https://spott.p.rapidapi.com/places/ip/me?language=ar"
+
+export const ArrowAndNavigationBar=()=>{
+    const [Direction, setDirection] = useState("right");
+    useEffect(() => {
+        let NavigationBar=document.querySelector(".NavigationBar")
+        let Icon=document.querySelector(".NavigationBarIcon")
+        Icon.addEventListener("click",(e)=>{
+            setTimeout(() => {
+                if(Direction==="right"){
+                    Icon.childNodes[0].className="fa-solid fa-angles-left"
+                    Icon.style.transitionDuration="0.5s"
+                    NavigationBar.style.transitionDuration="0.5s"
+                    NavigationBar.style.left="0%"
+                    if(window.screen.width<=420 && window.screen.width>330){
+                        Icon.style.left="171px"
+                    }else if(window.screen.width<=330){
+                        Icon.style.left="128px"
+                    }
+                    else{
+                        Icon.style.left="192px"
+                        NavigationBar.style.left="0%"
+                    }
+                    setDirection("left")
+                }else if(Direction==="left"){
+                        Icon.childNodes[0].className="fa-solid fa-angles-right fa-fade"
+                        Icon.style.left="0%"
+                        NavigationBar.style.left="-50%"
+                    setDirection("right")
+                }
+            }, 100);
+        })
+    }, [Direction]);
+}

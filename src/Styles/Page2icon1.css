@@ -362,7 +362,17 @@ Form .input input{
     font-size: 12px;
     margin-top: 10px ;
 }
-
+.MobileLoginBackground{
+    background-color: rgba(0, 0, 0, 0.459);
+    position: absolute;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    left: 0%;
+    border-radius: 15px;
+    top: 0%;
+    display: none;
+}
 @media (max-width:996px) {
     .Page2icon1{
         padding-top: 50px;
@@ -379,6 +389,9 @@ Form .input input{
     }
     .Page2icon1 .Left{
         padding-right: 0px;
+    }
+    .Page2icon1 .Left .Down{
+        margin-bottom: 50px;
     }
     Form{
         left: 50%;
@@ -484,6 +497,16 @@ Form .input input{
         left: 48%;
     }
 
+    .rdp {
+        --rdp-cell-size: 30px !important;
+    }
+    .rdp-caption_label {
+        font-size: 16px !important;
+    }
+    .rdp-nav button svg{
+        height: 13px;
+    }
+
 }
 
 @media (max-width:450px) {
@@ -566,6 +589,22 @@ Form .input input{
     .MobileLogin button {
         font-size: 14px;
         padding: 4px 12px;
+    }
+    
+    .rdp {
+        --rdp-cell-size: 28px !important;
+    }
+    .rdp-caption_label {
+        font-size: 16px !important;
+    }
+    .rdp-nav button svg{
+        height: 13px;
+    }
+    .rdp-head_cell{
+    font-size: 8px !important;
+    }
+    .rdp-tfoot p{
+        margin-top: 5px !important;
     }
 }
 

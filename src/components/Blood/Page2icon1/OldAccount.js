@@ -5,7 +5,7 @@ import { PhotoApi } from "../../../Helpers/Functions";
 import LoadingPage from "../../../Helpers/LoadingPage";
 
 const OldAccount = () => {
-    const {values} = useFormikContext();
+    const {values ,resetForm} = useFormikContext();
     const [Img, setImg] = useState("");
     useEffect(() => {
         fetch(`${PhotoApi}/11.png`).then((res)=>{
@@ -15,16 +15,19 @@ const OldAccount = () => {
                 setImg(res.url)
             }
         })
-        let form =document.querySelector("form")
-        form.style.filter="brightness(49%)"
+        let Form =document.querySelector("form")
+        Form.reset();
+        resetForm({values:{}})
+        let MobileLoginBackground =document.querySelector(".MobileLoginBackground")
+        MobileLoginBackground.style.display="block"
     }, []);
     return (
         <div className="OldAccount">
             <NewAccount/>
                 <div className="MobileLogin">
                     <div className="MobileLoginImg">
-                        <img src={Img} alt=""/>
-                        <div className="TheLoadingSpinner" style={{position:"absolute",top:"-50%",left:"50%"}}>
+                        <img src={Img} alt="El-Wateen Logo"/>
+                        <div className="TheLoadingSpinner" style={{position:"absolute",top:"-30%",left:"50%"}}>
                         <LoadingPage/>
                         </div>
                     </div>

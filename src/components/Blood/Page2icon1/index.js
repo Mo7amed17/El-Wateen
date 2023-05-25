@@ -10,6 +10,7 @@ import React from 'react'
 import {validationSchema ,intinalValues} from "./Validation"
 import NewAccount from "./NewAccount";
 import OldAccount from "./OldAccount";
+import NavigationBar from "../../../Helpers/NavigationBar"
 const Page2icon1 = () => {
     window.localStorage.setItem("ActivePage",1)
     const [ActiveForm, setActiveForm] = useState("");
@@ -59,6 +60,7 @@ const Page2icon1 = () => {
             </Case>
             <Default>
         <div className="Page2icon1">
+            <NavigationBar active={1}/>
             <div className="Right">
                 <Formik
                 initialValues = {intinalValues}

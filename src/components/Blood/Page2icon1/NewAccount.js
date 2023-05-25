@@ -2,7 +2,7 @@ import { useFormikContext } from "formik";
 import ValidationErrorMsg from "../../../Helpers/components/ValidationErrorMsg";
 import BloodTypes from "./BloodTypes";
 import { Form } from "formik";
-import { useState } from "react";
+import { useState ,useEffect} from "react";
 import { LocationApi } from "../../../Helpers/Functions";
 import DatePicker from "./DatePicker";
 import { ToastContainer, toast } from 'react-toastify';
@@ -11,11 +11,16 @@ import Select from 'react-select'
 import Options from "../../../Helpers/CitiesList.json"
 const NewAccount = () => {
     const notify = (msg) => toast(msg);
-
+        
     const [TheCity, setTheCity] = useState("");
     const [TheCityError, setTheCityError] = useState(false);
-    const { values ,handleSubmit ,handleBlur ,errors ,handleChange}=useFormikContext();
+    const { values ,handleSubmit ,handleBlur ,errors ,handleChange ,resetForm}=useFormikContext();
     const [ShowBloodTypes, setShowBloodTypes] = useState(false);
+    useEffect(() => {
+        let Form =document.querySelector("form")
+        Form.reset();
+        resetForm({values:{}})
+    }, []);
     return (
         <Form onSubmit={handleSubmit}>
                     {ShowBloodTypes===true ? (<BloodTypes/>) : (<></>)}
@@ -188,6 +193,7 @@ const NewAccount = () => {
                         }
                     }}>تسجيل الحساب</button>
                     </div>
+                    <div className="MobileLoginBackground"></div>
                 </Form>
                 
     );

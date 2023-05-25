@@ -1,8 +1,24 @@
 import { Link } from "react-router-dom";
+import { ArrowAndNavigationBar } from "./Functions";
 import { useEffect } from "react";
-
-const NavigationBar = () => {
+const NavigationBar = (props) => {
+    ArrowAndNavigationBar()
+    useEffect(() => {
+        let Links=document.querySelectorAll(".NavigationBar a")
+        Links.forEach(Link => {
+            Link.classList.remove("ActiveNavigationBar")
+        });
+        switch (props.active) {
+            case 1:
+                Links[0].classList.add("ActiveNavigationBar")
+                break;
+            default:
+                break;
+        }
+    }, []);
     return (
+        <>
+            <div className="NavigationBarIcon"><i className="fa-solid fa-angles-right fa-fade"></i></div>
         <div className="NavigationBar">
             <Link to={"/تسجيل متبرع/التبــرع بالدم"}>
                 <h4>تسجيل متبرع</h4>
@@ -24,6 +40,7 @@ const NavigationBar = () => {
                     <h4>معلومات عن الــــــدم</h4>
             </Link>
         </div>
+        </>
     );
 }
 
