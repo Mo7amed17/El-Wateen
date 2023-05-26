@@ -1,7 +1,7 @@
 import "../Styles/Helpers.css"
 function Footer(){
     return(
-        <div className="Footer">
+        <footer className="Footer">
             <div className="ContactWithUs">
                 <h1>Contact With Us</h1>
                 <div className="ContactWithUsIcons">
@@ -12,7 +12,7 @@ function Footer(){
                 </div>
                 <a target="blank" href="https://mo7amed17.github.io/Portfolio/" className="OurProjects">Our Projects</a>
             </div>
-        </div>
+        </footer>
     )
 }
 

@@ -83,11 +83,17 @@ const MainPage = () => {
         </div>
     </div>
 </div>
-{/* <div className="ArrowToBottom">
+{
+    window.screen.width<=800 ? (
+        <div className="ArrowToBottom">
     <a href="#Slider">
         <i className="fa-solid fa-angles-down"></i>
     </a>
-</div> */}
+</div>
+    )
+    :
+    (<></>)
+}
 <div className="Slider" id="Slider">
     <div className="Arrow" id="RightArrow"><i className="fa-solid fa-arrow-right"></i></div>
     <div className="Arrow" id="LeftArrow"><i className="fa-solid fa-arrow-left"></i></div>
