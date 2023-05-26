@@ -7,6 +7,7 @@ import LoadingPage from "../../Helpers/LoadingPage"
 import { Switch , Case , Default} from "react-if";
 import { PhotoApi } from "../../Helpers/Functions";
 import ErrorPage from "../../Helpers/ErrorPage";
+import Footer from "../../Helpers/Footer"
 const MainPage = () => {
     const [Status, setStatus] = useState("loading");
     const [Reload, setReload] = useState(false);
@@ -104,7 +105,7 @@ const MainPage = () => {
     </ul>
 </div>
 </div>
-                            
+        <Footer/>
         </Default>
             </Switch>
     );

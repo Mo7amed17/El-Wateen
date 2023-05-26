@@ -11,6 +11,7 @@ import {validationSchema ,intinalValues} from "./Validation"
 import NewAccount from "./NewAccount";
 import OldAccount from "./OldAccount";
 import NavigationBar from "../../../Helpers/NavigationBar"
+import Footer from "../../../Helpers/Footer";
 const Page2icon1 = () => {
     window.localStorage.setItem("ActivePage",1)
     const [ActiveForm, setActiveForm] = useState("");
@@ -93,6 +94,7 @@ const Page2icon1 = () => {
                 </div>
             </div>
         </div>
+        <Footer/>
             </Default>
         </Switch>
     );
@@ -101,4 +103,3 @@ const Page2icon1 = () => {
 export default Page2icon1;
 
 
-// Page2Page2icon1.png

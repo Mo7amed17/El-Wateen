@@ -6,12 +6,13 @@ import Care from "./components/Care/index"
 import Login from "./components/Login/index"
 import NotFoundPage from "./Helpers/NotFoundPage";
 import Page2 from "./components/Blood/Page2icon1/index";
-import Footer from "./Helpers/Footer";
+import ErrorPage from "./Helpers/ErrorPage";
 function App() {
   return (
     <div className="App">
       <Navbar/>
       <Routes>
+        <Route path="1" element={<ErrorPage/>}/>
         <Route path="*" element={<NotFoundPage/>}/>
         <Route path="/" element={<MainPage/>}/>
         <Route path="/التبــرع بالدم" element={<Blood/>}/>
@@ -23,7 +24,6 @@ function App() {
         <Route path="/العنايـة المركزة" element={<Care/>}/>
         <Route path="/تسجيل الدخول" element={<Login/>}/>
       </Routes>
-      <Footer/>
     </div>
   );
 }

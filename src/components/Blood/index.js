@@ -6,7 +6,7 @@ import { useState ,useEffect} from "react";
 import "../../Styles/Blood.css"
 import LoadingPage from "../../Helpers/LoadingPage"
 import ErrorPage from "../../Helpers/ErrorPage";
-
+import Footer from "../../Helpers/Footer"
 const Blood = () => {
     window.localStorage.setItem("ActivePage",1)
     const [Status, setStatus] = useState("loading");
@@ -132,6 +132,7 @@ const Blood = () => {
             </Link>
         </div>
     </div>
+    <Footer/>
     </Default>
             </Switch>
     );
