@@ -134,6 +134,8 @@ export const PhotoApi="https://mo7amed17.github.io/El-Wateen-Images"
 
 export const LocationApi="https://spott.p.rapidapi.com/places/ip/me?language=ar"
 
+export const BaseApi="https://el-wateen.mo7amed17.repl.co"
+
 export const ArrowAndNavigationBar=()=>{
     const [Direction, setDirection] = useState("right");
     useEffect(() => {

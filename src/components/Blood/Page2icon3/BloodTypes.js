@@ -3,23 +3,23 @@ import { useEffect ,useState} from "react";
 
 const BloodTypes = () => {
 
-    const { values ,setValues}=useFormikContext();
+    const { values }=useFormikContext();
 
     useEffect(() => {
         let arrow=document.getElementById("BloodTypeArrow")
-        let blood_typeSpan=document.querySelector(".blood_type span")
+        let blood_type=document.querySelector(".blood_type input")
         arrow.addEventListener("click",(e)=>{
             document.querySelector(".Background").style.display="block"
         })
         let Types=document.querySelectorAll(".Types")
         Types.forEach(Type => {
             Type.addEventListener("click",(ele)=>{
-                blood_typeSpan.textContent=Type.id
+                blood_type.value=Type.id
                 Types.forEach(e => {
                     e.classList.remove("BloodTypeChoosed")
                 });
                 Type.classList.add("BloodTypeChoosed")
-                setValues({blood_type:Type.id})
+                values.blood_type=Type.id
             })
         });
     }, []);

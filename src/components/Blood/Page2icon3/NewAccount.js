@@ -9,12 +9,12 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Select from 'react-select'
 import Options from "../../../Helpers/CitiesList.json"
-
-const NewAccount = (props) => {
-
+const NewAccount = () => {
+    const notify = (msg) => toast(msg);
+        
     const [TheCity, setTheCity] = useState("");
     const [TheCityError, setTheCityError] = useState(false);
-    const { values ,handleSubmit ,handleBlur ,errors ,handleChange ,resetForm }=useFormikContext();
+    const { values ,handleSubmit ,handleBlur ,errors ,handleChange ,resetForm}=useFormikContext();
     const [ShowBloodTypes, setShowBloodTypes] = useState(false);
     useEffect(() => {
         let Form =document.querySelector("form")
@@ -29,16 +29,14 @@ const NewAccount = (props) => {
                     <i className="fa-solid fa-caret-left" id="BloodTypeArrow" onClick={(e)=>{
                         setShowBloodTypes(true)
                         }}></i>
-                    <input  value={values.blood_type} type="text" id="name" onChange={handleChange} onBlur={handleBlur} className={errors?.blood_type ? "Error" : ""}/>
+                    <input disabled placeholder="حدد فصيلة الدم" type="text" id="name" value={values.blood_type} onChange={handleChange} onBlur={handleBlur} className={errors?.blood_type ? "Error" : ""}></input>
                     <ValidationErrorMsg msg={errors.blood_type}/>
-                    <span>حدد فصيلة الدم</span>
                     </div>
 
                     <div className="inputselect test_valid" name="test_valid" style={{marginBottom:"10px"}}>
                     <i className="fa-solid fa-question" style={{backgroundColor:"#1a7cbb",color:"white",fontSize:"12px",padding:"3px 5px",borderRadius:"50%"}}></i>
-                    <input  value={values.test_valid} type="text" id="name" onChange={handleChange} onBlur={handleBlur} className={errors?.test_valid ? "Error" : ""}/>
+                    <input disabled placeholder="اختبار صلاحية التبرع بالدم" type="text" id="name" value={values.test_valid} onChange={handleChange} onBlur={handleBlur} className={errors?.test_valid ? "Error" : ""}></input>
                     <ValidationErrorMsg msg={errors.test_valid}/>
-                    <span>اختبار صلاحية التبرع بالدم</span>
                     </div>
 
                 <div className="input" name="name">
@@ -49,7 +47,7 @@ const NewAccount = (props) => {
                         else {
                             e.preventDefault()
                         }
-                    }}/>
+                    }}></input>
                     <ValidationErrorMsg msg={errors.name}/>
                 </div>
                 
@@ -61,7 +59,7 @@ const NewAccount = (props) => {
                         else {
                             e.preventDefault()
                         }
-                    }}/>
+                    }}></input>
                     <ValidationErrorMsg msg={errors.phone_number}/>
                 </div>
                     
@@ -183,16 +181,10 @@ const NewAccount = (props) => {
                         <DatePicker/>
                     </div>
 
-                    {props.ActiveButton===2 ? (
-                        <div className="DeleteButton">
-                        <button type="submit" onClick={(e)=>{
-                            
-                        }}>تعطيل الحساب</button>
-                        </div>
-                    )
-                    :
-                    (<div className="Submit">
+                    <div className="Submit">
                     <button type="submit" onClick={(e)=>{
+                        console.log(errors)
+                        console.log(values)
                         if(values.location===""){
                             setTheCityError(true)
                         }
@@ -200,8 +192,7 @@ const NewAccount = (props) => {
                             setTheCityError(false)
                         }
                     }}>تسجيل الحساب</button>
-                    </div>)
-                } 
+                    </div>
                     <div className="MobileLoginBackground"></div>
                 </Form>
                 

@@ -12,6 +12,18 @@ const NavigationBar = (props) => {
             case 1:
                 Links[0].classList.add("ActiveNavigationBar")
                 break;
+            case 2:
+                Links[1].classList.add("ActiveNavigationBar")
+                break;
+            case 3:
+                Links[2].classList.add("ActiveNavigationBar")
+                break;
+            case 4:
+                Links[3].classList.add("ActiveNavigationBar")
+                break;
+            case 5:
+                Links[4].classList.add("ActiveNavigationBar")
+                break;
             default:
                 break;
         }

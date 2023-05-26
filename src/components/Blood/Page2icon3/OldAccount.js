@@ -23,7 +23,7 @@ const OldAccount = () => {
     }, []);
     return (
         <div className="OldAccount">
-            <NewAccount ActiveButton={2}/>
+            <NewAccount/>
                 <div className="MobileLogin">
                     <div className="MobileLoginImg">
                         <img src={Img} alt="El-Wateen Logo"/>
