@@ -324,6 +324,9 @@ animation: ArrowToBottom 1s linear infinite alternate ;
             padding: 0px 6px;
             font-size: 10px;
         }
+        .Page .ArrowToBottom{
+            margin-bottom: 220px;
+            }
     }
 
 
@@ -354,6 +357,9 @@ animation: ArrowToBottom 1s linear infinite alternate ;
             font-size: 9px;
             height: 15px;
         }
+        .Page .ArrowToBottom{
+            margin-bottom: 300px;
+            }
     }
 
 @media (max-width:308px) {
