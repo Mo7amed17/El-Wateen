@@ -7,6 +7,7 @@ import Login from "./components/Login/index"
 import NotFoundPage from "./Helpers/NotFoundPage";
 import Page2 from "./components/Blood/Page2icon1/index";
 import Page2icon3 from "./components/Blood/Page2icon3";
+import { ToastContainer } from "react-toastify";
 function App() {
   return (
     <div className="App">
@@ -23,6 +24,7 @@ function App() {
         <Route path="/العنايـة المركزة" element={<Care/>}/>
         <Route path="/تسجيل الدخول" element={<Login/>}/>
       </Routes>
+      <ToastContainer/>
     </div>
   );
 }

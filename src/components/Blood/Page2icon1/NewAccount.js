@@ -3,10 +3,8 @@ import ValidationErrorMsg from "../../../Helpers/components/ValidationErrorMsg";
 import BloodTypes from "./BloodTypes";
 import { Form } from "formik";
 import { useState ,useEffect} from "react";
-import { LocationApi } from "../../../Helpers/Functions";
+import { LocationIp , LocationPlcae ,ErrorNotification} from "../../../Helpers/Functions";
 import DatePicker from "./DatePicker";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import Select from 'react-select'
 import Options from "../../../Helpers/CitiesList.json"
 
@@ -30,8 +28,8 @@ const NewAccount = (props) => {
                         setShowBloodTypes(true)
                         }}></i>
                     <input  value={values.blood_type} type="text" id="name" onChange={handleChange} onBlur={handleBlur} className={errors?.blood_type ? "Error" : ""}/>
-                    <ValidationErrorMsg msg={errors.blood_type}/>
                     <span>حدد فصيلة الدم</span>
+                    <ValidationErrorMsg msg={errors.blood_type}/>
                     </div>
 
                     <div className="inputselect test_valid" name="test_valid" style={{marginBottom:"10px"}}>
@@ -90,30 +88,30 @@ const NewAccount = (props) => {
                                 e.target.nextElementSibling.disabled=true;
                                 e.target.nextElementSibling.style.backgroundColor="#0282ed70"
                                 e.target.nextElementSibling.style.cursor="not-allowed"
-                                const options = {
-                                    method: 'GET',
-                                    headers: {
-                                        'X-RapidAPI-Key': '68279b6798mshf429f1ed344b352p175839jsna83457648965',
-                                        'X-RapidAPI-Host': 'spott.p.rapidapi.com'
-                                    }
-                                };
-                                fetch(LocationApi,options).then((res)=>res.json())
-                                .then((data)=>{
-                                    setTheCity(data.localizedName)
-                                    setTheCityError(false)
-                                    City.parentElement.style.display="flex"
-                                    Search.style.display="none"
-                                    e.target.disabled=false;
-                                    e.target.style.backgroundColor="#0282ed"
-                                    e.target.style.cursor="pointer"
-                                    e.target.nextElementSibling.disabled=false;
-                                    e.target.nextElementSibling.style.backgroundColor="#0282ed"
-                                    e.target.nextElementSibling.style.cursor="pointer"
-                                    values.location=data.localizedName
-                                }).catch((err)=>{
-                                    setTheCity("واجهنا خطأ برجاء اعاده المحاولة")
-                                    setTheCityError(true)
-                                    values.location=""
+                                fetch(LocationIp).then((res)=>res.json()).then((data)=>{
+                                    fetch(`${LocationPlcae}/${data.ip}`).then((res)=>res.json())
+                                    .then((data)=>{
+                                        fetch(`https://api.mymemory.translated.net/get?q=${data.city}&langpair=en|ar`)
+                                        .then((res)=>res.json())
+                                        .then((data)=>{
+                                            setTheCity(data.responseData.translatedText)
+                                            setTheCityError(false)
+                                            City.parentElement.style.display="flex"
+                                            Search.style.display="none"
+                                            values.location=data.responseData.translatedText
+                                        }).catch((err)=>{
+                                            setTheCity("واجهنا خطأ برجاء اعاده المحاولة")
+                                            setTheCityError(true)
+                                            values.location=""
+                                        }).finally(()=>{
+                                            e.target.disabled=false;
+                                            e.target.style.backgroundColor="#0282ed"
+                                            e.target.style.cursor="pointer"
+                                            e.target.nextElementSibling.disabled=false;
+                                            e.target.nextElementSibling.style.backgroundColor="#0282ed"
+                                            e.target.nextElementSibling.style.cursor="pointer"
+                                        })
+                                        })
                                 })
                             }}>بحث تلقائي</button>
 
@@ -132,6 +130,7 @@ const NewAccount = (props) => {
                                             if(e?.value !==null){
                                                 values.location=e?.value
                                                 setTheCity(e?.value)
+                                                e=null
                                             }
                                         }}
                                         />
@@ -139,17 +138,7 @@ const NewAccount = (props) => {
                                     <button type="button" style={{fontSize:"18px",padding:"5px 40px"}} onClick={(e)=>{
                                         if(TheCity?.length ===0 ||TheCity?.length ===undefined){
                                             e.preventDefault()
-                                            toast.error('يرجى اختيار مدينة', {
-                                                position: "top-right",
-                                                autoClose: 2500,
-                                                hideProgressBar: false,
-                                                closeOnClick: true,
-                                                pauseOnHover: true,
-                                                draggable: true,
-                                                progress: undefined,
-                                                theme: "light",
-                                                closeButton :false
-                                                });
+                                            ErrorNotification('يرجى اختيار مدينة')
                                         }else {
                                             document.querySelector(".Background2").style.display="none"
                                             document.querySelector(".City").style.display="flex"
@@ -157,7 +146,6 @@ const NewAccount = (props) => {
                                             setTheCityError(false)
                                         }
                                     }}>تم</button>
-                                    <ToastContainer/>
                                 </div>
                         </div>
                     </div>
@@ -184,16 +172,23 @@ const NewAccount = (props) => {
                     </div>
 
                     {props.ActiveButton===2 ? (
+                        <>
                         <div className="DeleteButton">
-                        <button type="submit" onClick={(e)=>{
+                        <button type="button" onClick={(e)=>{
+                            
+                        }}>تعديل الحساب</button>
+                        </div>
+                        <div className="DeleteButton">
+                        <button type="button" onClick={(e)=>{
                             
                         }}>تعطيل الحساب</button>
                         </div>
+                        </>
                     )
                     :
                     (<div className="Submit">
                     <button type="submit" onClick={(e)=>{
-                        if(values.location===""){
+                        if(values.location==="" || values.location===undefined){
                             setTheCityError(true)
                         }
                         else{

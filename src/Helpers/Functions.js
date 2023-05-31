@@ -1,5 +1,8 @@
 
 import { useEffect ,useState} from "react";
+import axios from "axios";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 let counter=1
@@ -132,7 +135,8 @@ export const CheckActivePage=()=>{
 
 export const PhotoApi="https://mo7amed17.github.io/El-Wateen-Images"
 
-export const LocationApi="https://spott.p.rapidapi.com/places/ip/me?language=ar"
+export const LocationIp="http://api.ipify.org/?format=json"
+export const LocationPlcae="http://ip-api.com/json/"
 
 export const BaseApi="https://el-wateen.mo7amed17.repl.co"
 
@@ -167,4 +171,73 @@ export const ArrowAndNavigationBar=()=>{
             }, 100);
         })
     }, [Direction]);
+}
+
+export const ErrorNotification=(msg)=>{
+    toast.error(msg, {
+        position: "top-right",
+        autoClose: 2500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        closeButton :false
+        });
+}
+export const SuccessNotification=(msg)=>{
+    toast.success(msg, {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        closeButton :false
+        });
+}
+
+
+export const SubmitForm=(values ,resetForm)=>{
+    fetch(`https://el-wateen.mo7amed17.repl.co/Donnars?q=${values.phone_number}`)
+    .then((res)=>res.json())
+    .then((data)=>{
+        if(data.length===0){
+            let Form =document.querySelector("form")
+                        let button=document.querySelector("Form .Submit button")
+                        let inputselect=document.querySelectorAll(".inputselect span")
+                        let inputs=document.querySelectorAll(".input input")
+                        button.disabled=true
+                        button.style.backgroundColor="#0282ed70"
+                        button.style.cursor="not-allowed"
+                        axios.post(`${BaseApi}/Donnars`,{values})
+                        .then((res)=>{
+                            SuccessNotification('تم تسجيل الحساب')
+                                inputselect[0].textContent="حدد فصيلة الدم"
+                                inputselect[1].textContent="اختبار صلاحية التبرع بالدم"
+                                inputs[0].value=""
+                                inputs[1].value=""
+                                document.querySelector(".TheCity").parentElement.style.display="none"
+                                document.querySelector(".Search").style.display="flex"
+                                Form.reset();
+                                resetForm({values:{}});
+                                let Types=document.querySelectorAll(".Types")
+                                    Types.forEach(Type => {
+                                        Type.classList.remove("BloodTypeChoosed")
+                                    });
+                        }).catch((err)=>{
+                            ErrorNotification(`خطأ في تسجيل الحساب ، حاول ثانية`)
+                        }).finally(()=>{
+                            button.disabled=false
+                            button.style.backgroundColor="#0282ed"
+                            button.style.cursor="pointer"
+                        })
+        }
+        else {
+            ErrorNotification("تم استخدام رقم الهاتف من قبل")
+        }
+    })
 }

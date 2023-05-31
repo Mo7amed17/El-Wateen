@@ -3,11 +3,11 @@ import { useEffect ,useState} from "react";
 
 const BloodTypes = () => {
 
-    const { values ,setValues}=useFormikContext();
+    const { values ,setFieldValue ,setFieldError}=useFormikContext();
 
     useEffect(() => {
         let arrow=document.getElementById("BloodTypeArrow")
-        let blood_typeSpan=document.querySelector(".blood_type span")
+        let blood_typeSpan=document.querySelector(".blood_type span") 
         arrow.addEventListener("click",(e)=>{
             document.querySelector(".Background").style.display="block"
         })
@@ -19,7 +19,8 @@ const BloodTypes = () => {
                     e.classList.remove("BloodTypeChoosed")
                 });
                 Type.classList.add("BloodTypeChoosed")
-                setValues({blood_type:Type.id})
+                setFieldValue("blood_type", Type.id)
+                setFieldError("blood_type",undefined)
             })
         });
     }, []);

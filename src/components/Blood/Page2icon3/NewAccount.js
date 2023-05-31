@@ -3,10 +3,9 @@ import ValidationErrorMsg from "../../../Helpers/components/ValidationErrorMsg";
 import BloodTypes from "./BloodTypes";
 import { Form } from "formik";
 import { useState ,useEffect} from "react";
-import { LocationApi } from "../../../Helpers/Functions";
+import { ErrorNotification} from "../../../Helpers/Functions";
 import DatePicker from "./DatePicker";
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import Select from 'react-select'
 import Options from "../../../Helpers/CitiesList.json"
 const NewAccount = () => {
@@ -95,7 +94,7 @@ const NewAccount = () => {
                                         'X-RapidAPI-Host': 'spott.p.rapidapi.com'
                                     }
                                 };
-                                fetch(LocationApi,options).then((res)=>res.json())
+                                fetch("",options).then((res)=>res.json())
                                 .then((data)=>{
                                     setTheCity(data.localizedName)
                                     setTheCityError(false)
@@ -137,17 +136,7 @@ const NewAccount = () => {
                                     <button type="button" style={{fontSize:"18px",padding:"5px 40px"}} onClick={(e)=>{
                                         if(TheCity?.length ===0 ||TheCity?.length ===undefined){
                                             e.preventDefault()
-                                            toast.error('يرجى اختيار مدينة', {
-                                                position: "top-right",
-                                                autoClose: 2500,
-                                                hideProgressBar: false,
-                                                closeOnClick: true,
-                                                pauseOnHover: true,
-                                                draggable: true,
-                                                progress: undefined,
-                                                theme: "light",
-                                                closeButton :false
-                                                });
+                                            ErrorNotification("يرجى اختيار مدينة")
                                         }else {
                                             document.querySelector(".Background2").style.display="none"
                                             document.querySelector(".City").style.display="flex"

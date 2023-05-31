@@ -70,7 +70,7 @@ Form .inputselect{
 Form .inputselect span{
     position: absolute;
     background-color: white;
-    width: 70%;
+    width: 95%;
     height: 95%;
     transform: translate(0%,-48%);
     top: 50%;
@@ -102,6 +102,7 @@ Form .inputselect i{
     cursor: pointer;
     position: absolute;
     left: 3%;
+    z-index: 10;
 }
 Form .input label{
     padding-right: 5px;
@@ -330,6 +331,7 @@ Form .input input{
     top: 0%;
     transform: translate(16%,18%);
     text-align: center;
+    z-index: 12;
 }
 .MobileLoginImg{
     width: 200px;
@@ -387,6 +389,7 @@ Form .input input{
     border-radius: 15px;
     top: 0%;
     display: none;
+    z-index: 11;
 }
 @media (max-width:996px) {
     .Page2icon1{

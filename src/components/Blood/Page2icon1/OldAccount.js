@@ -1,12 +1,13 @@
 import { useFormikContext } from "formik";
 import NewAccount from "./NewAccount";
 import { useEffect , useState} from "react";
-import { PhotoApi } from "../../../Helpers/Functions";
+import { ErrorNotification, PhotoApi, SuccessNotification } from "../../../Helpers/Functions";
 import LoadingPage from "../../../Helpers/LoadingPage";
 
 const OldAccount = () => {
-    const {values ,resetForm} = useFormikContext();
+    let {values ,resetForm} = useFormikContext();
     const [Img, setImg] = useState("");
+    const [PhoneNumber, setPhoneNumber] = useState("");
     useEffect(() => {
         fetch(`${PhotoApi}/11.png`).then((res)=>{
             if(res.status===200){
@@ -39,9 +40,42 @@ const OldAccount = () => {
                             else {
                                 e.preventDefault()
                             }
+                        }} onChange={(e)=>{
+                                setPhoneNumber(e.target.value)
                         }}/>
                     </div>
-                    <button className="MobileLoginButton">حسنــاً</button>
+                    <button className="MobileLoginButton" onClick={(e)=>{
+                        if(PhoneNumber.length===11 && PhoneNumber.startsWith("01")){
+                            let MobileLoginBackground=document.querySelector(".MobileLoginBackground")
+                            let MobileLogin=document.querySelector(".OldAccount .MobileLogin")
+                            e.target.disabled=true
+                            e.target.style.backgroundColor="#0282ed70"
+                            e.target.style.cursor="not-allowed"
+                            fetch(`https://el-wateen.mo7amed17.repl.co/Donnars?q=${PhoneNumber}`)
+                            .then((res)=>res.json())
+                            .then((data)=>{
+                                console.log(data[0].values)
+                                if((data.length)===1){
+                                    values=data[0].values
+                                    SuccessNotification("تم تسجيل الدخول بنجاح")
+                                    setTimeout(() => {
+                                        MobileLoginBackground.style.display="none"
+                                        MobileLogin.style.display="none"
+                                    }, 2600);
+                                }
+                            }).catch((err)=>{
+                                console.log(err)
+                                ErrorNotification("حدث خطأ حاول مرة اخرى")
+                            })
+                            .finally(()=>{
+                                e.target.disabled=false
+                            e.target.style.backgroundColor="#0282ed"
+                            e.target.style.cursor="pointer"
+                            })
+                        }else {
+                            ErrorNotification("يرجى ادخال رقم هاتف صحيح")
+                        }
+                    }}>حسنــاً</button>
                     <h3 className="MobileLoginHash"> <span><em> # </em></span>انقذ_حياه </h3>
                     
                 </div>
