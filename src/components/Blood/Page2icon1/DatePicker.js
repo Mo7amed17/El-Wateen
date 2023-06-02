@@ -14,7 +14,7 @@ const DatePicker = () => {
     let footer = <p>من فضلك اختر التاريخ</p>;
     if (selected) {
         footer = <p>لقد حددت تاريخ  &nbsp;&nbsp;&nbsp;&nbsp;<span style={{textDecoration:"underline"}}>{format(selected, "dd-MMMM-yyyy", { locale: ar })}</span>.</p>;
-    values.date=(format(selected, 'dd-MMMM-yyyy'))
+    values.date=format(selected, "dd-MMMM-yyyy", { locale: ar })
     }
     useEffect(() => {
         let pen=document.querySelector(".CallTime i")

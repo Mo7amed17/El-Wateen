@@ -11,11 +11,12 @@ export const validationSchema = Yup.object().shape({
 
 export const intinalValues={
         blood_type:"",
-        test_valid:"",
+        test_valid:true,
         name:"",
         phone_number:"",
         location:"",
         alerts:"",
         date:"",
         time:"",
+        serach:true,
     }

@@ -3,21 +3,52 @@ import ValidationErrorMsg from "../../../Helpers/components/ValidationErrorMsg";
 import BloodTypes from "./BloodTypes";
 import { Form } from "formik";
 import { useState ,useEffect} from "react";
-import { LocationIp , LocationPlcae ,ErrorNotification} from "../../../Helpers/Functions";
+import { LocationIp , LocationPlcae ,ErrorNotification, BaseApi} from "../../../Helpers/Functions";
 import DatePicker from "./DatePicker";
 import Select from 'react-select'
 import Options from "../../../Helpers/CitiesList.json"
-
+import secureLocalStorage from "react-secure-storage";
+import axios from "axios";
 const NewAccount = (props) => {
-
     const [TheCity, setTheCity] = useState("");
     const [TheCityError, setTheCityError] = useState(false);
-    const { values ,handleSubmit ,handleBlur ,errors ,handleChange ,resetForm }=useFormikContext();
     const [ShowBloodTypes, setShowBloodTypes] = useState(false);
+    let { values ,handleSubmit ,handleBlur ,errors ,handleChange ,resetForm }=useFormikContext();
+    
+    if(props?.ActiveForm===2){
+        values=props?.values
+    }
+    
     useEffect(() => {
-        let Form =document.querySelector("form")
-        Form.reset();
-        resetForm({values:{}})
+        if(props?.ActiveForm===2){
+            if(props?.values?.location !==undefined){
+                document.querySelector(".Location .Search").style.display="none"
+                document.querySelector(".Location .City").style.display="flex"
+                setTheCity(props?.values?.location)
+            }
+        }
+    }, [props]);
+    useEffect(() => {
+            let Form =document.querySelector("form")
+            Form.reset();
+            resetForm({values:{}})
+        let ActiveH4=document.querySelectorAll(".Top h4")
+        let Submit=document.querySelector(".Submit button")
+        if(secureLocalStorage.getItem("LoginBloodAccount")==="true" ){
+            ActiveH4[0].textContent="تعديل الحساب"
+            ActiveH4[1].textContent="حســـابـي"
+            if(Submit!==null){
+                Submit.textContent="حفظ التعديلات"
+            }
+        }
+        let CheckInput = document.querySelector("input[type='checkbox']");
+        let EditButton=document.querySelector(".EditButton button")
+        if(props.ActiveForm!==2){
+            if(secureLocalStorage.getItem("UserData")!==null)
+            {
+                CheckInput.checked=secureLocalStorage.getItem("UserData").alerts
+            }
+        }
     }, []);
     return (
         <Form onSubmit={handleSubmit}>
@@ -28,7 +59,7 @@ const NewAccount = (props) => {
                         setShowBloodTypes(true)
                         }}></i>
                     <input  value={values.blood_type} type="text" id="name" onChange={handleChange} onBlur={handleBlur} className={errors?.blood_type ? "Error" : ""}/>
-                    <span>حدد فصيلة الدم</span>
+                    <span>{(values?.blood_type==="" || values?.blood_type===undefined) ? "حدد فصيلة الدم" : values?.blood_type }</span>
                     <ValidationErrorMsg msg={errors.blood_type}/>
                     </div>
 
@@ -53,13 +84,17 @@ const NewAccount = (props) => {
                 
                 <div className="input">
                     <label htmlFor="phone_number"> رقم الهاتف</label>
-                    <input maxLength="11" type="tel" id="phone_number" name="phone_number" value={values.phone_number} onChange={handleChange} onBlur={handleBlur} className={errors?.phone_number ? "Error" : ""} onKeyPress={(e)=>{
+                    <input minLength="11" maxLength="11" type="tel" id="phone_number" name="phone_number" value={values.phone_number} onChange={handleChange} onBlur={handleBlur} className={errors?.phone_number ? "Error" : ""} onKeyPress={(e)=>{
                         if(e.charCode>=48 && e.charCode <=57){
                         }
                         else {
                             e.preventDefault()
                         }
-                    }}/>
+                    }}
+                    onInvalid={(e)=>{
+                        e.target.setCustomValidity("يرجى ادخال 11 رقم تبدأ ب01")
+                    }}
+                    />
                     <ValidationErrorMsg msg={errors.phone_number}/>
                 </div>
                     
@@ -68,13 +103,17 @@ const NewAccount = (props) => {
                             <div className="City">
                             <h3 className="TheCity">{TheCity}</h3>
                             <i className="fa-solid fa-x" onClick={(e)=>{
-                                setTheCity("")
-                                setTheCityError(true)
                                 values.location=""
-                                let City=document.querySelector(".TheCity")
-                                let Search=document.querySelector(".Search")
-                                    City.parentElement.style.display="none"
-                                Search.style.display="flex"
+                                    let City=document.querySelector(".TheCity")
+                                    let Search=document.querySelector(".Search")
+                                        City.parentElement.style.display="none"
+                                    Search.style.display="flex"
+                                    setTheCity("")
+                                if(secureLocalStorage.getItem("LoginBloodAccount")!=="true"){
+                                    setTheCityError(true)
+                                        }else {
+                                            setTheCityError(false)
+                                        }
                             }}></i>
                             </div>
 
@@ -150,7 +189,7 @@ const NewAccount = (props) => {
                         </div>
                     </div>
                     {
-                        TheCityError===true ? (<ValidationErrorMsg msg={"يرجى تحديد موقعك"}/>) : (<></>)
+                        TheCityError===true ? (<div className="CityErrorMsg"><ValidationErrorMsg msg={"يرجى تحديد موقعك"}/></div>) : (<></>)
                     }
                     <div className="Alerts">
                         <h4>تفعيل الاشعارات من التطبيق</h4>
@@ -167,21 +206,28 @@ const NewAccount = (props) => {
                     </div>
                     <div className="CallTime">
                         <h3>وقت اتاحة الاتصال بك</h3>
+                        <h6 style={{display:"none"}}>{values?.time}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {values?.date}</h6>
                         <i className="fa-solid fa-pen-to-square"></i>
                         <DatePicker/>
                     </div>
 
-                    {props.ActiveButton===2 ? (
+                    {props?.ActiveForm===2 ? (
                         <>
-                        <div className="DeleteButton">
-                        <button type="button" onClick={(e)=>{
-                            
-                        }}>تعديل الحساب</button>
+                        <div className="EditButton">
+                        <button type="button"  style={{backgroundColor:"red",borderColor:"red"}} onClick={(e)=>{
+                            e.target.disabled=true
+                            e.target.style.cursor="not-allowed"
+                        }}>{"test"}
+                        </button>
                         </div>
-                        <div className="DeleteButton">
+
+                        <div className="LogoutButton">
                         <button type="button" onClick={(e)=>{
-                            
-                        }}>تعطيل الحساب</button>
+                            secureLocalStorage.clear()
+                            setTimeout(() => {
+                                window.location.reload()
+                            }, 1000);
+                        }}>تسجيل الخروج</button>
                         </div>
                         </>
                     )

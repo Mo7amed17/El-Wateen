@@ -144,7 +144,7 @@ const NewAccount = () => {
                                             setTheCityError(false)
                                         }
                                     }}>تم</button>
-                                    <ToastContainer/>
+                                    <ToastContainer limit={2}/>
                                 </div>
                         </div>
                     </div>
@@ -172,8 +172,6 @@ const NewAccount = () => {
 
                     <div className="Submit">
                     <button type="submit" onClick={(e)=>{
-                        console.log(errors)
-                        console.log(values)
                         if(values.location===""){
                             setTheCityError(true)
                         }

@@ -3,7 +3,7 @@ import { useEffect ,useState} from "react";
 import axios from "axios";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import secureLocalStorage from "react-secure-storage";
 
 let counter=1
 export const SliderToRight = (ele1,ele2,ele3)=>{
@@ -173,10 +173,10 @@ export const ArrowAndNavigationBar=()=>{
     }, [Direction]);
 }
 
-export const ErrorNotification=(msg)=>{
+export const ErrorNotification=(msg , time=2500)=>{
     toast.error(msg, {
         position: "top-right",
-        autoClose: 2500,
+        autoClose: time,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -186,10 +186,10 @@ export const ErrorNotification=(msg)=>{
         closeButton :false
         });
 }
-export const SuccessNotification=(msg)=>{
+export const SuccessNotification=(msg , time=2000)=>{
     toast.success(msg, {
         position: "top-right",
-        autoClose: 2000,
+        autoClose: time ,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -228,6 +228,7 @@ export const SubmitForm=(values ,resetForm)=>{
                                     Types.forEach(Type => {
                                         Type.classList.remove("BloodTypeChoosed")
                                     });
+                                    
                         }).catch((err)=>{
                             ErrorNotification(`خطأ في تسجيل الحساب ، حاول ثانية`)
                         }).finally(()=>{
@@ -240,4 +241,78 @@ export const SubmitForm=(values ,resetForm)=>{
             ErrorNotification("تم استخدام رقم الهاتف من قبل")
         }
     })
+}
+export const UpdateForm=(values ,resetForm,id)=>{
+    let Form =document.querySelector("form")
+    let button=document.querySelector("Form .Submit button")
+    let inputselect=document.querySelectorAll(".inputselect span")
+    let inputs=document.querySelectorAll(".input input")
+    if(values.phone_number!==(secureLocalStorage.getItem("UserData")).phone_number){
+        fetch(`https://el-wateen.mo7amed17.repl.co/Donnars?q=${values.phone_number}`)
+        .then((res)=>res.json())
+        .then((data)=>{
+            if(data.length===0){
+                button.disabled=true
+                button.style.backgroundColor="#0282ed70"
+                button.style.cursor="not-allowed"
+                axios.patch(`https://el-wateen.mo7amed17.repl.co/Donnars/${id}`,{values})
+                .then((data)=>{
+                        SuccessNotification('تم تعديل البيانات')
+                        setTimeout(() => {
+                            window.location.reload()
+                        }, 2000);
+                        secureLocalStorage.setItem("UserData",values)
+                            inputselect[0].textContent="حدد فصيلة الدم"
+                            inputselect[1].textContent="اختبار صلاحية التبرع بالدم"
+                            inputs[0].value=""
+                            inputs[1].value=""
+                            document.querySelector(".TheCity").parentElement.style.display="none"
+                            document.querySelector(".Search").style.display="flex"
+                            Form.reset();
+                            resetForm({values:{}});
+                            let Types=document.querySelectorAll(".Types")
+                                if(Types!==undefined){
+                                    Types.forEach(Type => {
+                                        Type.classList.remove("BloodTypeChoosed")
+                                    })}
+                                })
+                        .catch((err)=>{
+                        ErrorNotification(`خطأ في تعديل الحساب ، حاول ثانية`)
+                    })
+                
+            }
+            else {
+                ErrorNotification("تم استخدام رقم الهاتف من قبل")
+            }
+        })
+    }else{
+        button.disabled=true
+                button.style.backgroundColor="#0282ed70"
+                button.style.cursor="not-allowed"
+                axios.patch(`https://el-wateen.mo7amed17.repl.co/Donnars/${id}`,{values})
+                .then((data)=>{
+                        SuccessNotification('تم تعديل البيانات')
+                        secureLocalStorage.setItem("UserData",values)
+                        setTimeout(() => {
+                            window.location.reload()
+                        }, 2000);
+                            inputselect[0].textContent="حدد فصيلة الدم"
+                            inputselect[1].textContent="اختبار صلاحية التبرع بالدم"
+                            inputs[0].value=""
+                            inputs[1].value=""
+                            document.querySelector(".TheCity").parentElement.style.display="none"
+                            document.querySelector(".Search").style.display="flex"
+                            Form.reset();
+                            resetForm({values:{}});
+                            let Types=document.querySelectorAll(".Types")
+                                if(Types!==undefined){
+                                    Types.forEach(Type => {
+                                        Type.classList.remove("BloodTypeChoosed")
+                                    })}
+                                })
+                        .catch((err)=>{
+                        ErrorNotification(`خطأ في تعديل الحساب ، حاول ثانية`)
+                    })
+                
+    }
 }

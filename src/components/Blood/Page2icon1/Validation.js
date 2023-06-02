@@ -19,4 +19,5 @@ export const intinalValues={
         alerts:"",
         date:"",
         time:"",
+        search:true,
     }

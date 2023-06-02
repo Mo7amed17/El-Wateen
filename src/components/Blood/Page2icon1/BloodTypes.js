@@ -7,14 +7,12 @@ const BloodTypes = () => {
 
     useEffect(() => {
         let arrow=document.getElementById("BloodTypeArrow")
-        let blood_typeSpan=document.querySelector(".blood_type span") 
         arrow.addEventListener("click",(e)=>{
             document.querySelector(".Background").style.display="block"
         })
         let Types=document.querySelectorAll(".Types")
         Types.forEach(Type => {
             Type.addEventListener("click",(ele)=>{
-                blood_typeSpan.textContent=Type.id
                 Types.forEach(e => {
                     e.classList.remove("BloodTypeChoosed")
                 });

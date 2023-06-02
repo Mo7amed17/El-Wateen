@@ -71,7 +71,7 @@ Form .inputselect span{
     position: absolute;
     background-color: white;
     width: 95%;
-    height: 95%;
+    height: 90%;
     transform: translate(0%,-48%);
     top: 50%;
     right: 2%;
@@ -245,12 +245,12 @@ Form .input input{
     font-size: 11px;
     height: min-content;
 }
-.Submit , .DeleteButton{
+.Submit , .DeleteButton ,.EditButton ,.LogoutButton{
     margin-top: 15px;
     text-align: center;
 
 }
-.Submit button , .DeleteButton button{
+.Submit button , .DeleteButton button ,.EditButton button , .LogoutButton button{
     font-size: 16px;
     background-color: #0282ed;
     color: white;

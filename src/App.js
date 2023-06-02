@@ -24,7 +24,7 @@ function App() {
         <Route path="/العنايـة المركزة" element={<Care/>}/>
         <Route path="/تسجيل الدخول" element={<Login/>}/>
       </Routes>
-      <ToastContainer/>
+      <ToastContainer limit={2}/>
     </div>
   );
 }

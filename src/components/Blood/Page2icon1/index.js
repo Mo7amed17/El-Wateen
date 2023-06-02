@@ -1,5 +1,5 @@
 import { Switch , Case , Default} from "react-if";
-import { CheckActivePage ,PhotoApi ,SubmitForm} from "../../../Helpers/Functions";
+import { CheckActivePage ,ErrorNotification,PhotoApi ,SubmitForm, UpdateForm} from "../../../Helpers/Functions";
 import { useState ,useEffect} from "react";
 import LoadingPage from "../../../Helpers/LoadingPage";
 import ErrorPage from "../../../Helpers/ErrorPage";
@@ -11,14 +11,15 @@ import NewAccount from "./NewAccount";
 import OldAccount from "./OldAccount";
 import NavigationBar from "../../../Helpers/NavigationBar"
 import Footer from "../../../Helpers/Footer";
-
+import secureLocalStorage from "react-secure-storage";
 const Page2icon1 = () => {
+    let Newvalues={...secureLocalStorage.getItem("UserData")}
+
     window.localStorage.setItem("ActivePage",1)
-    const [ActiveForm, setActiveForm] = useState("");
+    const [ActiveForm, setActiveForm] = useState();
     const [Status, setStatus] = useState("loading");
     const [Reload, setReload] = useState(false);
     const [Image, setImage] = useState("");
-    // const [Donnars, setDonnars] = useState([]);
             useEffect(() => {
                 fetch(`${PhotoApi}/Page2Page2icon1.png`)
                 .then((res)=>{
@@ -37,6 +38,10 @@ const Page2icon1 = () => {
                         setImage(res.url)
                         setTimeout(() => {
                             let Activeh4=document.querySelectorAll(".Top h4")
+                        if(secureLocalStorage.getItem("LoginBloodAccount")==="true" ){
+                            Activeh4[0].textContent="تعديل الحساب"
+                            Activeh4[1].textContent="حـســـابــي"
+                        }
                             Activeh4.forEach(ele => {
                                 ele.addEventListener("click",(e)=>{
                                     setActiveForm(e.target.id)
@@ -49,10 +54,8 @@ const Page2icon1 = () => {
                         }, 100);
                     }
                 })
-                // fetch(`${BaseApi}/Donnars`).then((res)=>res.json()).then((data)=>{setDonnars(data)})
             }, [Reload]);
             CheckActivePage()
-
     return (
         <Switch>
             <Case condition={Status==="loading"}>
@@ -67,17 +70,51 @@ const Page2icon1 = () => {
             <div className="Right">
                 <Formik
                 initialValues = {intinalValues}
-                validationSchema={validationSchema}
+                validationSchema={secureLocalStorage.getItem("LoginBloodAccount")==="true" ? ("") : (validationSchema)}
                 validateOnChange={true}
                 validateOnBlur={false}
                 isInitialValid={false}
                 onSubmit={(values , {resetForm})=>{
-                    SubmitForm(values ,resetForm)
+                    if(secureLocalStorage.getItem("LoginBloodAccount")==="true"){
+                        let ValidationErrorMsg =document.querySelector(".CityErrorMsg")
+                        if(ValidationErrorMsg!==null){
+                            ValidationErrorMsg.style.display="none"
+                        }
+                        Object.keys(values).map((key)=>{
+                            Object.keys(Newvalues).map((k)=>{
+                                if (key in values && values[key] !== "" && key===k) {
+                                    Newvalues[k]=values[key]
+                                }
+                            })
+                        })  
+                        let phone_number=document.getElementById("phone_number")
+                        if(JSON.stringify(Newvalues) === JSON.stringify(secureLocalStorage.getItem("UserData"))){
+                            ErrorNotification("لم تقم بأي تعديلات")
+                        }
+                        else {
+                                if(phone_number.value.startsWith("01")===false && phone_number.value!==""){
+                                        ErrorNotification("يجب أن يبدأ الرقم ب01")
+                                }else{
+                                    UpdateForm(Newvalues ,resetForm,secureLocalStorage.getItem("UserId"))
+                                }
+                            }
+                    }else {
+                        SubmitForm(values ,resetForm)
+                        setTimeout(() => {
+                            let span=document.querySelector(".inputselect span")
+                            let Activeh4=document.querySelectorAll(".Top h4")
+                        if(span.textContent==="حدد فصيلة الدم"){
+                            setActiveForm("old_account")
+                            Activeh4[0].classList.remove("Activeh4AtBlood")
+                            Activeh4[1].classList.add("Activeh4AtBlood")
+                        }
+                        }, 1000);
+                    }
                 }}
                 enableReinitialize>
                     {({ values, errors, handleChange, handleBlur, handleSubmit }) => (
                         <Switch>
-                            <Case condition={ActiveForm==="new_aacount"}>
+                            <Case condition={ActiveForm==="new_account"}>
                                 <NewAccount/>
                             </Case>
                             <Case condition={ActiveForm==="old_account"}>
