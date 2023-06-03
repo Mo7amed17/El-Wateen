@@ -23,14 +23,14 @@ const BloodTypes = () => {
         });
     }, []);
     const options = [
-        { label: '+A' },
-        { label: '-A' },
-        { label: '+B' },
-        { label: '-B' },
-        { label: '+AB' },
-        { label: '-AB' },
-        { label: '+O' },
-        { label: '-O' },
+        { label: '+A' ,value:"aplus"},
+        { label: '-A' ,value:"aminus"},
+        { label: '+B' ,value:"bplus"},
+        { label: '-B' ,value:"bminus"},
+        { label: '+AB' ,value:"abplus"},
+        { label: '-AB' ,value:"abminus"},
+        { label: '+O' ,value:"oplus"},
+        { label: '-O' ,value:"ominus"},
     ]
     return (
         <div className="Background">
@@ -41,7 +41,7 @@ const BloodTypes = () => {
             {
                 options.map((option)=>{
                     return(
-                        <div className="Types" id={option.label} key={option.label}>{option.label}</div>
+                        <div className="Types" id={option.value} key={option.value}>{option.label}</div>
                         )
                     })
                 }

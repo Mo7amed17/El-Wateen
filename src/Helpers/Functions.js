@@ -201,8 +201,8 @@ export const SuccessNotification=(msg , time=2000)=>{
 }
 
 
-export const SubmitForm=(values ,resetForm)=>{
-    fetch(`https://el-wateen.mo7amed17.repl.co/Donnars?q=${values.phone_number}`)
+export const SubmitForm=(values ,resetForm,type)=>{
+    fetch(`https://el-wateen.mo7amed17.repl.co/${type}?q=${values.phone_number}`)
     .then((res)=>res.json())
     .then((data)=>{
         if(data.length===0){
@@ -213,11 +213,27 @@ export const SubmitForm=(values ,resetForm)=>{
                         button.disabled=true
                         button.style.backgroundColor="#0282ed70"
                         button.style.cursor="not-allowed"
-                        axios.post(`${BaseApi}/Donnars`,{values})
+                        values.search=true
+                        if(values.alerts===undefined){
+                            values.alerts=false
+                        }
+                        if(values.date===undefined){
+                            values.date=""
+                        }
+                        if(values.time===undefined){
+                            values.time=""
+                        }
+                        axios({
+                            method: 'post',
+                            url: `${BaseApi}/${type}`,
+                            data:values
+                        })
                         .then((res)=>{
                             SuccessNotification('تم تسجيل الحساب')
                                 inputselect[0].textContent="حدد فصيلة الدم"
-                                inputselect[1].textContent="اختبار صلاحية التبرع بالدم"
+                                if(inputs.length===2){
+                                    inputselect[1].textContent="اختبار صلاحية التبرع بالدم"
+                                }
                                 inputs[0].value=""
                                 inputs[1].value=""
                                 document.querySelector(".TheCity").parentElement.style.display="none"
@@ -242,28 +258,40 @@ export const SubmitForm=(values ,resetForm)=>{
         }
     })
 }
-export const UpdateForm=(values ,resetForm,id)=>{
+export const UpdateForm=(values ,resetForm,id,type)=>{
+    let Data=""
+    if(type==="Donnars"){
+        Data="DonnarData"
+    }else if(type === "Patients"){
+        Data="PatientData"
+    }
     let Form =document.querySelector("form")
     let button=document.querySelector("Form .Submit button")
     let inputselect=document.querySelectorAll(".inputselect span")
     let inputs=document.querySelectorAll(".input input")
-    if(values.phone_number!==(secureLocalStorage.getItem("UserData")).phone_number){
-        fetch(`https://el-wateen.mo7amed17.repl.co/Donnars?q=${values.phone_number}`)
+    if(values.phone_number!==(secureLocalStorage.getItem(Data)).phone_number){
+        fetch(`https://el-wateen.mo7amed17.repl.co/${type}?q=${values.phone_number}`)
         .then((res)=>res.json())
         .then((data)=>{
             if(data.length===0){
                 button.disabled=true
                 button.style.backgroundColor="#0282ed70"
                 button.style.cursor="not-allowed"
-                axios.patch(`https://el-wateen.mo7amed17.repl.co/Donnars/${id}`,{id,values})
+                axios({
+                    method: 'patch',
+                    url: `https://el-wateen.mo7amed17.repl.co/${type}/${id}`,
+                    data:values
+                })
                 .then((data)=>{
                         SuccessNotification('تم تعديل البيانات')
                         setTimeout(() => {
                             window.location.reload()
                         }, 2000);
-                        secureLocalStorage.setItem("UserData",values)
+                        secureLocalStorage.setItem(Data,values)
                             inputselect[0].textContent="حدد فصيلة الدم"
-                            inputselect[1].textContent="اختبار صلاحية التبرع بالدم"
+                            if(inputs.length===2){
+                                inputselect[1].textContent="اختبار صلاحية التبرع بالدم"
+                            }
                             inputs[0].value=""
                             inputs[1].value=""
                             document.querySelector(".TheCity").parentElement.style.display="none"
@@ -289,15 +317,21 @@ export const UpdateForm=(values ,resetForm,id)=>{
         button.disabled=true
                 button.style.backgroundColor="#0282ed70"
                 button.style.cursor="not-allowed"
-                axios.patch(`https://el-wateen.mo7amed17.repl.co/Donnars/${id}`,{values})
+                axios({
+                    method: 'patch',
+                    url: `https://el-wateen.mo7amed17.repl.co/${type}/${id}`,
+                    data:values
+                })
                 .then((data)=>{
                         SuccessNotification('تم تعديل البيانات')
-                        secureLocalStorage.setItem("UserData",values)
+                        secureLocalStorage.setItem(Data,values)
                         setTimeout(() => {
                             window.location.reload()
                         }, 2000);
                             inputselect[0].textContent="حدد فصيلة الدم"
-                            inputselect[1].textContent="اختبار صلاحية التبرع بالدم"
+                            if(inputs.length===2){
+                                inputselect[1].textContent="اختبار صلاحية التبرع بالدم"
+                            }
                             inputs[0].value=""
                             inputs[1].value=""
                             document.querySelector(".TheCity").parentElement.style.display="none"

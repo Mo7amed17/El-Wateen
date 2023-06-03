@@ -280,6 +280,9 @@ Form .input input{
     margin-left: 10px;
     cursor: pointer;
 }
+.CallTime h6{
+    display: none;
+}
 
 .DatePicker{
     position: absolute;
@@ -507,6 +510,9 @@ Form .input input{
     .CallTime i {
         font-size: 16px;
     }
+    .CallTime h6{
+        font-size: 9px;
+    }
     Form{
         left: 48%;
     }
@@ -623,6 +629,10 @@ Form .input input{
     }
     .rdp-tfoot p{
         margin-top: 5px !important;
+    }
+
+    .CallTime h6{
+        font-size: 7px;
     }
 }
 

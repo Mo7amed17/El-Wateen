@@ -3,35 +3,34 @@ import { useEffect ,useState} from "react";
 
 const BloodTypes = () => {
 
-    const { values }=useFormikContext();
+    const { values ,setFieldValue ,setFieldError}=useFormikContext();
 
     useEffect(() => {
         let arrow=document.getElementById("BloodTypeArrow")
-        let blood_type=document.querySelector(".blood_type input")
         arrow.addEventListener("click",(e)=>{
             document.querySelector(".Background").style.display="block"
         })
         let Types=document.querySelectorAll(".Types")
         Types.forEach(Type => {
             Type.addEventListener("click",(ele)=>{
-                blood_type.value=Type.id
                 Types.forEach(e => {
                     e.classList.remove("BloodTypeChoosed")
                 });
                 Type.classList.add("BloodTypeChoosed")
-                values.blood_type=Type.id
+                setFieldValue("blood_type", Type.id)
+                setFieldError("blood_type",undefined)
             })
         });
     }, []);
     const options = [
-        { label: '+A' },
-        { label: '-A' },
-        { label: '+B' },
-        { label: '-B' },
-        { label: '+AB' },
-        { label: '-AB' },
-        { label: '+O' },
-        { label: '-O' },
+        { label: '+A' ,value:"aplus"},
+        { label: '-A' ,value:"aminus"},
+        { label: '+B' ,value:"bplus"},
+        { label: '-B' ,value:"bminus"},
+        { label: '+AB' ,value:"abplus"},
+        { label: '-AB' ,value:"abminus"},
+        { label: '+O' ,value:"oplus"},
+        { label: '-O' ,value:"ominus"},
     ]
     return (
         <div className="Background">
@@ -42,7 +41,7 @@ const BloodTypes = () => {
             {
                 options.map((option)=>{
                     return(
-                        <div className="Types" id={option.label} key={option.label}>{option.label}</div>
+                        <div className="Types" id={option.value} key={option.value}>{option.label}</div>
                         )
                     })
                 }

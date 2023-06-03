@@ -9,11 +9,12 @@ import Select from 'react-select'
 import Options from "../../../Helpers/CitiesList.json"
 import secureLocalStorage from "react-secure-storage";
 import axios from "axios";
+import { BloodName } from "../../../Helpers/Helpers";
 const NewAccount = (props) => {
     const [TheCity, setTheCity] = useState("");
     const [TheCityError, setTheCityError] = useState(false);
     const [ShowBloodTypes, setShowBloodTypes] = useState(false);
-    const [Search, setSearch] = useState(secureLocalStorage.getItem("UserData")?.search);
+    const [Search, setSearch] = useState(secureLocalStorage.getItem("DonnarData")?.search);
     let { values ,handleSubmit ,handleBlur ,errors ,handleChange ,resetForm }=useFormikContext();
     
     if(props?.ActiveForm===2){
@@ -35,7 +36,7 @@ const NewAccount = (props) => {
             resetForm({values:{}})
         let ActiveH4=document.querySelectorAll(".Top h4")
         let Submit=document.querySelector(".Submit button")
-        if(secureLocalStorage.getItem("LoginBloodAccount")==="true" ){
+        if(secureLocalStorage.getItem("LoginDonnarAccount")==="true" ){
             ActiveH4[0].textContent="تعديل الحساب"
             ActiveH4[1].textContent="حســـابـي"
             if(Submit!==null){
@@ -45,9 +46,9 @@ const NewAccount = (props) => {
         let CheckInput = document.querySelector("input[type='checkbox']");
         let EditButton=document.querySelector(".EditButton button")
         if(props.ActiveForm!==2){
-            if(secureLocalStorage.getItem("UserData")!==null)
+            if(secureLocalStorage.getItem("DonnarData")!==null)
             {
-                CheckInput.checked=secureLocalStorage.getItem("UserData").alerts
+                CheckInput.checked=secureLocalStorage.getItem("DonnarData").alerts
             }
         }
     }, []);
@@ -60,7 +61,7 @@ const NewAccount = (props) => {
                         setShowBloodTypes(true)
                         }}></i>
                     <input  value={values.blood_type} type="text" id="name" onChange={handleChange} onBlur={handleBlur} className={errors?.blood_type ? "Error" : ""}/>
-                    <span>{(values?.blood_type==="" || values?.blood_type===undefined) ? "حدد فصيلة الدم" : values?.blood_type }</span>
+                    <span>{(values?.blood_type==="" || values?.blood_type===undefined) ? "حدد فصيلة الدم" :  BloodName(values?.blood_type)}</span>
                     <ValidationErrorMsg msg={errors.blood_type}/>
                     </div>
 
@@ -110,7 +111,7 @@ const NewAccount = (props) => {
                                         City.parentElement.style.display="none"
                                     Search.style.display="flex"
                                     setTheCity("")
-                                if(secureLocalStorage.getItem("LoginBloodAccount")!=="true"){
+                                if(secureLocalStorage.getItem("LoginDonnarAccount")!=="true"){
                                     setTheCityError(true)
                                         }else {
                                             setTheCityError(false)
@@ -207,7 +208,7 @@ const NewAccount = (props) => {
                     </div>
                     <div className="CallTime">
                         <h3>وقت اتاحة الاتصال بك</h3>
-                        <h6 style={{display:"none"}}>{values?.time}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {values?.date}</h6>
+                        <h6>{values?.time}&nbsp;&nbsp;&nbsp; {values?.date}</h6>
                         <i className="fa-solid fa-pen-to-square"></i>
                         <DatePicker/>
                     </div>
@@ -230,9 +231,13 @@ const NewAccount = (props) => {
                                 e.target.style.backgroundColor="#00800080"
                                 e.target.style.borderColor="#00800080"
                             }
-                            secureLocalStorage.getItem("UserData").search=!Search
-                            const id=(secureLocalStorage.getItem("UserId"))
-                            axios.patch(`${BaseApi}/Donnars/${secureLocalStorage.getItem("UserId")}`,{id,values})
+                            secureLocalStorage.getItem("DonnarData").search=!Search
+                            const id=(secureLocalStorage.getItem("DonnarId"))
+                            axios({
+                                method: 'patch',
+                                url: `${BaseApi}/Donnars/${secureLocalStorage.getItem("DonnarId")}`,
+                                data:values
+                            })
                             .then((res)=>{
                                 SuccessNotification("تم تعديل البيانات")
                                 setSearch(!Search)
@@ -257,7 +262,9 @@ const NewAccount = (props) => {
                         <div className="LogoutButton">
                         <button type="button" onClick={(e)=>{
                             let EditButton=document.querySelector(".EditButton button")
-                            secureLocalStorage.clear()
+                            secureLocalStorage.removeItem("DonnarData")
+                            secureLocalStorage.removeItem("DonnarId")
+                            secureLocalStorage.removeItem("LoginDonnarAccount")
                             EditButton.disabled=true
                             EditButton.style.cursor="not-allowed"
                             if(Search===true){

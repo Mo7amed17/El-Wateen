@@ -8,7 +8,7 @@ const OldAccount = () => {
     let {values ,resetForm} = useFormikContext();
     const [Img, setImg] = useState("");
     const [PhoneNumber, setPhoneNumber] = useState("");
-    const [UserData, setUserData] = useState({});
+    const [DonnarData, setDonnarData] = useState({});
     useEffect(() => {
         fetch(`${PhotoApi}/11.png`).then((res)=>{
             if(res.status===200){
@@ -28,7 +28,7 @@ const OldAccount = () => {
         let Icons =document.querySelectorAll("form i")
         let Inputs =document.querySelectorAll("form input")
         let CallTime=document.querySelector(".CallTime h6")
-        if(secureLocalStorage.getItem("LoginBloodAccount")==="true" ){
+        if(secureLocalStorage.getItem("LoginDonnarAccount")==="true" ){
             CallTime.style.display="flex"
                 Icons.forEach((i)=>{
                     i.style.display="none"
@@ -37,7 +37,7 @@ const OldAccount = () => {
                     input.disabled=true
                     input.style.backgroundColor="white"
                 })
-                        Inputs[5].checked=UserData.alerts
+                        Inputs[5].checked=DonnarData.alerts
 
             MobileLoginBackground.style.display="none"
             MobileLogin.style.display="none"
@@ -47,14 +47,14 @@ const OldAccount = () => {
             MobileLoginBackground.style.display="block"
             MobileLogin.style.display="block"
         }
-        if(Object.keys(UserData).length===0 && secureLocalStorage.getItem("UserData")!==null){
-                setUserData(secureLocalStorage.getItem("UserData"))
+        if(Object.keys(DonnarData).length===0 && secureLocalStorage.getItem("DonnarData")!==null){
+                setDonnarData(secureLocalStorage.getItem("DonnarData"))
         }
-    }, [UserData]);
+    }, [DonnarData]);
 
     return (
         <div className="OldAccount">
-            <NewAccount ActiveForm={2} values={UserData}/>
+            <NewAccount ActiveForm={2} values={DonnarData}/>
                 <div className="MobileLogin">
                     <div className="MobileLoginImg">
                         <img src={Img} alt="El-Wateen Logo"/>
@@ -85,18 +85,18 @@ const OldAccount = () => {
                             .then((res)=>res.json())
                             .then((data)=>{
                                 if((data.length)===1){
-                                    setUserData(data[0].values)
+                                    setDonnarData(data[0])
                                     SuccessNotification("تم تسجيل الدخول بنجاح",1500)
-                                    secureLocalStorage.setItem("LoginBloodAccount","true")
-                                    secureLocalStorage.setItem("UserData",data[0].values)
-                                    secureLocalStorage.setItem("UserId",data[0]?.id)
+                                    secureLocalStorage.setItem("LoginDonnarAccount","true")
+                                    secureLocalStorage.setItem("DonnarData",data[0])
+                                    secureLocalStorage.setItem("DonnarId",data[0].id)
                                     let ActiveH4=document.querySelectorAll(".Top h4")
                                     ActiveH4[1].textContent="حســـابـي"
                                     setTimeout(() => {
                                         MobileLoginBackground.style.display="none"
                                         MobileLogin.style.display="none"
                                         let EditButton=document.querySelector(".EditButton button")
-                                        if(data[0].values.search===true){
+                                        if(data[0].search===true){
                                             EditButton.textContent="تعطيل البحث"
                                             EditButton.style.backgroundColor="red"
                                             EditButton.style.borderColor="red"

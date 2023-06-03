@@ -3,7 +3,6 @@ import { CheckActivePage ,ErrorNotification,PhotoApi ,SubmitForm, UpdateForm} fr
 import { useState ,useEffect} from "react";
 import LoadingPage from "../../../Helpers/LoadingPage";
 import ErrorPage from "../../../Helpers/ErrorPage";
-import "../../../Styles/Page2icon1.css"
 import { Formik } from 'formik';
 import React from 'react'
 import {validationSchema ,intinalValues} from "./Validation"
@@ -12,8 +11,9 @@ import OldAccount from "./OldAccount";
 import NavigationBar from "../../../Helpers/NavigationBar"
 import Footer from "../../../Helpers/Footer";
 import secureLocalStorage from "react-secure-storage";
+import "../../../Styles/Page2icons.css"
 const Page2icon1 = () => {
-    let Newvalues={...secureLocalStorage.getItem("UserData")}
+    let Newvalues={...secureLocalStorage.getItem("DonnarData")}
 
     window.localStorage.setItem("ActivePage",1)
     const [ActiveForm, setActiveForm] = useState();
@@ -38,7 +38,7 @@ const Page2icon1 = () => {
                         setImage(res.url)
                         setTimeout(() => {
                             let Activeh4=document.querySelectorAll(".Top h4")
-                        if(secureLocalStorage.getItem("LoginBloodAccount")==="true" ){
+                        if(secureLocalStorage.getItem("LoginDonnarAccount")==="true" ){
                             Activeh4[0].textContent="تعديل الحساب"
                             Activeh4[1].textContent="حـســـابــي"
                         }
@@ -70,12 +70,12 @@ const Page2icon1 = () => {
             <div className="Right">
                 <Formik
                 initialValues = {intinalValues}
-                validationSchema={secureLocalStorage.getItem("LoginBloodAccount")==="true" ? ("") : (validationSchema)}
+                validationSchema={secureLocalStorage.getItem("LoginDonnarAccount")==="true" ? ("") : (validationSchema)}
                 validateOnChange={true}
                 validateOnBlur={false}
                 isInitialValid={false}
                 onSubmit={(values , {resetForm})=>{
-                    if(secureLocalStorage.getItem("LoginBloodAccount")==="true"){
+                    if(secureLocalStorage.getItem("LoginDonnarAccount")==="true"){
                         let ValidationErrorMsg =document.querySelector(".CityErrorMsg")
                         if(ValidationErrorMsg!==null){
                             ValidationErrorMsg.style.display="none"
@@ -88,18 +88,18 @@ const Page2icon1 = () => {
                             })
                         })  
                         let phone_number=document.getElementById("phone_number")
-                        if(JSON.stringify(Newvalues) === JSON.stringify(secureLocalStorage.getItem("UserData"))){
+                        if(JSON.stringify(Newvalues) === JSON.stringify(secureLocalStorage.getItem("DonnarData"))){
                             ErrorNotification("لم تقم بأي تعديلات")
                         }
                         else {
                                 if(phone_number.value.startsWith("01")===false && phone_number.value!==""){
                                         ErrorNotification("يجب أن يبدأ الرقم ب01")
                                 }else{
-                                    UpdateForm(Newvalues ,resetForm,secureLocalStorage.getItem("UserId"))
+                                    UpdateForm(Newvalues ,resetForm,secureLocalStorage.getItem("DonnarId"),"Donnars")
                                 }
                             }
                     }else {
-                        SubmitForm(values ,resetForm)
+                        SubmitForm(values ,resetForm,"Donnars")
                         setTimeout(() => {
                             let span=document.querySelector(".inputselect span")
                             let Activeh4=document.querySelectorAll(".Top h4")
