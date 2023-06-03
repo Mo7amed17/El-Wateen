@@ -3,7 +3,7 @@ import ValidationErrorMsg from "../../../Helpers/components/ValidationErrorMsg";
 import BloodTypes from "./BloodTypes";
 import { Form } from "formik";
 import { useState ,useEffect} from "react";
-import { LocationIp , LocationPlcae ,ErrorNotification, BaseApi} from "../../../Helpers/Functions";
+import { LocationIp , LocationPlcae ,ErrorNotification, BaseApi, SuccessNotification} from "../../../Helpers/Functions";
 import DatePicker from "./DatePicker";
 import Select from 'react-select'
 import Options from "../../../Helpers/CitiesList.json"
@@ -13,6 +13,7 @@ const NewAccount = (props) => {
     const [TheCity, setTheCity] = useState("");
     const [TheCityError, setTheCityError] = useState(false);
     const [ShowBloodTypes, setShowBloodTypes] = useState(false);
+    const [Search, setSearch] = useState(secureLocalStorage.getItem("UserData")?.search);
     let { values ,handleSubmit ,handleBlur ,errors ,handleChange ,resetForm }=useFormikContext();
     
     if(props?.ActiveForm===2){
@@ -214,16 +215,62 @@ const NewAccount = (props) => {
                     {props?.ActiveForm===2 ? (
                         <>
                         <div className="EditButton">
-                        <button type="button"  style={{backgroundColor:"red",borderColor:"red"}} onClick={(e)=>{
+                        <button type="button"  style={{backgroundColor:Search===true ?"red":"green",borderColor:Search===true ?"red":"green"}} onClick={(e)=>{
+                            let LogoutButton=document.querySelector(".LogoutButton button")
+                            LogoutButton.disabled=true
+                            LogoutButton.style.cursor="not-allowed"
+                            LogoutButton.style.backgroundColor="#0282ed70"
+                            LogoutButton.style.borderColor="#0282ed70"
                             e.target.disabled=true
                             e.target.style.cursor="not-allowed"
-                        }}>{"test"}
+                            if(Search===true){
+                                e.target.style.backgroundColor="#ff000080"
+                                e.target.style.borderColor="#ff000080"
+                            }else {
+                                e.target.style.backgroundColor="#00800080"
+                                e.target.style.borderColor="#00800080"
+                            }
+                            secureLocalStorage.getItem("UserData").search=!Search
+                            const id=(secureLocalStorage.getItem("UserId"))
+                            axios.patch(`${BaseApi}/Donnars/${secureLocalStorage.getItem("UserId")}`,{id,values})
+                            .then((res)=>{
+                                SuccessNotification("تم تعديل البيانات")
+                                setSearch(!Search)
+                                if(Search===true){
+                                    e.target.style.backgroundColor="red"
+                                    e.target.style.borderColor="red"
+                                }else {
+                                    e.target.style.backgroundColor="green"
+                                    e.target.style.borderColor="green"
+                                }
+                                e.target.disabled=false
+                            e.target.style.cursor="pointer"
+                            LogoutButton.disabled=false
+                            LogoutButton.style.cursor="pointer"
+                            LogoutButton.style.backgroundColor="#0282ed"
+                            LogoutButton.style.borderColor="#0282ed"
+                            })
+                        }}>{Search===true ? "تعطيل البحث" : "تفعيل البحث"}
                         </button>
                         </div>
 
                         <div className="LogoutButton">
                         <button type="button" onClick={(e)=>{
+                            let EditButton=document.querySelector(".EditButton button")
                             secureLocalStorage.clear()
+                            EditButton.disabled=true
+                            EditButton.style.cursor="not-allowed"
+                            if(Search===true){
+                                EditButton.style.backgroundColor="#ff000080"
+                                EditButton.style.borderColor="#ff000080"
+                            }else {
+                                EditButton.style.backgroundColor="#00800080"
+                                EditButton.style.borderColor="#00800080"
+                            }
+                            e.target.disabled=true
+                            e.target.style.cursor="not-allowed"
+                            e.target.style.backgroundColor="#0282ed70"
+                            e.target.style.borderColor="#0282ed70"
                             setTimeout(() => {
                                 window.location.reload()
                             }, 1000);

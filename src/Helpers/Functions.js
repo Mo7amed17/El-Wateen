@@ -255,7 +255,7 @@ export const UpdateForm=(values ,resetForm,id)=>{
                 button.disabled=true
                 button.style.backgroundColor="#0282ed70"
                 button.style.cursor="not-allowed"
-                axios.patch(`https://el-wateen.mo7amed17.repl.co/Donnars/${id}`,{values})
+                axios.patch(`https://el-wateen.mo7amed17.repl.co/Donnars/${id}`,{id,values})
                 .then((data)=>{
                         SuccessNotification('تم تعديل البيانات')
                         setTimeout(() => {

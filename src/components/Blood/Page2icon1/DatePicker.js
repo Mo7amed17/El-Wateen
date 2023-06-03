@@ -42,6 +42,12 @@ const DatePicker = () => {
                 if(e===null){
                     values.time=undefined
                 }else{
+                    if((e?.$H <=9)){
+                        e.$H=`0${e?.$H}`
+                    }
+                    if((e?.$m <=9)){
+                        e.$m=`0${e?.$m}`
+                    }
                     values.time=`${e?.$H}:${e?.$m}`
                 }
             }}

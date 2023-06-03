@@ -51,6 +51,7 @@ const OldAccount = () => {
                 setUserData(secureLocalStorage.getItem("UserData"))
         }
     }, [UserData]);
+
     return (
         <div className="OldAccount">
             <NewAccount ActiveForm={2} values={UserData}/>
@@ -94,7 +95,17 @@ const OldAccount = () => {
                                     setTimeout(() => {
                                         MobileLoginBackground.style.display="none"
                                         MobileLogin.style.display="none"
-                                    }, 1000);
+                                        let EditButton=document.querySelector(".EditButton button")
+                                        if(data[0].values.search===true){
+                                            EditButton.textContent="تعطيل البحث"
+                                            EditButton.style.backgroundColor="red"
+                                            EditButton.style.borderColor="red"
+                                        }else {
+                                            EditButton.textContent="تفعيل البحث"
+                                            EditButton.style.backgroundColor="green"
+                                            EditButton.style.borderColor="green"
+                                        }
+                                    }, 500);
                                 }else 
                                 {ErrorNotification("حدث خطأ حاول مرة اخرى")}
                             }).catch((err)=>{
