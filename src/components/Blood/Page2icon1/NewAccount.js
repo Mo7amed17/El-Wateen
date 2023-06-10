@@ -73,7 +73,7 @@ const NewAccount = (props) => {
                     </div>
 
                 <div className="input" name="name">
-                    <label htmlFor="name">اسم المتبرع</label>
+                    <label maxLength="25" htmlFor="name">اسم المتبرع</label>
                     <input type="text" id="name" value={values.name} onChange={handleChange} onBlur={handleBlur} className={errors?.name ? "Error" : ""} onKeyPress={(e)=>{
                         if((e.charCode>=65 && e.charCode <=90)||(e.charCode>=97 && e.charCode <=122) ||(e.charCode>=1569 && e.charCode <=1610) ||(e.charCode===32)){
                         }

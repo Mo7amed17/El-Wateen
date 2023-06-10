@@ -52,14 +52,14 @@ const NewAccount = (props) => {
                     <i className="fa-solid fa-caret-left" id="BloodTypeArrow" onClick={(e)=>{
                         setShowBloodTypes(true)
                         }}></i>
-                    <input  value={values.blood_type} type="text" id="name" onChange={handleChange} onBlur={handleBlur} className={errors?.blood_type ? "Error" : ""}/>
+                    <input value={values.blood_type} type="text" id="name" onChange={handleChange} onBlur={handleBlur} className={errors?.blood_type ? "Error" : ""}/>
                     <span>{(values?.blood_type==="" || values?.blood_type===undefined) ? "حدد فصيلة الدم" :  BloodName(values?.blood_type)}</span>
                     <ValidationErrorMsg msg={errors.blood_type}/>
                     </div>
 
                 <div className="input" name="name">
                     <label htmlFor="name">اسم الحالة</label>
-                    <input type="text" id="name" value={values.name} onChange={handleChange} onBlur={handleBlur} className={errors?.name ? "Error" : ""} onKeyPress={(e)=>{
+                    <input maxLength="25" type="text" id="name" value={values.name} onChange={handleChange} onBlur={handleBlur} className={errors?.name ? "Error" : ""} onKeyPress={(e)=>{
                         if((e.charCode>=65 && e.charCode <=90)||(e.charCode>=97 && e.charCode <=122) ||(e.charCode>=1569 && e.charCode <=1610) ||(e.charCode===32)){
                         }
                         else {
@@ -182,7 +182,7 @@ const NewAccount = (props) => {
                     </div>
                     
                     <div className="input" name="hospital">
-                    <label htmlFor="hospital">اسم المستشفى</label>
+                    <label maxLength="20" htmlFor="hospital">اسم المستشفى</label>
                     <input type="text" id="hospital" value={values.hospital} onChange={handleChange} onBlur={handleBlur} className={errors?.hospital ? "Error" : ""} onKeyPress={(e)=>{
                         if((e.charCode>=65 && e.charCode <=90)||(e.charCode>=97 && e.charCode <=122) ||(e.charCode>=1569 && e.charCode <=1610) ||(e.charCode===32)){
                         }
@@ -195,7 +195,7 @@ const NewAccount = (props) => {
                 
                 <div className="input">
                     <label htmlFor="blood_number">عدد أكياس الدم</label>
-                    <input maxLength="2" type="tel" id="blood_number" name="blood_number" value={values.blood_number} onChange={handleChange} onBlur={handleBlur} className={errors?.blood_number ? "Error" : ""} onKeyPress={(e)=>{
+                    <input maxLength="3" type="tel" id="blood_number" name="blood_number" value={values.blood_number} onChange={handleChange} onBlur={handleBlur} className={errors?.blood_number ? "Error" : ""} onKeyPress={(e)=>{
                         if(e.charCode>=48 && e.charCode <=57){
                         }
                         else {

@@ -196,8 +196,8 @@ Form .input input{
 }
 
 .BloodTypeChoosed{
-    background-color: #1a7cbb;
-    color: white;
+    background-color: #1a7cbb !important;
+    color: white !important;
 }
 .Location{
     display: flex;
@@ -394,6 +394,101 @@ Form .input input{
     display: none;
     z-index: 11;
 }
+.TopButtons .TheTop{
+display: flex;
+justify-content: space-around;
+margin-bottom: 15px;
+}
+.TopButtons button{
+    font-size: 14px;
+    background-color: #0282ed;
+    color: white;
+    font-weight: bold;
+    padding: 4px 15px;
+    border-radius: 20px;
+    border: 1px solid #0282ed;
+    cursor: pointer;
+}
+    .PatientCard{
+        width: 80%;
+        display: flex;
+        background-color: #4b7c9d;
+        align-items: center;
+        color: white;
+        padding: 8px 20px;
+        margin: 0px auto;
+        justify-content: space-between;
+        border-radius: 22px;
+        margin-bottom: 15px;
+    }
+    .PatientCard .PatientCardLeft{
+    width: 82%;
+    }
+    .PatientCard .PatientCardLeft div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1px;
+    }
+    .PatientCard .PatientCardLeft h5{
+        font-size: 10px;
+    }
+    .PatientCard .PatientCardLeft h6{
+        font-size: 10px;
+    }
+    .PatientCard .PatientCardRight{
+    width: 10%;
+    }
+    .PatientCard .PatientCardRight span{
+    background-color: white;
+    color: rgb(156, 0, 0);
+    padding: 3px 8px;
+    border-radius: 50%;
+    margin-right: -8px;
+    font-size: 14px;
+    }
+    .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        list-style: none;
+        font-size: 12px;
+        font-weight: bold;
+        margin: 20px 0;
+        direction: ltr;
+    }
+    .pagination li {
+            display: inline-block;
+        }
+        
+        .pagination li.active a{
+            background-color: #007bff;
+            color: #fff;
+            border-color: #007bff;
+        }
+        
+        .pagination a {
+            text-decoration: none;
+            color: inherit;
+            margin: 0 5px;
+            padding: 4px 16px;
+            border: 1px solid #0066b9;
+            border-radius: 30px;
+            cursor: pointer;
+        }
+        
+        .pagination a:hover {
+            text-decoration: underline;
+        }
+        .NoPatients{
+            transform: rotate(-40deg);
+            font-size: 36px;
+            position: relative;
+            top: 0%;
+            color: gray;
+            margin: 90px 20px 80px;
+            width: 100%;
+        }
 @media (max-width:996px) {
     .Page2icon1{
         padding-top: 50px;
