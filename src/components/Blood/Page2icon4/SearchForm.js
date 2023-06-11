@@ -1,5 +1,4 @@
 import { useFormikContext } from "formik";
-import ValidationErrorMsg from "../../../Helpers/components/ValidationErrorMsg";
 import BloodTypes from "./BloodTypes";
 import { Form } from "formik";
 import { useState, useEffect } from "react";
@@ -79,11 +78,13 @@ const SearchForm = (props) => {
                     e.target.style.backgroundColor="#0282ed"
                     e.target.style.cursor="pointer"
                 if((TheCity === "" || TheCity === undefined) && values?.blood_type !== ""){
-                    fetch(`${BaseApi}/Patients?blood_type=${values?.blood_type}`)
+                    fetch(`${BaseApi}/Patients?blood_type=${values?.blood_type}&search=true`)
                     .then((res)=>res.json())
                     .then((data)=>{
                         if(data.length===0){
                             setNotData(true)
+                        }else {
+                            setNotData(false)
                         }
                             setPatients(data)
                     }).catch(()=>{
@@ -96,11 +97,13 @@ const SearchForm = (props) => {
                     })
                 }
                 else if(values?.blood_type === "" && (TheCity !== "" && TheCity !== undefined)){
-                    fetch(`${BaseApi}/Patients?location=${TheCity}`)
+                    fetch(`${BaseApi}/Patients?location=${TheCity}&search=true`)
                     .then((res)=>res.json())
                     .then((data)=>{
                         if(data.length===0){
                             setNotData(true)
+                        }else {
+                            setNotData(false)
                         }
                             setPatients(data)
                     }).catch(()=>{
@@ -113,11 +116,13 @@ const SearchForm = (props) => {
                     })
                 }
                 else if(values?.blood_type !== "" && (TheCity !== "" && TheCity !== undefined)){
-                    fetch(`${BaseApi}/Patients?blood_type=${values?.blood_type}&location=${TheCity}`)
+                    fetch(`${BaseApi}/Patients?blood_type=${values?.blood_type}&location=${TheCity}&search=true`)
                     .then((res)=>res.json())
                     .then((data)=>{
                         if(data.length===0){
                             setNotData(true)
+                        }else {
+                            setNotData(false)
                         }
                             setPatients(data)
                     }).catch(()=>{
@@ -184,15 +189,15 @@ const SearchForm = (props) => {
             ):(<></>)
         }
         <ReactPaginate
-            pageCount={Math.ceil(props?.Patients?.length / itemsPerPage)}
-            marginPagesDisplayed={2}
-            pageRangeDisplayed={2}
-            onPageChange={handlePageClick}
-            containerClassName={"pagination"}
-            activeClassName={"active"}
-            disableInitialStyling={true}
+            pageCount={Math.ceil(Patients?.length / itemsPerPage)}
+            pageRangeDisplayed={1}
+            marginPagesDisplayed={1}
             previousLabel={"السابق"}
             nextLabel={"التالي"}
+            breakLabel={"..."}
+            containerClassName={"pagination"}
+            activeClassName={"active"}
+            onPageChange={handlePageClick}
         />
         </Form>
     );

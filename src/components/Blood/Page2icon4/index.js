@@ -31,7 +31,7 @@ const Page2icon1 = () => {
                         }, 100);
                     }
                     else {
-                        fetch(`${BaseApi}/Patients`).then((res2)=>res2.json())
+                        fetch(`${BaseApi}/Patients?search=true`).then((res2)=>res2.json())
                         .then((data2)=>{
                             setPatients(data2)
                             setStatus("done")

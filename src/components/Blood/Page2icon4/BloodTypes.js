@@ -41,7 +41,7 @@ const BloodTypes = () => {
     ]
     return (
         <div className="Background">
-        <div className="BloodTypes" style={{top:"30%"}}>
+        <div className="BloodTypes" style={{top:"40%"}}>
             <span className="Close" onClick={(e)=>{
                 document.querySelector(".Background").style.display="none"
             }}><i className="fa-solid fa-x"></i></span>
