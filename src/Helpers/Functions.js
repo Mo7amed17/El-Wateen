@@ -165,7 +165,7 @@ export const ArrowAndNavigationBar=()=>{
                 }else if(Direction==="left"){
                         Icon.childNodes[0].className="fa-solid fa-angles-right fa-fade"
                         Icon.style.left="0%"
-                        NavigationBar.style.left="-50%"
+                        NavigationBar.style.left="-53%"
                     setDirection("right")
                 }
             }, 100);

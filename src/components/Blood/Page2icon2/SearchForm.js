@@ -78,7 +78,7 @@ const SearchForm = (props) => {
                     e.target.style.backgroundColor="#0282ed"
                     e.target.style.cursor="pointer"
                 if((TheCity === "" || TheCity === undefined) && values?.blood_type !== ""){
-                    fetch(`${BaseApi}/Patients?blood_type=${values?.blood_type}&search=true`)
+                    fetch(`${BaseApi}/Donnars?blood_type=${values?.blood_type}&search=true`)
                     .then((res)=>res.json())
                     .then((data)=>{
                         if(data.length===0){
@@ -97,7 +97,7 @@ const SearchForm = (props) => {
                     })
                 }
                 else if(values?.blood_type === "" && (TheCity !== "" && TheCity !== undefined)){
-                    fetch(`${BaseApi}/Patients?location=${TheCity}&search=true`)
+                    fetch(`${BaseApi}/Donnars?location=${TheCity}&search=true`)
                     .then((res)=>res.json())
                     .then((data)=>{
                         if(data.length===0){
@@ -116,7 +116,7 @@ const SearchForm = (props) => {
                     })
                 }
                 else if(values?.blood_type !== "" && (TheCity !== "" && TheCity !== undefined)){
-                    fetch(`${BaseApi}/Patients?blood_type=${values?.blood_type}&location=${TheCity}&search=true`)
+                    fetch(`${BaseApi}/Donnars?blood_type=${values?.blood_type}&location=${TheCity}&search=true`)
                     .then((res)=>res.json())
                     .then((data)=>{
                         if(data.length===0){
@@ -151,12 +151,8 @@ const SearchForm = (props) => {
                 </div>
                 <div className="PatientCardLeft">
                 <div>
-                    <h5>اسم الحالة</h5>
+                    <h5>اسم المتبرع</h5>
                     <h6>{Patient?.name}</h6>
-                </div>
-                <div>
-                    <h5>اسم المستشفى</h5>
-                    <h6 style={{ fontSize: "9px" }}>{Patient?.hospital}</h6>
                 </div>
                 <div>
                     <h5>العنوان</h5>
@@ -167,15 +163,11 @@ const SearchForm = (props) => {
                     <h6 style={{ fontSize: "12px"}}>{Patient?.phone_number}</h6>
                 </div>
                 <div>
-                    <h5>عدد أكياس الدم</h5>
-                    <h6 style={{ fontSize: "12px" }}>{Patient?.blood_number}</h6>
-                </div>
-                <div>
-                    <h5>تاريخ تسجيل الحالة</h5>
+                    <h5>تاريخ تسجيل المتبرع</h5>
                     <h6>{Patient?.date || <>&#8213;</>}</h6>
                 </div>
                 <div>
-                    <h5>وقت تسجيل الحالة</h5>
+                    <h5>وقت تسجيل المتبرع</h5>
                     <h6>{Patient?.time || <>&#8213;</>}</h6>
                 </div>
                 </div>

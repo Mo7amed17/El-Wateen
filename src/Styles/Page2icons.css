@@ -489,6 +489,10 @@ margin-bottom: 15px;
             margin: 90px 20px 80px;
             width: 100%;
         }
+        .Page2icon1 .Left .Page2Icon4Img{
+            width: 450px;
+            height: 380px;
+        }
 @media (max-width:996px) {
     .Page2icon1{
         padding-top: 50px;
@@ -509,10 +513,13 @@ margin-bottom: 15px;
     .Page2icon1 .Left .Down{
         margin-bottom: 50px;
     }
+    .Page2icon1 .Left .Page2Icon4Img{
+        margin-right: -7%;
+    }
     Form{
         left: 50%;
-        transform: translateX(-46%);
-        margin-bottom: 100p !important;
+        transform: translateX(-50%);
+        margin-bottom: 100px !important;
     }
     .OldAccount .MobileLogin{
         padding: 20px ;
@@ -529,6 +536,9 @@ margin-bottom: 15px;
 @media (max-width:714px) {
     .Page2icon1 .Left{
         margin-right: -50px;
+    }
+    .Page2icon1 .Left .Page2Icon4Img{
+        margin-right: -10%;
     }
 }
 @media (max-width:667px) {
@@ -556,7 +566,9 @@ margin-bottom: 15px;
     .Page2icon1 .Left .Down {
         width: 350px;
         height: 300px;
-        
+    }
+    .Page2icon1 .Left .Page2Icon4Img{
+        margin-right: -1%;
     }
     Form{
     width: 250px;
@@ -608,13 +620,6 @@ margin-bottom: 15px;
     .CallTime h6{
         font-size: 9px;
     }
-    Form{
-        left: 48%;
-    }
-    .OldAccount .MobileLogin {
-        width: 200px;
-        left: 48%;
-    }
 
     .rdp {
         --rdp-cell-size: 30px !important;
@@ -625,7 +630,11 @@ margin-bottom: 15px;
     .rdp-nav button svg{
         height: 13px;
     }
-
+        .TopButtons button{
+            font-size: 13px;
+            padding: 3px 11px;
+            border-radius: 20px;
+        }
 }
 
 @media (max-width:450px) {
@@ -729,6 +738,10 @@ margin-bottom: 15px;
     .CallTime h6{
         font-size: 7px;
     }
+    .TopButtons button{
+        font-size: 11px;
+        padding: 3px 8px;
+    }
 }
 
 @media (max-width:350px) {
@@ -738,12 +751,6 @@ margin-bottom: 15px;
     .Page2icon1 .Left .Top {
         margin-right: 30px;
     }
-    Form{
-        left: 46%;
-    }
-    .OldAccount .MobileLogin {
-        left: 46%;
-    }
 }
 
 @media (max-width:290px) {
@@ -752,12 +759,6 @@ margin-bottom: 15px;
     }
     .Page2icon1 .Left .Top {
         margin-right: 10px;
-    }
-    Form{
-        left: 44%;
-    }
-    .OldAccount .MobileLogin {
-        left: 44%;
     }
     .Page2icon1 .Left .Down {
         width: 220px;
