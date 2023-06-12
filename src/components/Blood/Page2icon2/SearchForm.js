@@ -147,7 +147,9 @@ const SearchForm = (props) => {
             return (
             <div className="PatientCard" key={Patient.id}>
                 <div className="PatientCardRight">
-                <span>{BloodName(Patient?.blood_type)}</span>
+                    {
+                        Patient?.blood_type==="abminus" || Patient?.blood_type==="abplus" ? (<span>{BloodName(Patient?.blood_type)}</span>) : (<span>&nbsp;{BloodName(Patient?.blood_type)}&nbsp;</span>)
+                    }
                 </div>
                 <div className="PatientCardLeft">
                 <div>

@@ -18,7 +18,7 @@ const Page2icon1 = () => {
     const [Image, setImage] = useState("");
     const [Patients, setPatients] = useState([]);
             useEffect(() => {
-                fetch(`${PhotoApi}/Page2Page2icon4.png`)
+                fetch(`${PhotoApi}/Page2Page2icon3.png`)
                 .then((res1)=>{
                     if(res1.status!==200){
                         setStatus("error")

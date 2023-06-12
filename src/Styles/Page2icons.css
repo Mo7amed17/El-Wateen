@@ -437,16 +437,19 @@ margin-bottom: 15px;
         font-size: 10px;
     }
     .PatientCard .PatientCardRight{
-    width: 10%;
+    width: 13%;
     }
     .PatientCard .PatientCardRight span{
-    background-color: white;
     color: rgb(156, 0, 0);
-    padding: 3px 8px;
-    border-radius: 50%;
     margin-right: -8px;
     font-size: 14px;
+    position: relative;
+    z-index: 2000;
+    background-color: white;
+    padding: 1px 4px;
+    border-radius: 50%;
     }
+
     .pagination {
         display: flex;
         justify-content: center;
@@ -643,6 +646,15 @@ margin-bottom: 15px;
     }
     .Page2icon1 .Left .Top {
         margin-right: 35px;
+    }
+    .PatientCard .PatientCardLeft h5 {
+        font-size: 8px;
+    }
+    .PatientCard .PatientCardLeft h6 {
+        font-size: 9px !important;
+    }
+    .PatientCard .PatientCardRight span {
+        font-size: 12px;
     }
 }
 @media (max-width:450px) {
