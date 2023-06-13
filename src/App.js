@@ -3,7 +3,7 @@ import { Route ,Routes } from "react-router-dom";
 import MainPage from "./components/MainPage/index";
 import Blood from "./components/Blood/index"
 import Care from "./components/Care/index"
-import Login from "./components/Login/index"
+import Login from "./components/Login"
 import NotFoundPage from "./Helpers/NotFoundPage";
 import Page2icon1 from "./components/Blood/Page2icon1/index";
 import Page2icon2 from "./components/Blood/Page2icon2";

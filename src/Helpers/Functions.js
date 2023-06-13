@@ -350,3 +350,139 @@ export const UpdateForm=(values ,resetForm,id,type)=>{
                 
     }
 }
+
+export const SubmitHospitalForm=(values ,resetForm)=>{
+    fetch(`https://el-wateen.mo7amed17.repl.co/Hospitals?q=${values.email}`)
+    .then((res)=>res.json())
+    .then((data)=>{
+        if(data.length===0){
+            let Form =document.querySelector("form")
+                        let buttons=document.querySelectorAll("Form .Submit button")
+                        buttons[0].disabled=true
+                        buttons[0].style.backgroundColor="#0282ed70"
+                        buttons[0].style.cursor="not-allowed"
+                        buttons[1].disabled=true
+                        buttons[1].style.backgroundColor="#0282ed70"
+                        buttons[1].style.cursor="not-allowed"
+                        axios({
+                            method: 'post',
+                            url: `${BaseApi}/Hospitals`,
+                            data:values
+                        })
+                        .then((res)=>{
+                            SuccessNotification('تم تسجيل الحساب')
+                                Form.reset();
+                                resetForm({values:{}});
+                                let Types=document.querySelectorAll(".Types")
+                                    Types.forEach(Type => {
+                                        Type.classList.remove("BloodTypeChoosed")
+                                    });
+                                    
+                        }).catch((err)=>{
+                            ErrorNotification(`خطأ في تسجيل الحساب ، حاول ثانية`)
+                        }).finally(()=>{
+                            buttons[0].disabled=false
+                            buttons[0].style.backgroundColor="#0282ed"
+                            buttons[0].style.cursor="pointer"
+                            buttons[1].disabled=false
+                            buttons[1].style.backgroundColor="#0282ed"
+                            buttons[1].style.cursor="pointer"
+                        })
+        }
+        else {
+            ErrorNotification("تم استخدام هذا الايميل من قبل")
+        }
+    })
+}
+export const UpdateHospitalForm=(values ,resetForm,id,type)=>{
+    let Data=""
+    if(type==="Donnars"){
+        Data="DonnarData"
+    }else if(type === "Patients"){
+        Data="PatientData"
+    }
+    let Form =document.querySelector("form")
+    let button=document.querySelector("Form .Submit button")
+    let inputselect=document.querySelectorAll(".inputselect span")
+    let inputs=document.querySelectorAll(".input input")
+    if(values.phone_number!==(secureLocalStorage.getItem(Data)).phone_number){
+        fetch(`https://el-wateen.mo7amed17.repl.co/${type}?q=${values.phone_number}`)
+        .then((res)=>res.json())
+        .then((data)=>{
+            if(data.length===0){
+                button.disabled=true
+                button.style.backgroundColor="#0282ed70"
+                button.style.cursor="not-allowed"
+                axios({
+                    method: 'patch',
+                    url: `https://el-wateen.mo7amed17.repl.co/${type}/${id}`,
+                    data:values
+                })
+                .then((data)=>{
+                        SuccessNotification('تم تعديل البيانات')
+                        setTimeout(() => {
+                            window.location.reload()
+                        }, 2000);
+                        secureLocalStorage.setItem(Data,values)
+                            inputselect[0].textContent="حدد فصيلة الدم"
+                            if(inputs.length===2){
+                                inputselect[1].textContent="اختبار صلاحية التبرع بالدم"
+                            }
+                            inputs[0].value=""
+                            inputs[1].value=""
+                            document.querySelector(".TheCity").parentElement.style.display="none"
+                            document.querySelector(".Search").style.display="flex"
+                            Form.reset();
+                            resetForm({values:{}});
+                            let Types=document.querySelectorAll(".Types")
+                                if(Types!==undefined){
+                                    Types.forEach(Type => {
+                                        Type.classList.remove("BloodTypeChoosed")
+                                    })}
+                                })
+                        .catch((err)=>{
+                        ErrorNotification(`خطأ في تعديل الحساب ، حاول ثانية`)
+                    })
+                
+            }
+            else {
+                ErrorNotification("تم استخدام رقم الهاتف من قبل")
+            }
+        })
+    }else{
+        button.disabled=true
+                button.style.backgroundColor="#0282ed70"
+                button.style.cursor="not-allowed"
+                axios({
+                    method: 'patch',
+                    url: `https://el-wateen.mo7amed17.repl.co/${type}/${id}`,
+                    data:values
+                })
+                .then((data)=>{
+                        SuccessNotification('تم تعديل البيانات')
+                        secureLocalStorage.setItem(Data,values)
+                        setTimeout(() => {
+                            window.location.reload()
+                        }, 2000);
+                            inputselect[0].textContent="حدد فصيلة الدم"
+                            if(inputs.length===2){
+                                inputselect[1].textContent="اختبار صلاحية التبرع بالدم"
+                            }
+                            inputs[0].value=""
+                            inputs[1].value=""
+                            document.querySelector(".TheCity").parentElement.style.display="none"
+                            document.querySelector(".Search").style.display="flex"
+                            Form.reset();
+                            resetForm({values:{}});
+                            let Types=document.querySelectorAll(".Types")
+                                if(Types!==undefined){
+                                    Types.forEach(Type => {
+                                        Type.classList.remove("BloodTypeChoosed")
+                                    })}
+                                })
+                        .catch((err)=>{
+                        ErrorNotification(`خطأ في تعديل الحساب ، حاول ثانية`)
+                    })
+                
+    }
+}

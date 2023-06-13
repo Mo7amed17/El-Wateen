@@ -54,6 +54,7 @@ Form{
     margin: 0px auto;
     padding: 15px 10px;
     color: #1a7cbb;
+    box-shadow: 0px 5px 10px 1px gray;
     }
 
 Form .inputselect{

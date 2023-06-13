@@ -1,0 +1,58 @@
+.CareRooms{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0%;
+    left: 0%;
+    background: rgb(215,218,228);
+    background: linear-gradient(180deg, rgba(212,219,227,1) 0%, rgba(238,238,240,1) 50%, rgba(212,219,227,1) 73%);
+    border-radius: 15px;
+    overflow-y: auto;
+}
+.CareRooms .Room{
+display: flex;
+justify-content: space-around;
+align-items: center;
+margin: 10px;
+}
+.CareRooms .Room:first-of-type{
+margin-top: 40px;
+}
+.CareRooms .FreeRooms{
+position: absolute;
+top: 0%;
+color: #0282ed;
+font-size: 9px;
+left: 4%;
+top: 25px;
+}
+.CareRooms .Room input{
+width: 50px;
+outline: none;
+border: 1px solid white;
+border-radius: 30px;
+height: 25px;
+padding: 2px 5px;
+}
+/* Select*/
+.LeftSide .css-13cymwt-control ,.LeftSide .css-t3ipsp-control, .LeftSide .css-qbdosj-Input{
+width: 200px;
+font-size: 10px;
+text-align: start;
+border-radius: 30px !important;
+}
+
+.LeftSide .css-1nmdiq5-menu{
+font-size: 9px;
+}
+.CareRooms .Repeater {
+text-align: start;
+}
+.CareRooms .Repeater i{
+background-color: #0282ed;
+color: white;
+padding: 5px;
+border-radius: 50%;
+cursor: pointer;
+margin-right: 15px;
+}
