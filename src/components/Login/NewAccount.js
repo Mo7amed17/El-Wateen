@@ -7,11 +7,10 @@ import secureLocalStorage from "react-secure-storage";
 import CareRooms from "./CareRooms";
 const NewAccount = (props) => {
     let { values ,handleSubmit ,handleBlur ,errors ,handleChange ,resetForm }=useFormikContext();
-    const [ShowCare, setShowCare] = useState(false);
+
     if(props?.ActiveForm===2){
         values=props?.values
     }
-    
     useEffect(() => {
             let Form =document.querySelector("form")
             Form.reset();
@@ -101,12 +100,14 @@ const NewAccount = (props) => {
                     (<div className="Submit">
                     <button type="button" style={{marginBottom:"15px"}}
                     onClick={(e)=>{
-                        setShowCare(true)
+                        let CareRooms=document.querySelector(".CareRooms")
+                        CareRooms.style.display="block"
                     }}
                     >ادخل العنايـات المركزة</button>
-                        {
-                            ShowCare? (<CareRooms/>) :(<></>)
-                        }
+                            <div className="CareRooms" style={{display:"none"}}>
+                            <CareRooms key={Math.random(10)} values={values.cares}/>
+                            </div>
+
                     <button type="submit">تسجيل الحساب</button>
                     </div>)
                 } 

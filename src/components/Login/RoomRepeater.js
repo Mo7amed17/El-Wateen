@@ -1,6 +1,22 @@
 import Select from 'react-select'
 import "../../Styles/Login.css"
-const RoomRepeater = ({Options}) => {
+import { useEffect } from 'react';
+const RoomRepeater = ({Options  , values , Key}) => {
+    console.log(values)
+    let value = {
+        room_name:"",
+        number:"",
+    };
+
+            useEffect(() => {
+                if(Key===1 && values!==undefined){
+                    values[0]=value
+                }else
+                if(Key!==1){
+                    values.push(value)
+                }
+            }, []);
+            
     return (
         <div className='Room'>
         <div className='LeftSide'>
@@ -11,18 +27,24 @@ const RoomRepeater = ({Options}) => {
             isClearable={true}
             autoFocus={true}
             onChange={(e)=>{
-                if(e?.value !==null){
-                    
+                if(e?.value===null || e?.value===undefined){
+                    value.room_name=""
+                }else {
+                    value.room_name=e?.value
                 }
-            }}
-            styles={{
-                
             }}
         />
         </div>
-            <input type='text'/>
+            <input type='text'onKeyPress={(e)=>{
+                if(e.charCode>=48 && e.charCode <=57){
+                }
+                else {
+                    e.preventDefault()
+                }
+                }} onChange={(e)=>{
+                    value.number=e?.target?.value
+            }}/>
         </div>
     );
 }
-
 export default RoomRepeater;

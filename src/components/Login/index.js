@@ -69,7 +69,7 @@ const Page2icon1 = () => {
                 <Formik
                 initialValues = {intinalValues}
                 validationSchema={secureLocalStorage.getItem("LoginDonnarAccount")==="true" ? ("") : (validationSchema)}
-                validateOnChange={true}
+                validateOnChange={false}
                 validateOnBlur={false}
                 isInitialValid={false}
                 onSubmit={(values , {resetForm})=>{

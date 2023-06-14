@@ -1,7 +1,7 @@
 import RoomRepeater from "./RoomRepeater";
 import { useState } from "react";
 
-const CareRooms = () => {
+const CareRooms = ({values}) => {
     const Options = [
     { label: "عناية مركزة لحديثي الولادة", value: 1 },
     { label: "عناية مركزة للأطفال", value: 2 },
@@ -12,28 +12,46 @@ const CareRooms = () => {
     { label: "عناية مركزة للحروق", value: 7 },
     { label: "العناية المركزة العصبية", value: 8 },
     ];
-    const [Counter, setCounter] = useState(1);
-
-    const  AddRoom = () => {
-        const roomRepeaters = [];
-        for (let index = 0; index < Counter; index++) {
-        roomRepeaters.push(<RoomRepeater Options={Options} />);
+    
+    const [Key, setKey] = useState(1);
+    const [roomRepeaters, setRoomRepeaters] = useState([<RoomRepeater Options={Options} Key={Key} values={values}/>])
+    const AddRoom = () => {
+            setRoomRepeaters(prev => [
+            ...prev, 
+            <RoomRepeater Options={Options} key={Key+1} values={values}/>
+            ])
         }
-        return roomRepeaters;
-    };
 
     return (
         <div className="CareRooms">
         <span className="FreeRooms">عدد الغرف المتاحة</span>
-        {AddRoom()}
+        {   
+            roomRepeaters.map((Repeater)=>{
+                return(Repeater)
+            })
+        }
         <div className="Repeater">
             <i
             className="fa-solid fa-plus"
             onClick={(e) => {
-                setCounter(Counter + 1);
+                setKey(Key+1)
+                AddRoom()
             }}
+            style={{marginRight:"15px"}}
+            ></i>
+            <i className="fa-solid fa-minus"
+            onClick={(e)=>{
+                if(roomRepeaters?.length>1){
+                    setKey(Key-1)
+                    roomRepeaters.pop()
+                }
+            }}
+            style={{marginLeft:"15px"}}
             ></i>
         </div>
+        <button type="button" onClick={(e)=>{
+            e.target.parentElement.parentElement.style.display="none"
+        }}>حسنــاً</button>
         </div>
     );
 };
