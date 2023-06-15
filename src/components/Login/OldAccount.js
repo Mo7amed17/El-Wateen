@@ -48,7 +48,7 @@ const OldAccount = () => {
             <NewAccount ActiveForm={2} values={HospitalData}/>
                 <div className="MobileLogin">
                     <div className="MobileLoginInput">
-                        <h3 style={{color:"#0282ed",padding:"0% 15%"}}>تسجيل الدخول لحساب المستشفى</h3>
+                        <h4 style={{color:"#0282ed",padding:"0% 15%",fontSize:"20px"}}>تسجيل الدخول لحساب المستشفى</h4>
                         <div className="input" name="email">
                     <label maxLength="25" htmlFor="email" style={{marginRight:"20px",textAlign:"start"}}>البريد الالكتروني</label>
                     <input type="email" id="email" value={values.email} onChange={(e)=>{

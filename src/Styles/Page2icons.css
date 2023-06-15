@@ -46,7 +46,8 @@
 }
 Form{
     position: absolute;
-    left: 5%;
+    left: 50%;
+    transform: translateX(-50%);
     width: 300px;
     background: rgb(215,218,228);
     background: linear-gradient(180deg, rgba(212,219,227,1) 0%, rgba(238,238,240,1) 50%, rgba(212,219,227,1) 73%);
@@ -323,6 +324,8 @@ Form .input input{
 
 .OldAccount{
     position: relative;
+    width: 100%;
+    height: 100%;
 }
 
 .OldAccount .MobileLogin{
@@ -331,9 +334,10 @@ Form .input input{
     position: absolute;
     background-color: white;
     border-radius: 20px;
-    left: 0%;
+    left: 50%;
     top: 0%;
-    transform: translate(16%,18%);
+    transform: translate(-50%,20%);
+    top: 0%;
     text-align: center;
     z-index: 12;
 }
@@ -527,9 +531,6 @@ margin-bottom: 15px;
     }
     .OldAccount .MobileLogin{
         padding: 20px ;
-        left: 50%;
-        top: 0%;
-        transform: translate(-45%,22%);
     }
 }
 @media (max-width:790px) {
@@ -639,6 +640,12 @@ margin-bottom: 15px;
             padding: 3px 11px;
             border-radius: 20px;
         }
+        .OldAccount .MobileLogin {
+            width: 200px;
+        }
+        .OldAccount .MobileLogin h4{
+            font-size: 16px !important;
+        }
 }
 
 @media (max-width:450px) {
@@ -721,7 +728,6 @@ margin-bottom: 15px;
     }
     .OldAccount .MobileLogin {
         width: 180px;
-        left: 48%;
     }
     .MobileLoginImg {
         width: 170px;
@@ -754,6 +760,9 @@ margin-bottom: 15px;
     .TopButtons button{
         font-size: 11px;
         padding: 3px 8px;
+    }
+    .OldAccount .MobileLogin h4{
+        font-size: 14px !important;
     }
 }
 
