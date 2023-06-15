@@ -1,8 +1,7 @@
 import Select from 'react-select'
 import "../../Styles/Login.css"
 import { useEffect } from 'react';
-const RoomRepeater = ({Options  , values , Key}) => {
-    console.log(values)
+const RoomRepeater = ({Options  , values , Key,...props}) => {
     let value = {
         room_name:"",
         number:"",

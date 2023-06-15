@@ -1,22 +1,16 @@
 import { useFormikContext } from "formik";
 import NewAccount from "./NewAccount";
 import { useEffect , useState} from "react";
-import { ErrorNotification, PhotoApi, SuccessNotification } from "../../Helpers/Functions";
-import LoadingPage from "../../Helpers/LoadingPage";
+import { ErrorNotification, SuccessNotification } from "../../Helpers/Functions";
 import  secureLocalStorage  from  "react-secure-storage";
+
 const OldAccount = () => {
-    let {values ,resetForm} = useFormikContext();
-    const [Img, setImg] = useState("");
-    const [PhoneNumber, setPhoneNumber] = useState("");
-    const [DonnarData, setDonnarData] = useState({});
+    let {values , resetForm} = useFormikContext();
+    const [HospitalData, setHospitalData] = useState({});
+    const [Email, setEmail] = useState("");
+    const [Password, setPassword] = useState("");
+    const emailRegex = /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i;
     useEffect(() => {
-        fetch(`${PhotoApi}/11.png`).then((res)=>{
-            if(res.status===200){
-                let TheLoadingSpinner=document.querySelector(".TheLoadingSpinner")
-                TheLoadingSpinner.style.display="none"
-                setImg(res.url)
-            }
-        })
         let Form =document.querySelector("form")
         Form.reset();
         resetForm({values:{}})
@@ -27,9 +21,7 @@ const OldAccount = () => {
         let ActiveH4=document.querySelectorAll(".Top h4")
         let Icons =document.querySelectorAll("form i")
         let Inputs =document.querySelectorAll("form input")
-        let CallTime=document.querySelector(".CallTime h6")
-        if(secureLocalStorage.getItem("LoginDonnarAccount")==="true" ){
-            CallTime.style.display="flex"
+        if(secureLocalStorage.getItem("LoginHospitalAccount")==="true" ){
                 Icons.forEach((i)=>{
                     i.style.display="none"
                 })
@@ -37,7 +29,6 @@ const OldAccount = () => {
                     input.disabled=true
                     input.style.backgroundColor="white"
                 })
-                        Inputs[5].checked=DonnarData.alerts
 
             MobileLoginBackground.style.display="none"
             MobileLogin.style.display="none"
@@ -47,67 +38,56 @@ const OldAccount = () => {
             MobileLoginBackground.style.display="block"
             MobileLogin.style.display="block"
         }
-        if(Object.keys(DonnarData).length===0 && secureLocalStorage.getItem("DonnarData")!==null){
-                setDonnarData(secureLocalStorage.getItem("DonnarData"))
+        if(Object.keys(HospitalData).length===0 && secureLocalStorage.getItem("HospitalData")!==null){
+                setHospitalData(secureLocalStorage.getItem("HospitalData"))
         }
-    }, [DonnarData]);
+    }, [HospitalData]);
 
     return (
         <div className="OldAccount">
-            <NewAccount ActiveForm={2} values={DonnarData}/>
+            <NewAccount ActiveForm={2} values={HospitalData}/>
                 <div className="MobileLogin">
-                    <div className="MobileLoginImg">
-                        <img src={Img} alt="El-Wateen Logo"/>
-                        <div className="TheLoadingSpinner" style={{position:"absolute",top:"-30%",left:"50%"}}>
-                        <LoadingPage/>
-                        </div>
-                    </div>
                     <div className="MobileLoginInput">
-                        <label>ادخـل رقم هاتفك المحمول</label>
-                        <input maxLength="11" type="tel" placeholder="ادخل رقم الهاتف" onKeyPress={(e)=>{
-                            if(e.charCode>=48 && e.charCode <=57){
-                            }
-                            else {
-                                e.preventDefault()
-                            }
-                        }} onChange={(e)=>{
-                                setPhoneNumber(e.target.value)
-                        }}/>
+                        <h3 style={{color:"#0282ed",padding:"0% 15%"}}>تسجيل الدخول لحساب المستشفى</h3>
+                        <div className="input" name="email">
+                    <label maxLength="25" htmlFor="email" style={{marginRight:"20px",textAlign:"start"}}>البريد الالكتروني</label>
+                    <input type="email" id="email" value={values.email} onChange={(e)=>{
+                        setEmail(e.target.value)
+                    }}/>
+                </div>
+
+                <div className="input" name="password">
+                    <label maxLength="16" htmlFor="password" style={{marginRight:"20px",textAlign:"start"}}>كلمة السر</label>
+                    <input type="password" id="password" value={values.password} onChange={(e)=>{
+                        setPassword(e.target.value)
+                    }} />
+                </div>
+                
                     </div>
                     <button className="MobileLoginButton" onClick={(e)=>{
-                        if(PhoneNumber.length===11 && PhoneNumber.startsWith("01")){
+                        if(Email!=="" && Password !=="" && emailRegex.test(Email)){
                             let MobileLoginBackground=document.querySelector(".MobileLoginBackground")
                             let MobileLogin=document.querySelector(".OldAccount .MobileLogin")
                             e.target.disabled=true
                             e.target.style.backgroundColor="#0282ed70"
                             e.target.style.cursor="not-allowed"
-                            fetch(`https://el-wateen.mo7amed17.repl.co/Hospitals?q=${PhoneNumber}`)
+                            fetch(`https://el-wateen.mo7amed17.repl.co/Hospitals?email=${Email}&password=${Password}`)
                             .then((res)=>res.json())
                             .then((data)=>{
                                 if((data.length)===1){
-                                    setDonnarData(data[0])
+                                    setHospitalData(data[0])
                                     SuccessNotification("تم تسجيل الدخول بنجاح",1500)
-                                    // secureLocalStorage.setItem("LoginDonnarAccount","true")
-                                    // secureLocalStorage.setItem("DonnarData",data[0])
-                                    // secureLocalStorage.setItem("DonnarId",data[0].id)
+                                    secureLocalStorage.setItem("LoginHospitalAccount","true")
+                                    secureLocalStorage.setItem("HospitalData",data[0])
+                                    secureLocalStorage.setItem("HospitalId",data[0].id)
                                     let ActiveH4=document.querySelectorAll(".Top h4")
                                     ActiveH4[1].textContent="حســـابـي"
                                     setTimeout(() => {
                                         MobileLoginBackground.style.display="none"
                                         MobileLogin.style.display="none"
-                                        let EditButton=document.querySelector(".EditButton button")
-                                        if(data[0].search===true){
-                                            EditButton.textContent="تعطيل البحث"
-                                            EditButton.style.backgroundColor="red"
-                                            EditButton.style.borderColor="red"
-                                        }else {
-                                            EditButton.textContent="تفعيل البحث"
-                                            EditButton.style.backgroundColor="green"
-                                            EditButton.style.borderColor="green"
-                                        }
                                     }, 500);
                                 }else 
-                                {ErrorNotification("حدث خطأ حاول مرة اخرى")}
+                                {ErrorNotification("الحساب غير موجود !")}
                             }).catch((err)=>{
                                 ErrorNotification("حدث خطأ حاول مرة اخرى")
                             })
@@ -119,7 +99,7 @@ const OldAccount = () => {
                             }, 2500);
                             })
                         }else {
-                            ErrorNotification("يرجى ادخال رقم هاتف صحيح")
+                            ErrorNotification("يرجى ادخال معلومات تسجيل الدخول")
                         }
                     }}>حسنــاً</button>
                     <h3 className="MobileLoginHash"> <span><em> # </em></span>انقذ_حياه </h3>

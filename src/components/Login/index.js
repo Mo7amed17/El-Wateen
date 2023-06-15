@@ -12,7 +12,7 @@ import Footer from "../../Helpers/Footer";
 import secureLocalStorage from "react-secure-storage";
 import "../../Styles/Page2icons.css"
 const Page2icon1 = () => {
-    let Newvalues={...secureLocalStorage.getItem("DonnarData")}
+    let Newvalues={...secureLocalStorage.getItem("HospitalData")}
 
     window.localStorage.setItem("ActivePage",3)
     const [ActiveForm, setActiveForm] = useState();
@@ -37,7 +37,8 @@ const Page2icon1 = () => {
                         setImage(res.url)
                         setTimeout(() => {
                             let Activeh4=document.querySelectorAll(".Top h4")
-                        if(secureLocalStorage.getItem("LoginDonnarAccount")==="true" ){
+                            document.querySelector("footer").style.marginTop="150px"
+                        if(secureLocalStorage.getItem("LoginHospitalAccount")==="true" ){
                             Activeh4[0].textContent="تعديل الحساب"
                             Activeh4[1].textContent="حـســـابــي"
                         }
@@ -68,16 +69,12 @@ const Page2icon1 = () => {
             <div className="Right">
                 <Formik
                 initialValues = {intinalValues}
-                validationSchema={secureLocalStorage.getItem("LoginDonnarAccount")==="true" ? ("") : (validationSchema)}
-                validateOnChange={false}
+                validationSchema={secureLocalStorage.getItem("LoginHospitalAccount")==="true" ? ("") : (validationSchema)}
+                validateOnChange={true}
                 validateOnBlur={false}
                 isInitialValid={false}
                 onSubmit={(values , {resetForm})=>{
-                    if(secureLocalStorage.getItem("LoginDonnarAccount")==="true"){
-                        let ValidationErrorMsg =document.querySelector(".CityErrorMsg")
-                        if(ValidationErrorMsg!==null){
-                            ValidationErrorMsg.style.display="none"
-                        }
+                    if(secureLocalStorage.getItem("LoginHospitalAccount")==="true"){
                         Object.keys(values).map((key)=>{
                             Object.keys(Newvalues).map((k)=>{
                                 if (key in values && values[key] !== "" && key===k) {
@@ -85,17 +82,13 @@ const Page2icon1 = () => {
                                 }
                             })
                         })  
-                        let phone_number=document.getElementById("phone_number")
-                        if(JSON.stringify(Newvalues) === JSON.stringify(secureLocalStorage.getItem("DonnarData"))){
+                        if(JSON.stringify(Newvalues) === JSON.stringify(secureLocalStorage.getItem("HospitalData"))){
                             ErrorNotification("لم تقم بأي تعديلات")
                         }
-                        else {
-                                if(phone_number.value.startsWith("01")===false && phone_number.value!==""){
-                                        ErrorNotification("يجب أن يبدأ الرقم ب01")
-                                }else{
-                                    UpdateHospitalForm(Newvalues ,resetForm,secureLocalStorage.getItem("DonnarId"),"Donnars")
-                                }
+                        else{
+                                UpdateHospitalForm(Newvalues ,resetForm,secureLocalStorage.getItem("HospitalId"),"Hospitals")
                             }
+
                     }else {
                         SubmitHospitalForm(values ,resetForm)
                     }

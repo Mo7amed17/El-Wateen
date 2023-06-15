@@ -394,22 +394,19 @@ export const SubmitHospitalForm=(values ,resetForm)=>{
         }
     })
 }
+
 export const UpdateHospitalForm=(values ,resetForm,id,type)=>{
-    let Data=""
-    if(type==="Donnars"){
-        Data="DonnarData"
-    }else if(type === "Patients"){
-        Data="PatientData"
-    }
+    const emailRegex = /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i;
+    let Data="HospitalData"
     let Form =document.querySelector("form")
-    let button=document.querySelector("Form .Submit button")
-    let inputselect=document.querySelectorAll(".inputselect span")
+    let button=document.querySelector("Form .Submit .TargetButton")
     let inputs=document.querySelectorAll(".input input")
-    if(values.phone_number!==(secureLocalStorage.getItem(Data)).phone_number){
-        fetch(`https://el-wateen.mo7amed17.repl.co/${type}?q=${values.phone_number}`)
+
+    if(emailRegex.test(values?.email)){
+        fetch(`https://el-wateen.mo7amed17.repl.co/${type}?q=${values?.email}`)
         .then((res)=>res.json())
         .then((data)=>{
-            if(data.length===0){
+            if((data.length===0) || ((data.length===1)&& (data[0]?.email ===secureLocalStorage.getItem("HospitalData")?.email))){
                 button.disabled=true
                 button.style.backgroundColor="#0282ed70"
                 button.style.cursor="not-allowed"
@@ -424,65 +421,20 @@ export const UpdateHospitalForm=(values ,resetForm,id,type)=>{
                             window.location.reload()
                         }, 2000);
                         secureLocalStorage.setItem(Data,values)
-                            inputselect[0].textContent="حدد فصيلة الدم"
-                            if(inputs.length===2){
-                                inputselect[1].textContent="اختبار صلاحية التبرع بالدم"
-                            }
                             inputs[0].value=""
                             inputs[1].value=""
-                            document.querySelector(".TheCity").parentElement.style.display="none"
-                            document.querySelector(".Search").style.display="flex"
                             Form.reset();
                             resetForm({values:{}});
-                            let Types=document.querySelectorAll(".Types")
-                                if(Types!==undefined){
-                                    Types.forEach(Type => {
-                                        Type.classList.remove("BloodTypeChoosed")
-                                    })}
                                 })
                         .catch((err)=>{
                         ErrorNotification(`خطأ في تعديل الحساب ، حاول ثانية`)
                     })
-                
             }
             else {
-                ErrorNotification("تم استخدام رقم الهاتف من قبل")
+                ErrorNotification("تم استخدام هذا الايميل من قبل")
             }
         })
-    }else{
-        button.disabled=true
-                button.style.backgroundColor="#0282ed70"
-                button.style.cursor="not-allowed"
-                axios({
-                    method: 'patch',
-                    url: `https://el-wateen.mo7amed17.repl.co/${type}/${id}`,
-                    data:values
-                })
-                .then((data)=>{
-                        SuccessNotification('تم تعديل البيانات')
-                        secureLocalStorage.setItem(Data,values)
-                        setTimeout(() => {
-                            window.location.reload()
-                        }, 2000);
-                            inputselect[0].textContent="حدد فصيلة الدم"
-                            if(inputs.length===2){
-                                inputselect[1].textContent="اختبار صلاحية التبرع بالدم"
-                            }
-                            inputs[0].value=""
-                            inputs[1].value=""
-                            document.querySelector(".TheCity").parentElement.style.display="none"
-                            document.querySelector(".Search").style.display="flex"
-                            Form.reset();
-                            resetForm({values:{}});
-                            let Types=document.querySelectorAll(".Types")
-                                if(Types!==undefined){
-                                    Types.forEach(Type => {
-                                        Type.classList.remove("BloodTypeChoosed")
-                                    })}
-                                })
-                        .catch((err)=>{
-                        ErrorNotification(`خطأ في تعديل الحساب ، حاول ثانية`)
-                    })
-                
+    }else {
+        ErrorNotification("يرجى ادخال ايميل صحيح")
     }
 }

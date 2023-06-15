@@ -2,36 +2,32 @@ import { useFormikContext } from "formik";
 import ValidationErrorMsg from "../../Helpers/components/ValidationErrorMsg";
 import { Form } from "formik";
 import { useState ,useEffect} from "react";
-import { ErrorNotification, BaseApi, SuccessNotification} from "../../Helpers/Functions";
 import secureLocalStorage from "react-secure-storage";
 import CareRooms from "./CareRooms";
 const NewAccount = (props) => {
     let { values ,handleSubmit ,handleBlur ,errors ,handleChange ,resetForm }=useFormikContext();
-
+    
     if(props?.ActiveForm===2){
         values=props?.values
     }
+    
     useEffect(() => {
             let Form =document.querySelector("form")
             Form.reset();
             resetForm({values:{}})
         let ActiveH4=document.querySelectorAll(".Top h4")
-        let Submit=document.querySelector(".Submit button")
-        if(secureLocalStorage.getItem("LoginDonnarAccount")==="true" ){
+        let Buttons=document.querySelectorAll(".Submit button")
+        if(secureLocalStorage.getItem("LoginHospitalAccount")==="true" ){
             ActiveH4[0].textContent="تعديل الحساب"
             ActiveH4[1].textContent="حســـابـي"
-            if(Submit!==null){
-                Submit.textContent="حفظ التعديلات"
+            if(Buttons[0]!==undefined || Buttons[2]!==undefined ){
+                Buttons[0].style.display="none"
+                Buttons[0].disabled=true
+                Buttons[2].textContent="حفظ التعديلات"
             }
         }
-        let CheckInput = document.querySelector("input[type='checkbox']");
-        if(props.ActiveForm!==2){
-            if(secureLocalStorage.getItem("DonnarData")!==null)
-            {
-                CheckInput.checked=secureLocalStorage.getItem("DonnarData").alerts
-            }
-        }
-    }, []);
+    }, [props?.ActiveForm]);
+    
     return (
         <Form onSubmit={handleSubmit}>
 
@@ -79,12 +75,11 @@ const NewAccount = (props) => {
 
                     {props?.ActiveForm===2 ? (
                         <>
-
                         <div className="LogoutButton">
                         <button type="button" onClick={(e)=>{
-                            secureLocalStorage.removeItem("DonnarData")
-                            secureLocalStorage.removeItem("DonnarId")
-                            secureLocalStorage.removeItem("LoginDonnarAccount")
+                            secureLocalStorage.removeItem("HospitalData")
+                            secureLocalStorage.removeItem("HospitalId")
+                            secureLocalStorage.removeItem("LoginHospitalAccount")
                             e.target.disabled=true
                             e.target.style.cursor="not-allowed"
                             e.target.style.backgroundColor="#0282ed70"
@@ -107,8 +102,7 @@ const NewAccount = (props) => {
                             <div className="CareRooms" style={{display:"none"}}>
                             <CareRooms key={Math.random(10)} values={values.cares}/>
                             </div>
-
-                    <button type="submit">تسجيل الحساب</button>
+                    <button type="submit" className="TargetButton">تسجيل الحساب</button>
                     </div>)
                 } 
                     <div className="MobileLoginBackground"></div>
