@@ -33,13 +33,14 @@ border: 1px solid white;
 border-radius: 30px;
 height: 25px;
 padding: 2px 5px;
+color: #0282ed;
 }
 /* Select*/
 .LeftSide .css-13cymwt-control ,.LeftSide .css-t3ipsp-control, .LeftSide .css-qbdosj-Input{
 width: 200px;
 font-size: 10px;
 text-align: start;
-border-radius: 30px !important;
+border-radius: 15px 15px 0px 0px !important;
 }
 
 .LeftSide .css-1nmdiq5-menu{
@@ -56,4 +57,39 @@ color: white;
 padding: 5px;
 border-radius: 50%;
 cursor: pointer;
+}
+form .ChooseCity{
+    width: 100%;
+    margin: 15px 0px 5px;
+    text-align: center;
+}
+form .ChooseCity button{
+    background-color: #0282ed;
+    color: white;
+    font-weight: bold;
+    padding: 3px 22px;
+    border-radius: 20px;
+    border: 1px solid #0282ed;
+    cursor: pointer;
+    font-size: 18px;
+    height: min-content;
+}
+
+@media (max-width:540px) {
+    .LeftSide .css-13cymwt-control ,.LeftSide .css-t3ipsp-control, .LeftSide .css-qbdosj-Input{
+        width: 150px;
+        }
+}
+
+@media (max-width:390px) {
+    .LeftSide .css-13cymwt-control ,.LeftSide .css-t3ipsp-control, .LeftSide .css-qbdosj-Input{
+    width: 130px;
+    font-size: 8px;
+    }
+    .LeftSide .css-1nmdiq5-menu{
+        font-size: 7px;
+    }
+    .CareRooms .Room input{
+        height: 20px;
+    }
 }

@@ -34,6 +34,10 @@ const OldAccount = () => {
             MobileLogin.style.display="none"
             ActiveH4[0].textContent="تعديل الحساب"
             ActiveH4[1].textContent="حســـابـي"
+            let ChooseCityButton=document.querySelector(".ChooseCity button")
+            ChooseCityButton.disabled=true
+            ChooseCityButton.style.cursor="default"
+            ChooseCityButton.textContent=HospitalData?.city
         }else {
             MobileLoginBackground.style.display="block"
             MobileLogin.style.display="block"
@@ -45,7 +49,7 @@ const OldAccount = () => {
 
     return (
         <div className="OldAccount">
-            <NewAccount ActiveForm={2} values={HospitalData}/>
+            <NewAccount ActiveForm={2} newvalues={HospitalData}/>
                 <div className="MobileLogin">
                     <div className="MobileLoginInput">
                         <h4 style={{color:"#0282ed",padding:"0% 15%",fontSize:"20px"}}>تسجيل الدخول لحساب المستشفى</h4>

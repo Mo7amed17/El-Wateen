@@ -13,6 +13,7 @@ export const intinalValues={
         name:"",
         email:"",
         password:"",
+        city:"",
         location:"",
         emergency_number:"",
         reception_number:"",

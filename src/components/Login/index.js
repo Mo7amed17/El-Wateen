@@ -75,13 +75,13 @@ const Page2icon1 = () => {
                 validateOnBlur={false}
                 isInitialValid={false}
                 onSubmit={(values , {resetForm})=>{
-                            (values?.cares).map((ele)=>{
-                                if(ele.room_name !=="" && ele.number!=="")
-                                { 
-                                Result.push(ele)
-                                }
-                                values.cares=Result
-                            })
+                    (values?.cares).map((ele)=>{
+                        if(ele.room_name !=="" && ele.number!=="")
+                        { 
+                        Result.push(ele)
+                        }
+                        values.cares=Result
+                    })
                     if(secureLocalStorage.getItem("LoginHospitalAccount")==="true"){
                         Object.keys(values).map((key)=>{
                             Object.keys(Newvalues).map((k)=>{
@@ -90,6 +90,7 @@ const Page2icon1 = () => {
                                 }
                             })
                         })  
+                        Newvalues.cares=secureLocalStorage.getItem("HospitalData").cares
                         if(JSON.stringify(Newvalues) === JSON.stringify(secureLocalStorage.getItem("HospitalData"))){
                             ErrorNotification("لم تقم بأي تعديلات")
                         }

@@ -1,15 +1,16 @@
 
-const ValidationErrorMsg = (props) => {
+const ValidationErrorMsg = ({msg,textAlign="start"}) => {
 
     return (
         <div className="ValidationErrorMsg"
         style={{
             fontSize:"9px",
             color:"#D8000C",
-            display:"block"
+            display:"block",
+            textAlign:`${textAlign}`
         }}
         >
-            {props.msg}
+            {msg}
         </div>
     );
 }
