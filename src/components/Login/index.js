@@ -19,6 +19,7 @@ const Page2icon1 = () => {
     const [Status, setStatus] = useState("loading");
     const [Reload, setReload] = useState(false);
     const [Image, setImage] = useState("");
+    const Result=[]
             useEffect(() => {
                 fetch(`${PhotoApi}/Login.png`)
                 .then((res)=>{
@@ -74,6 +75,13 @@ const Page2icon1 = () => {
                 validateOnBlur={false}
                 isInitialValid={false}
                 onSubmit={(values , {resetForm})=>{
+                            (values?.cares).map((ele)=>{
+                                if(ele.room_name !=="" && ele.number!=="")
+                                { 
+                                Result.push(ele)
+                                }
+                                values.cares=Result
+                            })
                     if(secureLocalStorage.getItem("LoginHospitalAccount")==="true"){
                         Object.keys(values).map((key)=>{
                             Object.keys(Newvalues).map((k)=>{
@@ -97,13 +105,13 @@ const Page2icon1 = () => {
                     {({ values, errors, handleChange, handleBlur, handleSubmit }) => (
                         <Switch>
                             <Case condition={ActiveForm==="new_account"}>
-                                <NewAccount/>
+                                <NewAccount Result={Result}/>
                             </Case>
                             <Case condition={ActiveForm==="old_account"}>
                                 <OldAccount/>
                             </Case>
                             <Default>
-                                <NewAccount/>
+                                <NewAccount Result={Result}/>
                             </Default>
                         </Switch>
                     )}

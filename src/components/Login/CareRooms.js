@@ -1,7 +1,6 @@
 import RoomRepeater from "./RoomRepeater";
 import { useState } from "react";
-
-const CareRooms = ({values}) => {
+const CareRooms = ({ values }) => {
     const Options = [
     { label: "عناية مركزة لحديثي الولادة", value: 1 },
     { label: "عناية مركزة للأطفال", value: 2 },
@@ -14,7 +13,7 @@ const CareRooms = ({values}) => {
     ];
     
     const [Key, setKey] = useState(1);
-    const [roomRepeaters, setRoomRepeaters] = useState([<RoomRepeater Options={Options} Key={Key} values={values}/>])
+    const [roomRepeaters, setRoomRepeaters] = useState([<RoomRepeater Options={Options} Key={1} values={values}/>])
     const AddRoom = () => {
             setRoomRepeaters(prev => [
             ...prev, 
@@ -26,10 +25,11 @@ const CareRooms = ({values}) => {
         <div className="CareRooms">
         <span className="FreeRooms">عدد الغرف المتاحة</span>
         {   
-            roomRepeaters.map((Repeater)=>{
-                return(Repeater)
-            })
+        roomRepeaters.map((Repeater)=>{
+            return(Repeater)
+        })
         }
+        
         <div className="Repeater">
             <i
             className="fa-solid fa-plus"

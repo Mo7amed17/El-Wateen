@@ -3,7 +3,7 @@ import NewAccount from "./NewAccount";
 import { useEffect , useState} from "react";
 import { ErrorNotification, SuccessNotification } from "../../Helpers/Functions";
 import  secureLocalStorage  from  "react-secure-storage";
-
+import { intinalValues } from "./Validation";
 const OldAccount = () => {
     let {values , resetForm} = useFormikContext();
     const [HospitalData, setHospitalData] = useState({});
@@ -13,7 +13,7 @@ const OldAccount = () => {
     useEffect(() => {
         let Form =document.querySelector("form")
         Form.reset();
-        resetForm({values:{}})
+        resetForm({values:intinalValues})
     }, []);
     useEffect(() => {
         let MobileLoginBackground =document.querySelector(".MobileLoginBackground")
@@ -51,14 +51,14 @@ const OldAccount = () => {
                         <h4 style={{color:"#0282ed",padding:"0% 15%",fontSize:"20px"}}>تسجيل الدخول لحساب المستشفى</h4>
                         <div className="input" name="email">
                     <label maxLength="25" htmlFor="email" style={{marginRight:"20px",textAlign:"start"}}>البريد الالكتروني</label>
-                    <input type="email" id="email" value={values.email} onChange={(e)=>{
+                    <input type="email" id="email" onChange={(e)=>{
                         setEmail(e.target.value)
                     }}/>
                 </div>
 
                 <div className="input" name="password">
                     <label maxLength="16" htmlFor="password" style={{marginRight:"20px",textAlign:"start"}}>كلمة السر</label>
-                    <input type="password" id="password" value={values.password} onChange={(e)=>{
+                    <input type="password" id="password" onChange={(e)=>{
                         setPassword(e.target.value)
                     }} />
                 </div>

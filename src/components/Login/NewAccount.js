@@ -4,17 +4,17 @@ import { Form } from "formik";
 import { useState ,useEffect} from "react";
 import secureLocalStorage from "react-secure-storage";
 import CareRooms from "./CareRooms";
-const NewAccount = (props) => {
+import { intinalValues } from "./Validation";
+import { ErrorNotification } from "../../Helpers/Functions";
+const NewAccount = ({ newvalues ,...props}) => {
     let { values ,handleSubmit ,handleBlur ,errors ,handleChange ,resetForm }=useFormikContext();
-    
     if(props?.ActiveForm===2){
-        values=props?.values
+        values=newvalues
     }
-    
     useEffect(() => {
             let Form =document.querySelector("form")
             Form.reset();
-            resetForm({values:{}})
+            resetForm({values:intinalValues})
         let ActiveH4=document.querySelectorAll(".Top h4")
         let Buttons=document.querySelectorAll(".Submit button")
         if(secureLocalStorage.getItem("LoginHospitalAccount")==="true" ){
@@ -27,7 +27,7 @@ const NewAccount = (props) => {
             }
         }
     }, [props?.ActiveForm]);
-    
+
     return (
         <Form onSubmit={handleSubmit}>
 
@@ -63,13 +63,25 @@ const NewAccount = (props) => {
 
                 <div className="input">
                     <label htmlFor="reception_number"> رقم الاستقبال</label>
-                    <input maxLength="11" type="tel" id="reception_number" name="reception_number" value={values.reception_number} onChange={handleChange} onBlur={handleBlur} className={errors?.reception_number ? "Error" : ""} />
+                    <input maxLength="11" type="tel" id="reception_number" name="reception_number" value={values.reception_number} onChange={handleChange} onBlur={handleBlur} className={errors?.reception_number ? "Error" : ""} onKeyPress={(e)=>{
+                        if(e.charCode>=48 && e.charCode <=57){
+                        }
+                        else {
+                            e.preventDefault()
+                        }
+                    }}/>
                     <ValidationErrorMsg msg={errors.reception_number}/>
                 </div>
                 
                 <div className="input">
                     <label htmlFor="emergency_number"> رقم الطوارئ</label>
-                    <input maxLength="11" type="tel" id="emergency_number" name="emergency_number" value={values.emergency_number} onChange={handleChange} onBlur={handleBlur} className={errors?.emergency_number ? "Error" : ""} />
+                    <input maxLength="11" type="tel" id="emergency_number" name="emergency_number" value={values.emergency_number} onChange={handleChange} onBlur={handleBlur} className={errors?.emergency_number ? "Error" : ""} onKeyPress={(e)=>{
+                        if(e.charCode>=48 && e.charCode <=57){
+                        }
+                        else {
+                            e.preventDefault()
+                        }
+                    }}/>
                     <ValidationErrorMsg msg={errors.emergency_number}/>
                 </div>
 
@@ -95,12 +107,17 @@ const NewAccount = (props) => {
                     (<div className="Submit">
                     <button type="button" style={{marginBottom:"15px"}}
                     onClick={(e)=>{
-                        let CareRooms=document.querySelector(".CareRooms")
-                        CareRooms.style.display="block"
+                        const V=Object.values(values)
+                        if(V[0]!=="" && V[1]!=="" && V[2]!=="" && V[3]!=="" && V[4]!=="" && V[5]!=="" ){
+                            let CareRooms=document.querySelector(".CareRooms")
+                            CareRooms.style.display="block"
+                        }else{
+                            ErrorNotification("يرجى ملئ البيانات أولا")
+                        }
                     }}
                     >ادخل العنايـات المركزة</button>
                             <div className="CareRooms" style={{display:"none"}}>
-                            <CareRooms key={Math.random(10)} values={values.cares}/>
+                            <CareRooms key={Math.random(10)} values={values?.cares}/>
                             </div>
                     <button type="submit" className="TargetButton">تسجيل الحساب</button>
                     </div>)

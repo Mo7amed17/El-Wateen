@@ -8,12 +8,7 @@ const RoomRepeater = ({Options  , values , Key,...props}) => {
     };
 
             useEffect(() => {
-                if(Key===1 && values!==undefined){
-                    values[0]=value
-                }else
-                if(Key!==1){
                     values.push(value)
-                }
             }, []);
             
     return (

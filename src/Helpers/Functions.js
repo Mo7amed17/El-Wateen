@@ -4,7 +4,7 @@ import axios from "axios";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import secureLocalStorage from "react-secure-storage";
-
+import {intinalValues} from "../components/Login/Validation"
 let counter=1
 export const SliderToRight = (ele1,ele2,ele3)=>{
     if(counter===3){
@@ -372,7 +372,7 @@ export const SubmitHospitalForm=(values ,resetForm)=>{
                         .then((res)=>{
                             SuccessNotification('تم تسجيل الحساب')
                                 Form.reset();
-                                resetForm({values:{}});
+                                resetForm({values:intinalValues});
                                 let Types=document.querySelectorAll(".Types")
                                     Types.forEach(Type => {
                                         Type.classList.remove("BloodTypeChoosed")
@@ -424,7 +424,7 @@ export const UpdateHospitalForm=(values ,resetForm,id,type)=>{
                             inputs[0].value=""
                             inputs[1].value=""
                             Form.reset();
-                            resetForm({values:{}});
+                            resetForm({values:intinalValues});
                                 })
                         .catch((err)=>{
                         ErrorNotification(`خطأ في تعديل الحساب ، حاول ثانية`)
