@@ -16,7 +16,7 @@ const RoomRepeater = ({Options  , values , Key,...props}) => {
         <div className='LeftSide'>
         <Select options={Options}
             isSearchable={true}
-            placeholder="اختر اسم العناية المركز"
+            placeholder="اختر اسم العناية المركزة"
             noOptionsMessage={() => "لا يوجد عناية بهذا الاسم"}
             isClearable={true}
             autoFocus={true}
