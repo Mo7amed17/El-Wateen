@@ -8,6 +8,8 @@ import React from 'react'
 import Footer from "../../Helpers/Footer";
 import SearchForm from "./SearchForm";
 import { BaseApi } from "../../Helpers/Functions";
+import secureLocalStorage from "react-secure-storage";
+import EditForm from "./EditForm";
 
 const Page2icon1 = () => {
 
@@ -79,10 +81,14 @@ const Page2icon1 = () => {
                 validateOnChange={false}
                 validateOnBlur={false}
                 isInitialValid={false}
-                initialValues={{care_type:""}}
+                initialValues={{room_name:""}}
                 enableReinitialize>
                     {({ values, errors, handleChange, handleBlur, handleSubmit }) => (
-                        <SearchForm Hospitals={HospitalsData} Cares={CaresState}/>
+                            secureLocalStorage.getItem("LoginHospitalAccount")==="true" ? 
+                            (
+                                <EditForm Cares={secureLocalStorage.getItem("HospitalData").cares}/>
+                            )
+                            : (<SearchForm Hospitals={HospitalsData} Cares={CaresState}/>)
                     )}
                 </Formik>
             </div>

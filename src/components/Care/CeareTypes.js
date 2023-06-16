@@ -22,21 +22,21 @@ const CeareTypes = () => {
                     e.classList.remove("BloodTypeChoosed");
                 });
                 Type.classList.add("BloodTypeChoosed");
-                values.care_type=Type.id
+                values.room_name=Type.id
             });
         });
     }, []);
 
     const Options = [
         { label: "حديثي الولادة", value: 1 },
-        { label: "للأطفال", value: 2 },
-        { label: "للقلب", value: 3 },
+        { label: "الأطفال", value: 2 },
+        { label: "القلــب", value: 3 },
         { label: "الأورام", value: 4 },
-        { label: "للصدر", value: 5 },
-        { label: "للجراحة", value: 6 },
-        { label: "للحروق", value: 7 },
+        { label: "الصدر", value: 5 },
+        { label: "الجراحة", value: 6 },
+        { label: "الحروق", value: 7 },
         { label: "العصبية", value: 8 },
-        { label: "الجميع", value: 9 },
+        { label: "جميع العنايات المركزة", value: 9 },
         ];
 
     return (

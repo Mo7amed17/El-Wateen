@@ -32,7 +32,7 @@ export const CareRoomName=(id)=>{
         case 3:
             return id= "عناية مركزة للقلب"
         case 4:
-            return id= "عناية مركز للأورام وأنواع مرض السرطان"
+            return id= "عناية مركزة للأورام وأنواع مرض السرطان"
         case 5:
             return id= "عناية مركزة للصدر"
         case 6:

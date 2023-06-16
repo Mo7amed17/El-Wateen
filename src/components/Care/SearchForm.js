@@ -12,7 +12,6 @@ const SearchForm = ({Cares , Hospitals ,props}) => {
     const [ShowCeareTypes, setShowCeareTypes] = useState(false);
     const [CurrentPage, setCurrentPage] = useState(0);
     const [CaresData, setCaresData] = useState(Cares);
-    const [AllPatients, setAllPatients] = useState("");
     const [NotData, setNotData] = useState(false);
     let { values} = useFormikContext();
 
@@ -31,12 +30,12 @@ const SearchForm = ({Cares , Hospitals ,props}) => {
 
     useEffect(() => {
         let X=document.querySelector(".Close i")
-        if(X !==null){
+        if(X){
             X.addEventListener("click",()=>{
                 setShowCeareTypes(false)
             })
         }
-    }, [ShowCeareTypes]);
+    }, );
 
     return (
         <Form>
@@ -73,79 +72,37 @@ const SearchForm = ({Cares , Hospitals ,props}) => {
             <div className="TheTop">
             <button type="button" style={{ fontSize: "16px" }}
             onClick={(e)=>{
-                    e.target.disabled=false
-                    e.target.style.backgroundColor="#0282ed"
-                    e.target.style.cursor="pointer"
-                if((TheCity === "" || TheCity === undefined) && values?.blood_type !== ""){
-                    fetch(`${BaseApi}/Patients?blood_type=${values?.blood_type}&search=true`)
-                    .then((res)=>res.json())
-                    .then((data)=>{
-                        if(data.length===0){
+                let Filter=[]
+                setShowCeareTypes(false)
+                if(values?.room_name==="" || TheCity===""){
+                    ErrorNotification("يرجى تحديد المدينة ونوع العناية")
+                }
+                else{
+                    Cares.map((care)=>{
+                        if(values.room_name==="9" && care.city===TheCity && care.number !=="0" ){
+                                Filter.push(care)
+                        }else if(care.city===TheCity && care.room_name==values.room_name && care.number !=="0"){
+                                Filter.push(care)
+                        }else if(TheCity===undefined){
+                            Filter.push(care)
+                        }
+                        
+                        if(Filter.length===0) {
                             setNotData(true)
-                        }else {
+                        }else{
                             setNotData(false)
                         }
-                            setCaresData(data)
-                    }).catch(()=>{
-                        ErrorNotification("واجهتنا مشكله برجاء المحاوله مرة اخرى")
-                    })
-                    .finally(()=>{
-                        e.target.disabled=false
-                    e.target.style.backgroundColor="#0282ed"
-                    e.target.style.cursor="pointer"
+                        setCaresData(Filter)
                     })
                 }
-                else if(values?.blood_type === "" && (TheCity !== "" && TheCity !== undefined)){
-                    fetch(`${BaseApi}/Patients?location=${TheCity}&search=true`)
-                    .then((res)=>res.json())
-                    .then((data)=>{
-                        if(data.length===0){
-                            setNotData(true)
-                        }else {
-                            setNotData(false)
-                        }
-                            setCaresData(data)
-                    }).catch(()=>{
-                        ErrorNotification("واجهتنا مشكله برجاء المحاوله مرة اخرى")
-                    })
-                    .finally(()=>{
-                        e.target.disabled=false
-                    e.target.style.backgroundColor="#0282ed"
-                    e.target.style.cursor="pointer"
-                    })
-                }
-                else if(values?.blood_type !== "" && (TheCity !== "" && TheCity !== undefined)){
-                    fetch(`${BaseApi}/Patients?blood_type=${values?.blood_type}&location=${TheCity}&search=true`)
-                    .then((res)=>res.json())
-                    .then((data)=>{
-                        if(data.length===0){
-                            setNotData(true)
-                        }else {
-                            setNotData(false)
-                        }
-                            setCaresData(data)
-                    }).catch(()=>{
-                        ErrorNotification("واجهتنا مشكله برجاء المحاوله مرة اخرى")
-                    })
-                    .finally(()=>{
-                        e.target.disabled=false
-                    e.target.style.backgroundColor="#0282ed"
-                    e.target.style.cursor="pointer"
-                    })
-                }
-                else {
-                    setCaresData(AllPatients)
-                }
-                
             }}>
                 بحـــــــــــــث <i className="fa-solid fa-magnifying-glass"></i>
             </button>
             </div>
         </div>
         {getPageItems(CurrentPage).map((Care) => {
-            // console.log(Care)
             return (
-            <div className="PatientCard" key={Care.id}>
+            <div className="PatientCard" key={Math.random(10)}>
                 
                 <div className="PatientCardLeft" style={{width:"100%"}}>
                 <div>
@@ -190,7 +147,7 @@ const SearchForm = ({Cares , Hospitals ,props}) => {
         {
             NotData===true ? 
             (
-                <h2 className="NoPatients">لا يوجد أشخاص بهذه المواصفات</h2>
+                <h2 className="NoPatients" style={{marginRight:"40px"}}>لا توجد عنايات مركزة متاحة  </h2>
             ):(<></>)
         }
         <ReactPaginate

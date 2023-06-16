@@ -74,9 +74,9 @@ const SearchForm = (props) => {
             <div className="TheTop">
             <button type="button" style={{ fontSize: "16px" }}
             onClick={(e)=>{
-                    e.target.disabled=false
-                    e.target.style.backgroundColor="#0282ed"
-                    e.target.style.cursor="pointer"
+                e.target.disabled=true
+                e.target.style.backgroundColor="rgba(2, 130, 237, 0.55)"
+                e.target.style.cursor="not-allowed"
                 if((TheCity === "" || TheCity === undefined) && values?.blood_type !== ""){
                     fetch(`${BaseApi}/Patients?blood_type=${values?.blood_type}&search=true`)
                     .then((res)=>res.json())
@@ -136,6 +136,9 @@ const SearchForm = (props) => {
                 }
                 else {
                     setPatients(AllPatients)
+                    e.target.disabled=false
+                    e.target.style.backgroundColor="#0282ed"
+                    e.target.style.cursor="pointer"
                 }
                 
             }}>

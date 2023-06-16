@@ -10,7 +10,17 @@ import Page2icon2 from "./components/Blood/Page2icon2";
 import Page2icon3 from "./components/Blood/Page2icon3";
 import Page2icon4 from "./components/Blood/Page2icon4";
 import { ToastContainer } from "react-toastify";
+import secureLocalStorage from "react-secure-storage";
+import { useEffect } from "react";
 function App() {
+
+  useEffect(() => {
+    if(secureLocalStorage.getItem("LoginHospitalAccount")==="true" ){
+      let Navbarh4=document.querySelectorAll(".list ul li a")
+      Navbarh4[3].childNodes[1].textContent="حـســـابــي"
+  }
+  }, [secureLocalStorage]);
+  
   return (
     <div className="App">
       <Navbar/>

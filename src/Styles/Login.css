@@ -93,3 +93,64 @@ form .ChooseCity button{
         height: 20px;
     }
 }
+
+
+/*Cares Page*/
+.CaresCardForm{
+    width: 360px;
+    position: relative;
+    padding-top: 25px;
+    left: 0%;
+    transform: translateX(0%);
+    margin-left: -10px;
+}
+.CaresCard{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.CaresCard .RoomName{
+    height: 30px;
+    width: 63%;
+    margin: 10px 0px;
+}
+.CaresCard .RoomNumber{
+    height: 30px;
+    width: 15%;
+    margin: 10px 0px;
+}
+
+.CaresCard  input{
+    border: 1px solid rgb(218, 218, 218);
+    border-radius: 15px;
+    height: 100%;
+    width: 100%;
+    font-size: 11px;
+    background-color: white;
+    color: rgb(177, 177, 177);
+    font-weight: bold;
+    text-align: center;
+}
+
+.CaresCard .RoomNumber input{
+    font-size: 14px;
+}
+
+.RoomEditButton button , .AddRoomEditButton button{
+    background-color: #0282ed;
+    color: white;
+    font-weight: bold;
+    padding: 3px 12px;
+    border-radius: 20px;
+    border: 1px solid #0282ed;
+    cursor: pointer;
+    font-size: 12px;
+    height: min-content;
+}
+.CaresCardForm .FreeRooms{
+position: absolute;
+top: 5%;
+left: 19%;
+font-size: 9px;
+font-weight: bold;
+}
