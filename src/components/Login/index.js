@@ -38,7 +38,7 @@ const Page2icon1 = () => {
                         setImage(res.url)
                         setTimeout(() => {
                             let Activeh4=document.querySelectorAll(".Top h4")
-                            document.querySelector("footer").style.marginTop="150px"
+                            document.querySelector("footer").style.marginTop="200px"
                         if(secureLocalStorage.getItem("LoginHospitalAccount")==="true" ){
                             Activeh4[0].textContent="تعديل الحساب"
                             Activeh4[1].textContent="حـســـابــي"

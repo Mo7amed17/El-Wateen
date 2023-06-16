@@ -1,19 +1,18 @@
 import { useFormikContext } from "formik";
-import BloodTypes from "./BloodTypes";
+import CeareTypes from "./CeareTypes";
 import { Form } from "formik";
 import { useState, useEffect } from "react";
 import {  ErrorNotification, BaseApi} from "../../Helpers/Functions";
 import Select from "react-select";
 import Options from "../../Helpers/CitiesList.json";
-import { BloodName } from "../../Helpers/Helpers";
 import ReactPaginate from "react-paginate";
-
-const SearchForm = (props) => {
+import { CareRoomName } from "../../Helpers/Helpers";
+const SearchForm = ({Cares , Hospitals ,props}) => {
     const [TheCity, setTheCity] = useState("");
-    const [ShowBloodTypes, setShowBloodTypes] = useState(false);
+    const [ShowCeareTypes, setShowCeareTypes] = useState(false);
     const [CurrentPage, setCurrentPage] = useState(0);
-    const [Patients, setPatients] = useState(props?.Patients);
-    const [AllPatients, setAllPatients] = useState(props?.Patients);
+    const [CaresData, setCaresData] = useState(Cares);
+    const [AllPatients, setAllPatients] = useState("");
     const [NotData, setNotData] = useState(false);
     let { values} = useFormikContext();
 
@@ -22,7 +21,7 @@ const SearchForm = (props) => {
     const getPageItems = (pageNumber) => {
         const startIndex = pageNumber * itemsPerPage;
         const endIndex = startIndex + itemsPerPage;
-        return Patients.slice(startIndex, endIndex);
+        return CaresData.slice(startIndex, endIndex);
     };
 
     const handlePageClick = (selectedPage) => {
@@ -34,19 +33,19 @@ const SearchForm = (props) => {
         let X=document.querySelector(".Close i")
         if(X !==null){
             X.addEventListener("click",()=>{
-                setShowBloodTypes(false)
+                setShowCeareTypes(false)
             })
         }
-    }, [ShowBloodTypes]);
+    }, [ShowCeareTypes]);
 
     return (
         <Form>
         <div className="TopButtons">
             <div className="TheTop">
-            {ShowBloodTypes===true ? (<BloodTypes/>) : (<></>)}
+            {ShowCeareTypes===true ? (<CeareTypes/>) : (<></>)}
             <button type="button" onClick={()=>{
-                setShowBloodTypes(true)
-            }}>حدد نوع الفصيلة</button>
+                setShowCeareTypes(true)
+            }}>حدد نوع العناية</button>
             
             <button type="button" onClick={(e)=>{
                                 document.querySelector(".Background2").style.display="block"
@@ -66,7 +65,7 @@ const SearchForm = (props) => {
                                     </div>
                                     <button type="button" style={{fontSize:"18px",padding:"5px 40px",bottom:"35%"}} onClick={(e)=>{
                                             document.querySelector(".Background2").style.display="none"
-                                            setShowBloodTypes(false)
+                                            setShowCeareTypes(false)
                                     }}>تم</button>
                                 </div>
 
@@ -86,7 +85,7 @@ const SearchForm = (props) => {
                         }else {
                             setNotData(false)
                         }
-                            setPatients(data)
+                            setCaresData(data)
                     }).catch(()=>{
                         ErrorNotification("واجهتنا مشكله برجاء المحاوله مرة اخرى")
                     })
@@ -105,7 +104,7 @@ const SearchForm = (props) => {
                         }else {
                             setNotData(false)
                         }
-                            setPatients(data)
+                            setCaresData(data)
                     }).catch(()=>{
                         ErrorNotification("واجهتنا مشكله برجاء المحاوله مرة اخرى")
                     })
@@ -124,7 +123,7 @@ const SearchForm = (props) => {
                         }else {
                             setNotData(false)
                         }
-                            setPatients(data)
+                            setCaresData(data)
                     }).catch(()=>{
                         ErrorNotification("واجهتنا مشكله برجاء المحاوله مرة اخرى")
                     })
@@ -135,7 +134,7 @@ const SearchForm = (props) => {
                     })
                 }
                 else {
-                    setPatients(AllPatients)
+                    setCaresData(AllPatients)
                 }
                 
             }}>
@@ -143,43 +142,47 @@ const SearchForm = (props) => {
             </button>
             </div>
         </div>
-        {getPageItems(CurrentPage).map((Patient) => {
+        {getPageItems(CurrentPage).map((Care) => {
+            // console.log(Care)
             return (
-            <div className="PatientCard" key={Patient.id}>
-                <div className="PatientCardRight">
-                    {
-                        Patient?.blood_type==="abminus" || Patient?.blood_type==="abplus" ? (<span>{BloodName(Patient?.blood_type)}</span>) : (<span>&nbsp;{BloodName(Patient?.blood_type)}&nbsp;</span>)
-                    }
-                </div>
-                <div className="PatientCardLeft">
+            <div className="PatientCard" key={Care.id}>
+                
+                <div className="PatientCardLeft" style={{width:"100%"}}>
                 <div>
-                    <h5>اسم الحالة</h5>
-                    <h6>{Patient?.name}</h6>
+                    <h5>اسم العناية</h5>
+                    <h6>{CareRoomName(Care?.room_name)}</h6>
                 </div>
+
+                <div>
+                    <h5>عدد غرف العناية المتاحة</h5>
+                    <h6 style={{color:`${Care?.number=="0" ? "#d20909" : ""}`,fontWeight:"bold",fontSize:"11px"}}>{Care?.number=="0" ? "لا توجد غرف متاحه" : Care?.number}</h6>
+                </div>
+
                 <div>
                     <h5>اسم المستشفى</h5>
-                    <h6 style={{ fontSize: "9px" }}>{Patient?.hospital}</h6>
+                    <h6 style={{ fontSize: "9px" }}>{Care?.name}</h6>
                 </div>
+
+                <div>
+                    <h5>المدينة</h5>
+                    <h6>{Care?.city}</h6>
+                </div>
+
                 <div>
                     <h5>العنوان</h5>
-                    <h6>{Patient?.location}</h6>
+                    <h6>{Care?.location}</h6>
                 </div>
+
                 <div>
-                    <h5>رقم الهاتف</h5>
-                    <h6 style={{ fontSize: "12px"}}>{Patient?.phone_number}</h6>
+                    <h5>رقم الطوارئ</h5>
+                    <h6 style={{ fontSize: "12px"}}>{Care?.emergency_number}</h6>
                 </div>
+
                 <div>
-                    <h5>عدد أكياس الدم</h5>
-                    <h6 style={{ fontSize: "12px" }}>{Patient?.blood_number}</h6>
+                    <h5>رقم الاستقبال</h5>
+                    <h6 style={{ fontSize: "12px"}}>{Care?.reception_number}</h6>
                 </div>
-                <div>
-                    <h5>تاريخ تسجيل الحالة</h5>
-                    <h6>{Patient?.date || <>&#8213;</>}</h6>
-                </div>
-                <div>
-                    <h5>وقت تسجيل الحالة</h5>
-                    <h6>{Patient?.time || <>&#8213;</>}</h6>
-                </div>
+
                 </div>
             </div>
             );
@@ -191,7 +194,7 @@ const SearchForm = (props) => {
             ):(<></>)
         }
         <ReactPaginate
-            pageCount={Math.ceil(Patients?.length / itemsPerPage)}
+            pageCount={Math.ceil(CaresData?.length / itemsPerPage)}
             pageRangeDisplayed={1}
             marginPagesDisplayed={1}
             previousLabel={"السابق"}

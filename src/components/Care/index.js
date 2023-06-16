@@ -5,7 +5,6 @@ import LoadingPage from "../../Helpers/LoadingPage";
 import ErrorPage from "../../Helpers/ErrorPage";
 import { Formik } from 'formik';
 import React from 'react'
-import NavigationBar from "../../Helpers/NavigationBar"
 import Footer from "../../Helpers/Footer";
 import SearchForm from "./SearchForm";
 import { BaseApi } from "../../Helpers/Functions";
@@ -16,7 +15,10 @@ const Page2icon1 = () => {
     const [Status, setStatus] = useState("loading");
     const [Reload, setReload] = useState(false);
     const [Image, setImage] = useState("");
-    const [Patients, setPatients] = useState([]);
+    const [HospitalsData, setHospitalsData] = useState([]);
+    const [CaresState, setCaresState] = useState([]);
+    const Cares=[]
+
             useEffect(() => {
                 fetch(`${PhotoApi}/Login.png`)
                 .then((res1)=>{
@@ -31,9 +33,24 @@ const Page2icon1 = () => {
                         }, 100);
                     }
                     else {
-                        fetch(`${BaseApi}/Patients?search=true`).then((res2)=>res2.json())
+                        fetch(`${BaseApi}/Hospitals`).then((res2)=>res2.json())
                         .then((data2)=>{
-                            setPatients(data2)
+                            setHospitalsData(data2)
+                            data2.map((d)=>{
+                                d.cares.map((care)=>{
+                                    let TheCare={
+                                        name:d.name,
+                                        city:d.city,
+                                        location:d.location,
+                                        emergency_number:d.emergency_number,
+                                        reception_number:d.reception_number,
+                                        number:care.number,
+                                        room_name:care.room_name,
+                                    }
+                                    Cares.push(TheCare)
+                                    setCaresState(Cares)
+                                })
+                            })
                             setStatus("done")
                             setImage(res1.url)
                             setTimeout(() => {
@@ -57,16 +74,15 @@ const Page2icon1 = () => {
             </Case>
             <Default>
         <div className="Page2icon1" style={{marginBottom:"200px"}}>
-            <NavigationBar active={4}/>
             <div className="Right">
                 <Formik
                 validateOnChange={false}
                 validateOnBlur={false}
                 isInitialValid={false}
-                initialValues={{blood_type:""}}
+                initialValues={{care_type:""}}
                 enableReinitialize>
                     {({ values, errors, handleChange, handleBlur, handleSubmit }) => (
-                        <SearchForm Patients={Patients}/>
+                        <SearchForm Hospitals={HospitalsData} Cares={CaresState}/>
                     )}
                 </Formik>
             </div>
