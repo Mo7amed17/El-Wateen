@@ -9,6 +9,7 @@ import Page2icon1 from "./components/Blood/Page2icon1/index";
 import Page2icon2 from "./components/Blood/Page2icon2";
 import Page2icon3 from "./components/Blood/Page2icon3";
 import Page2icon4 from "./components/Blood/Page2icon4";
+import Page2icon5 from "./components/Blood/Page2icon5";
 import { ToastContainer } from "react-toastify";
 import secureLocalStorage from "react-secure-storage";
 import { useEffect } from "react";
@@ -32,7 +33,7 @@ function App() {
         <Route path="/ابحث بالفصيلة والموقع/التبــرع بالدم" element={<Page2icon2/>}/>
         <Route path="/تسجيـل حالة احتياج للـدم/التبــرع بالدم" element={<Page2icon3/>}/>
         <Route path="/قائمـة حالات احتياج للدم/التبــرع بالدم" element={<Page2icon4/>}/>
-        <Route path="/معلومات عن الــــــدم/التبــرع بالدم" element={<h1>معلومات عن الــــــدم </h1>}/>
+        <Route path="/معلومات عن الــــــدم/التبــرع بالدم" element={<Page2icon5/>}/>
         <Route path="/العنايـة المركزة" element={<Care/>}/>
         <Route path="/تسجيل الدخول" element={<Login/>}/>
       </Routes>
