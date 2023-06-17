@@ -79,6 +79,15 @@ form .ChooseCity button{
     .LeftSide .css-13cymwt-control ,.LeftSide .css-t3ipsp-control, .LeftSide .css-qbdosj-Input{
         width: 150px;
         }
+        .BloodTypes span {
+            font-size: 12px !important;
+        }
+        .BloodTypes div {
+            font-size: 16px !important;
+        }
+        .PatientCardLeft div:first-of-type h6{
+            font-size: 8px;
+        }
 }
 
 @media (max-width:390px) {
@@ -91,6 +100,9 @@ form .ChooseCity button{
     }
     .CareRooms .Room input{
         height: 20px;
+    }
+    .PatientCardLeft div:first-of-type h6{
+        font-size: 7px !important;
     }
 }
 

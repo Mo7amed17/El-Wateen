@@ -2,7 +2,7 @@ import { useFormikContext } from "formik";
 import CeareTypes from "./CeareTypes";
 import { Form } from "formik";
 import { useState, useEffect } from "react";
-import {  ErrorNotification, BaseApi} from "../../Helpers/Functions";
+import {  ErrorNotification } from "../../Helpers/Functions";
 import Select from "react-select";
 import Options from "../../Helpers/CitiesList.json";
 import ReactPaginate from "react-paginate";
