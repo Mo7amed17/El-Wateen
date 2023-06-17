@@ -99,8 +99,8 @@ const NewAccount = ({ newvalues ,...props}) => {
                         TheCityError===true ? (<div className="CityErrorMsg"><ValidationErrorMsg msg={"يرجى تحديد موقعك"} textAlign={"center"}/></div>) : (<></>)
                     }
                 <div className="input" name="location">
-                    <label maxLength="25" htmlFor="location">العنوان</label>
-                    <input type="text" id="location" value={values?.location} onChange={handleChange} onBlur={handleBlur} className={errors?.location ? "Error" : ""}/>
+                    <label htmlFor="location">العنوان</label>
+                    <input maxLength="25" type="text" id="location" value={values?.location} onChange={handleChange} onBlur={handleBlur} className={errors?.location ? "Error" : ""}/>
                     <ValidationErrorMsg msg={errors.location}/>
                 </div>
 

@@ -83,7 +83,7 @@ const SearchForm = ({Cares , Hospitals ,props}) => {
                                 Filter.push(care)
                         }else if(care.city===TheCity && care.room_name==values.room_name && care.number !=="0"){
                                 Filter.push(care)
-                        }else if(TheCity===undefined){
+                        }else if(TheCity===undefined && care.number !=="0" && care.room_name==values.room_name){
                             Filter.push(care)
                         }
                         

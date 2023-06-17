@@ -25,7 +25,9 @@ const EditForm = ({Cares ,props}) => {
 
     return (
         <Form className="CaresCardForm">
-            <span className="FreeRooms">عدد الغرف المتاحة</span>
+            {
+                Cares.length>0 ? (<span className="FreeRooms">عدد الغرف المتاحة</span>) : (<></>)
+            }
         {getPageItems(CurrentPage).map((Care,index) => {
             return (
             <div className="CaresCard" key={index}>
