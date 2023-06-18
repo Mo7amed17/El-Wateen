@@ -17,5 +17,14 @@ export const intinalValues={
         location:"",
         emergency_number:"",
         reception_number:"",
-        cares:[{room_name:"",number:""}],
+        cares:[
+            {room_name:"",number:""},
+            {room_name:"",number:""},
+            {room_name:"",number:""},
+            {room_name:"",number:""},
+            {room_name:"",number:""},
+            {room_name:"",number:""},
+            {room_name:"",number:""},
+            {room_name:"",number:""},
+        ],
     }

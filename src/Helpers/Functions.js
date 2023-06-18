@@ -387,8 +387,7 @@ export const SubmitHospitalForm=(values ,resetForm)=>{
                             buttons[1].disabled=false
                             buttons[1].style.backgroundColor="#0282ed"
                             buttons[1].style.cursor="pointer"
-                        })
-        }
+                        })}
         else {
             ErrorNotification("تم استخدام هذا الايميل من قبل")
         }
@@ -429,7 +428,7 @@ export const UpdateHospitalForm=(values ,resetForm,id,type)=>{
                         .catch((err)=>{
                         ErrorNotification(`خطأ في تعديل الحساب ، حاول ثانية`)
                     })
-            }
+        }
             else {
                 ErrorNotification("تم استخدام هذا الايميل من قبل")
             }

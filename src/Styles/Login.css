@@ -11,9 +11,10 @@
 }
 .CareRooms .Room{
 display: flex;
-justify-content: space-around;
+justify-content: space-between;
 align-items: center;
 margin: 10px;
+padding: 0px 10px;
 }
 .CareRooms .Room:first-of-type{
 margin-top: 40px;
@@ -27,37 +28,30 @@ left: 4%;
 top: 25px;
 }
 .CareRooms .Room input{
-width: 50px;
+    width: 180px;
 outline: none;
 border: 1px solid white;
 border-radius: 30px;
 height: 25px;
 padding: 2px 5px;
 color: #0282ed;
+background-color: white;
 }
-/* Select*/
-.LeftSide .css-13cymwt-control ,.LeftSide .css-t3ipsp-control, .LeftSide .css-qbdosj-Input{
-width: 200px;
+.CareRooms .Room .LongInput{
 font-size: 10px;
-text-align: start;
-border-radius: 15px !important;
+font-weight: bold;
+text-align: center;
+}
+.CareRooms .Room .LongInput{
+font-size: 10px;
+font-weight: bold;
+text-align: center;
 }
 
-.LeftSide .css-1nmdiq5-menu{
-font-size: 9px;
+.CareRooms .Room .ShortInput{
+width: 50px;
 }
-.CareRooms .Repeater {
-display: flex;
-justify-content: space-between;
-align-items: center;
-}
-.CareRooms .Repeater i{
-background-color: #0282ed;
-color: white;
-padding: 5px;
-border-radius: 50%;
-cursor: pointer;
-}
+
 form .ChooseCity{
     width: 100%;
     margin: 15px 0px 5px;

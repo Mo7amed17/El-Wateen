@@ -86,7 +86,7 @@ const Page2icon1 = () => {
                     {({ values, errors, handleChange, handleBlur, handleSubmit }) => (
                             secureLocalStorage.getItem("LoginHospitalAccount")==="true" ? 
                             (
-                                <EditForm Cares={secureLocalStorage.getItem("HospitalData").cares}/>
+                                <EditForm Cares={secureLocalStorage.getItem("HospitalData").cares} values={secureLocalStorage.getItem("HospitalData")}/>
                             )
                             : (<SearchForm Hospitals={HospitalsData} Cares={CaresState}/>)
                     )}

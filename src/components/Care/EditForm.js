@@ -1,34 +1,24 @@
 import { Form } from "formik";
-import { useState, useEffect } from "react";
-import {  ErrorNotification, BaseApi} from "../../Helpers/Functions";
-import Select from "react-select";
-import Options from "../../Helpers/CitiesList.json";
-import ReactPaginate from "react-paginate";
 import { CareRoomName } from "../../Helpers/Helpers";
-const EditForm = ({Cares ,props}) => {
-    console.log(Cares)
-    const [CurrentPage, setCurrentPage] = useState(0);
-    const [CaresData, setCaresData] = useState(Cares);
-
-    const itemsPerPage = 8;
-
-    const getPageItems = (pageNumber) => {
-        const startIndex = pageNumber * itemsPerPage;
-        const endIndex = startIndex + itemsPerPage;
-        return CaresData.slice(startIndex, endIndex);
-    };
-
-    const handlePageClick = (selectedPage) => {
-        setCurrentPage(selectedPage.selected);
-    };
-    
+import axios from "axios";
+import { SuccessNotification , ErrorNotification, BaseApi } from "../../Helpers/Functions"
+import { useEffect ,useState} from "react";
+const EditForm = ({Cares, values ,props}) => {
+        const [UpdateCares, setUpdateCares] = useState(Cares);
+    useEffect(() => {
+        fetch(`${BaseApi}/Hospitals/${values.id}`)
+        .then((res)=>res.json())
+        .then((data)=>{
+            setUpdateCares(data.cares)
+        })
+    }, []);
 
     return (
         <Form className="CaresCardForm">
             {
-                Cares.length>0 ? (<span className="FreeRooms">عدد الغرف المتاحة</span>) : (<></>)
+                UpdateCares?.length>0 ? (<span className="FreeRooms" style={{marginTop:"-5px"}}>عدد الغرف المتاحة</span>) : (<></>)
             }
-        {getPageItems(CurrentPage).map((Care,index) => {
+            {UpdateCares?.map((Care,index) => {
             return (
             <div className="CaresCard" key={index}>
                 <div className="RoomName">
@@ -36,30 +26,43 @@ const EditForm = ({Cares ,props}) => {
                 </div>
                 
                 <div className="RoomNumber">
-                    <input type="text" disabled={true} value={Care?.number}/>
+                    <input type="text" disabled={true} placeholder={Care?.number} onKeyPress={(e)=>{
+                        if(e.charCode>=48 && e.charCode <=57){
+                        }
+                        else {
+                            e.preventDefault()
+                        }
+                    }}
+                    onChange={(e)=>{
+                        values.cares[index].number=e.target.value
+                    }}
+                    />
                 </div>
 
                 <div className="RoomEditButton">
-                    <button type="button">تعديل</button>
+                    <button type="button" onClick={(e)=>{
+                        if(e.target.parentElement.previousSibling.childNodes[0].disabled===true){
+                            e.target.parentElement.previousSibling.childNodes[0].disabled=false
+                            e.target.textContent="حفــظ"
+                        }else {
+                            axios({
+                                method: 'patch',
+                                url: `https://el-wateen.mo7amed17.repl.co/Hospitals/${values.id}`,
+                                data:values
+                            }).then((res)=>{
+                                SuccessNotification('تم تعديل العنايات المركزة')
+                            }).catch((err)=>{
+                                ErrorNotification("واجهنا خطأ برجاء المحاوله مرة اخرى")
+                            }).finally(()=>{
+                                e.target.parentElement.previousSibling.childNodes[0].disabled=true
+                            e.target.textContent="تعديل"
+                            })
+                        }
+                    }}>تعديل</button>
                 </div>
             </div>
             );
         })}
-                <div className="AddRoomEditButton" style={{textAlign:"center",marginTop:"10px"}}>
-                    <button type="button" style={{fontSize:"14px"}}>اضافه عنايات مركزة جديدة</button>
-                </div>
-
-        <ReactPaginate
-            pageCount={Math.ceil(CaresData?.length / itemsPerPage)}
-            pageRangeDisplayed={1}
-            marginPagesDisplayed={1}
-            previousLabel={"السابق"}
-            nextLabel={"التالي"}
-            breakLabel={"..."}
-            containerClassName={"pagination"}
-            activeClassName={"active"}
-            onPageChange={handlePageClick}
-        />
         </Form>
     );
 };

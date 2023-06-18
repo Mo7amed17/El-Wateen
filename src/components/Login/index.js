@@ -19,7 +19,7 @@ const Page2icon1 = () => {
     const [Status, setStatus] = useState("loading");
     const [Reload, setReload] = useState(false);
     const [Image, setImage] = useState("");
-    const Result=[]
+    let Valid=0
             useEffect(() => {
                 fetch(`${PhotoApi}/Login.png`)
                 .then((res)=>{
@@ -75,12 +75,10 @@ const Page2icon1 = () => {
                 validateOnBlur={false}
                 isInitialValid={false}
                 onSubmit={(values , {resetForm})=>{
-                    (values?.cares).map((ele)=>{
-                        if(ele.room_name !=="" && ele.number!=="")
-                        { 
-                        Result.push(ele)
+                    values.cares.map((care)=>{
+                        if(care.room_name!=="",care.number!=="" ){
+                            Valid=1
                         }
-                        values.cares=Result
                     })
                     if(secureLocalStorage.getItem("LoginHospitalAccount")==="true"){
                         Object.keys(values).map((key)=>{
@@ -97,22 +95,25 @@ const Page2icon1 = () => {
                         else{
                                 UpdateHospitalForm(Newvalues ,resetForm,secureLocalStorage.getItem("HospitalId"),"Hospitals")
                             }
-
                     }else {
-                        SubmitHospitalForm(values ,resetForm)
+                        if(Valid===1){
+                            SubmitHospitalForm(values ,resetForm)
+                        }else {
+                            ErrorNotification("برجاء ادخال عناية واحده على الأقل")
+                        }
                     }
                 }}
                 enableReinitialize>
                     {({ values, errors, handleChange, handleBlur, handleSubmit }) => (
                         <Switch>
                             <Case condition={ActiveForm==="new_account"}>
-                                <NewAccount Result={Result}/>
+                                <NewAccount/>
                             </Case>
                             <Case condition={ActiveForm==="old_account"}>
                                 <OldAccount/>
                             </Case>
                             <Default>
-                                <NewAccount Result={Result}/>
+                                <NewAccount/>
                             </Default>
                         </Switch>
                     )}
