@@ -76,7 +76,7 @@ const Page2icon1 = () => {
             </Case>
             <Default>
         <div className="Page2icon1" style={{marginBottom:"200px"}}>
-            <div className="Right">
+            <div className="Right RightCareForm">
                 <Formik
                 validateOnChange={false}
                 validateOnBlur={false}

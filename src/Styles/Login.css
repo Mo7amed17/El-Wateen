@@ -68,6 +68,15 @@ form .ChooseCity button{
     font-size: 18px;
     height: min-content;
 }
+@media (max-width:900px) {
+    .RightCareForm{
+        width: 100% !important;
+        margin-top: 150px;
+    }
+    .CaresCardForm{
+        margin: 0px auto !important;
+    }
+}
 
 @media (max-width:540px) {
     .LeftSide .css-13cymwt-control ,.LeftSide .css-t3ipsp-control, .LeftSide .css-qbdosj-Input{
@@ -81,6 +90,34 @@ form .ChooseCity button{
         }
         .PatientCardLeft div:first-of-type h6{
             font-size: 8px;
+        }
+        .CaresCardForm{
+            width: 300px !important;
+        }
+        .RoomEditButton button{
+            padding: 3px 8px !important;
+            font-size: 10px !important;
+        }
+        .CaresCard .RoomNumber ,.CaresCard .RoomName {
+            height: 25px !important;
+            width: 12% !important;
+        }
+        .CaresCard .RoomNumber {
+            margin-top: 8px !important;
+        }
+        .CaresCard .RoomNumber input {
+            font-size: 10px !important;
+        }
+        .CaresCard .RoomName{
+            width: 70% !important;
+        }
+        .CaresCard .RoomName input{
+            font-size: 10px !important;
+        }
+        .CaresCardForm .FreeRooms {
+            top: 7% !important;
+            left: 15% !important;
+            font-size: 7px !important;
         }
 }
 
@@ -97,6 +134,51 @@ form .ChooseCity button{
     }
     .PatientCardLeft div:first-of-type h6{
         font-size: 7px !important;
+    }
+    .CaresCardForm{
+        width: 250px !important;
+    }
+    .RoomEditButton button{
+        padding: 3px 5px !important;
+        font-weight: lighter !important;
+    }
+    .CaresCard .RoomNumber {
+        margin-top: 5px !important;
+    }
+    .CaresCard .RoomNumber input {
+        font-size: 8px !important;
+    }
+    .CaresCard .RoomName input{
+        font-size: 9px !important;
+    }
+    .CaresCardForm .FreeRooms {
+        font-size: 6px !important;
+    }
+}
+
+@media (max-width:320px) {
+    .CaresCardForm{
+        width: 200px !important;
+    }
+    .RoomEditButton button{
+        padding: 2px 4px !important;
+        font-weight: lighter !important;
+        font-size: 8px !important;
+    }
+    .CaresCard .RoomNumber {
+        margin-top: 5px !important;
+    }
+    .CaresCard .RoomNumber input {
+        font-size: 7px !important;
+        height: 18px !important;
+    }
+    .CaresCard .RoomName input{
+        font-size: 7px !important;
+        height: 20px !important;
+    }
+    .CaresCardForm .FreeRooms {
+        font-size: 5px !important;
+        left: 17% !important;
     }
 }
 
