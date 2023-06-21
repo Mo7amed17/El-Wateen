@@ -17,6 +17,16 @@ const SearchForm = ({Cares , Hospitals ,props}) => {
 
     const itemsPerPage = 3;
 
+    useEffect(() => {
+            const NewData=[]
+        CaresData.map((c)=>{
+            if(c?.room_name!=="" || c?.number !==""){
+                NewData.push(c)
+            }
+        })
+        setCaresData(NewData)
+    }, []);
+
     const getPageItems = (pageNumber) => {
         const startIndex = pageNumber * itemsPerPage;
         const endIndex = startIndex + itemsPerPage;
@@ -26,6 +36,7 @@ const SearchForm = ({Cares , Hospitals ,props}) => {
     const handlePageClick = (selectedPage) => {
         setCurrentPage(selectedPage.selected);
     };
+
     
 
     useEffect(() => {
