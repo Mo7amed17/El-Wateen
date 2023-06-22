@@ -90,11 +90,11 @@ const SearchForm = ({Cares , Hospitals ,props}) => {
                 }
                 else{
                     Cares.map((care)=>{
-                        if(values.room_name==="9" && care.city===TheCity && care.number !=="0" ){
+                        if(values.room_name==="9" && care.city===TheCity ){
                                 Filter.push(care)
-                        }else if(care.city===TheCity && care.room_name==values.room_name && care.number !=="0"){
+                        }else if(care.city===TheCity && care.room_name==values.room_name){
                                 Filter.push(care)
-                        }else if(TheCity===undefined && care.number !=="0" && care.room_name==values.room_name){
+                        }else if(TheCity===undefined && care.room_name==values.room_name){
                             Filter.push(care)
                         }
                         
@@ -123,7 +123,7 @@ const SearchForm = ({Cares , Hospitals ,props}) => {
 
                 <div>
                     <h5>عدد غرف العناية المتاحة</h5>
-                    <h6 style={{color:`${Care?.number=="0" ? "#d20909" : ""}`,fontWeight:"bold",fontSize:"11px"}}>{Care?.number=="0" ? "لا توجد غرف متاحه" : Care?.number}</h6>
+                    <h6 style={{color:`${Care?.number=="0"|| Care?.number=="" ?  "#d20909" : ""}`,fontWeight:"bold",fontSize:"11px"}}>{Care?.number=="0" || Care?.number=="" ? "لا توجد غرف متاحه" : Care?.number}</h6>
                 </div>
 
                 <div>
