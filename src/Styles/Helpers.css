@@ -101,6 +101,10 @@
     padding-bottom: 30px;
     margin-top: 60px;
 }
+.FlexFooter{
+    display: flex;
+    justify-content: space-around;
+}
 .Footer i{
     font-size: 36px;
     cursor: pointer;
